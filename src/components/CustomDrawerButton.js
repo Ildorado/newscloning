@@ -13,8 +13,8 @@ const CustomMenuButton = props => {
       .then(response => response.text())
       .then(responseData => rssParser.parse(responseData))
       .then(rss => {
-        console.log('rss.title:', rss.title);
-        console.log('rss:', rss);
+        // console.log('rss.title:', rss.title);
+        // console.log('rss:', rss);
         return rss.items;
       })
       .then(items => {

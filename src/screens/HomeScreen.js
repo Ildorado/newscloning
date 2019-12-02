@@ -7,6 +7,7 @@ import {useSelector} from 'react-redux';
 
 const HomeScreen = props => {
   const {navigation} = props;
+  console.log('Navigation:', navigation);
   const news = useSelector(state => state.news);
   console.log('news:', news);
   return (

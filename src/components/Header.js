@@ -1,9 +1,10 @@
 import React from 'react';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import Colors from '../constants/Colors';
 import CustomMenuButton from './CustomMenuButton';
 import {addCounter} from '../redux/actions/index';
 import {useDispatch} from 'react-redux';
+
 const Header = props => {
   const dispatch = useDispatch();
   const onPressHandler = () => {

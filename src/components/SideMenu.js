@@ -1,12 +1,11 @@
 import React from 'react';
 import {ScrollView, View, StyleSheet} from 'react-native';
 import NewsSources from '../constants/NewsSources';
-import CustomMenuButton from './CustomMenuButton';
 import CustomDrawerButton from './CustomDrawerButton';
 import Icon from 'react-native-vector-icons/Fontisto';
 Icon.loadFont();
 const SideMenu = props => {
-  console.log('works woflks');
+  console.log('Side Menu Props:', props);
   const {closeDrawer} = props.navigation;
   const buttonClickHandler = () => {
     closeDrawer();
