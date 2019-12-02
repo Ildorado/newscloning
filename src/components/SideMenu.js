@@ -4,7 +4,6 @@ import NewsSources from '../constants/NewsSources';
 import CustomMenuButton from './CustomMenuButton';
 import CustomDrawerButton from './CustomDrawerButton';
 import Icon from 'react-native-vector-icons/Fontisto';
-import Colors from '../constants/Colors';
 Icon.loadFont();
 const SideMenu = props => {
   console.log('works woflks');

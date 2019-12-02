@@ -1,13 +1,5 @@
-import React, {useEffect, useCallback} from 'react';
-import {
-  View,
-  FlatList,
-  Text,
-  Button,
-  StyleSheet,
-  TouchableOpacity,
-  SafeAreaView,
-} from 'react-native';
+import React from 'react';
+import {View, FlatList, StyleSheet, SafeAreaView} from 'react-native';
 import Header from '../components/Header';
 import NewsSlot from '../components/NewsSlot';
 import Colors from '../constants/Colors';
