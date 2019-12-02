@@ -1,8 +1,8 @@
 import React from 'react';
-import Drawer from './components/Drawer';
-import TabNavigator from './components/TabNavigator';
+import DrawerNavigator from './navigation/DrawerNavigator';
+
 const App = props => {
   console.log(('props:', props));
-  return <TabNavigator />;
+  return <DrawerNavigator />;
 };
 export default App;

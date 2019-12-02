@@ -14,7 +14,6 @@ import {name as appName} from './app.json';
 import Store from './src/redux/store/index';
 import React from 'react';
 import {Provider} from 'react-redux';
-
 // AppRegistry.registerComponent(appName, () => App);
 const storedApp = () => {
   return (
