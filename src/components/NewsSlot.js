@@ -7,7 +7,12 @@ const NewsSlot = props => {
     <View style={styles.card}>
       <Text style={styles.h1}>{props.config.item.title}</Text>
       {props.config.item.img && (
-        <Image style={styles.image} source={{url: props.config.item.img}} />
+        <Image
+          style={styles.image}
+          source={{url: props.config.item.img}}
+          resizeMethod="scale"
+          resizeMode="contain"
+        />
       )}
       <Text style={styles.description}>{props.config.item.description}</Text>
       <Text style={styles.published}>{props.config.item.published}</Text>

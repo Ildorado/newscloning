@@ -1,9 +1,11 @@
-import React, {useEffect} from 'react';
-import {ScrollView, View, Button, StyleSheet} from 'react-native';
+import React from 'react';
+import {ScrollView, View, StyleSheet} from 'react-native';
 import NewsSources from '../constants/NewsSources';
 import CustomMenuButton from './CustomMenuButton';
 import CustomDrawerButton from './CustomDrawerButton';
 import Icon from 'react-native-vector-icons/Fontisto';
+import Colors from '../constants/Colors';
+Icon.loadFont();
 const SideMenu = props => {
   console.log('works woflks');
   const {closeDrawer} = props.navigation;
@@ -12,8 +14,12 @@ const SideMenu = props => {
   };
   return (
     <View style={styles.container}>
-      <Icon name="arrow-return-right" size={30} color="#900" />
-      <CustomMenuButton title="Back" onPress={buttonClickHandler} />
+      <Icon
+        onPress={buttonClickHandler}
+        name="arrow-return-right"
+        size={30}
+        color="black"
+      />
       <ScrollView>
         {NewsSources.map(item => (
           <View style={styles.Button} key={item.key}>
