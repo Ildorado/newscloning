@@ -1,5 +1,4 @@
 import {createDrawerNavigator} from 'react-navigation-drawer';
-import HomeScreen from '../screens/HomeScreen';
 import SideMenu from '../components/SideMenu';
 import {createAppContainer} from 'react-navigation';
 import myTabNavigator from './TabNavigator';

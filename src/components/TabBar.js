@@ -1,22 +1,24 @@
-import * as React from 'react';
-import {View, Animated, StyleSheet, Button} from 'react-native';
+import React, {useEffect} from 'react';
+import {View, StyleSheet} from 'react-native';
 import Tab from './Tab';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {setFocusedTabTitle} from '../redux/actions/index';
-import CustomMenuButton from '../components/CustomMenuButton';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Colors from '../constants/Colors';
 Icon.loadFont();
 const TabBar = props => {
   const dispatch = useDispatch();
-  const {navigationState, navigation, position} = props;
+  const {navigationState, navigation} = props;
+  const focusedRouteName = useSelector(state => state.focusedTabTitle);
   const IconOnPressHandler = () => {
     navigation.openDrawer();
   };
   const TabOnPressHandler = route => {
-    navigation.navigate(route.routeName);
     dispatch(setFocusedTabTitle(route.routeName));
   };
+  useEffect(() => {
+    navigation.navigate(focusedRouteName);
+  }, [focusedRouteName, navigation]);
   return (
     <View style={styles.TabBar}>
       <Icon

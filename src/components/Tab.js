@@ -1,29 +1,18 @@
 import React from 'react';
-import {StyleSheet, Animated, TouchableOpacity} from 'react-native';
-import {useSelector, useEffect} from 'react-redux';
+import {StyleSheet} from 'react-native';
+import {useSelector} from 'react-redux';
+import CustomMenuButton from '../components/CustomMenuButton';
 import Colors from '../constants/Colors';
 const Tab = ({focusAnim, title, onPress}) => {
   console.log('focusAnim:', focusAnim);
-  // const color = new Animated.Value(focusAnim).interpolate({
-  //   inputRange: [0, 1],
-  //   outputRange: ['transparent', 'tomato'],
-  // });
-  //title === focusedTabTitle ? styles.focused : styles.unfocused
   const focusedTabTitle = useSelector(state => state.focusedTabTitle);
-  console.log('focusedTabTitle', focusedTabTitle);
-  console.log(title === focusedTabTitle ? 'orange' : 'notOrange');
-  const additionalStyles =
-    title === focusedTabTitle ? styles.focused : styles.unfocused;
+  console.log('focusedTabTitle:', focusedTabTitle);
   return (
-    <TouchableOpacity onPress={onPress}>
-      <Animated.View
-        style={{
-          ...styles.Tab,
-          ...additionalStyles,
-        }}>
-        <Animated.Text style={styles.text}>{title}</Animated.Text>
-      </Animated.View>
-    </TouchableOpacity>
+    <CustomMenuButton
+      title={title}
+      style={title === focusedTabTitle ? styles.focused : styles.unfocused}
+      onPress={onPress}
+    />
   );
 };
 const styles = StyleSheet.create({
