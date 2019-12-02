@@ -9,3 +9,9 @@ export const setNews = payload => {
     payload: payload,
   };
 };
+export const setFocusedTabTitle = payload => {
+  return {
+    type: 'SETFOCUSEDTABTITLE',
+    payload: payload,
+  };
+};

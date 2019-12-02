@@ -12,7 +12,6 @@ const HomeScreen = props => {
   console.log('news:', news);
   return (
     <View style={styles.screen}>
-      <Header navigation={navigation} />
       <SafeAreaView style={styles.listWrapper}>
         <FlatList
           style={styles.list}

@@ -1,16 +1,20 @@
 import {createAppContainer} from 'react-navigation';
-import {createBottomTabNavigator} from 'react-navigation-tabs';
+import {
+  createBottomTabNavigator,
+  createMaterialTopTabNavigator,
+} from 'react-navigation-tabs';
 import Header from '../components/Header';
 // import Drawer from './DrawerNavigator';
 import FavoritesScreen from '../screens/FavoritesScreen';
 import HomeScreen from '../screens/HomeScreen';
-const myTabNavigator = createBottomTabNavigator(
+import TabBar from '../components/TabBar';
+const myTabNavigator = createMaterialTopTabNavigator(
   {
     Home: HomeScreen,
     Favorites: FavoritesScreen,
   },
   {
-    contentComponent: Header,
+    tabBarComponent: TabBar,
   },
 );
 // export default createAppContainer(myTabNavigator);
