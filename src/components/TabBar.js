@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, SafeAreaView} from 'react-native';
 import Tab from './Tab';
 import {useDispatch, useSelector} from 'react-redux';
 import {setFocusedTabTitle} from '../redux/actions/index';
@@ -20,7 +20,7 @@ const TabBar = props => {
     navigation.navigate(focusedRouteName);
   }, [focusedRouteName, navigation]);
   return (
-    <View style={styles.TabBar}>
+    <SafeAreaView style={styles.TabBar}>
       <Icon
         onPress={IconOnPressHandler}
         name="backburger"
@@ -38,12 +38,12 @@ const TabBar = props => {
           );
         })}
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 const styles = StyleSheet.create({
   TabBar: {
-    height: 80,
+    height: '10%',
     backgroundColor: Colors.secondary,
     flexDirection: 'row',
     alignItems: 'center',

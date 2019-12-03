@@ -1,5 +1,5 @@
 import React from 'react';
-import {ScrollView, View, StyleSheet} from 'react-native';
+import {ScrollView, View, StyleSheet, SafeAreaView} from 'react-native';
 import NewsSources from '../constants/NewsSources';
 import CustomDrawerButton from './CustomDrawerButton';
 import Icon from 'react-native-vector-icons/Fontisto';
@@ -10,7 +10,7 @@ const SideMenu = props => {
     closeDrawer();
   };
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Icon
         onPress={buttonClickHandler}
         name="arrow-return-right"
@@ -25,7 +25,7 @@ const SideMenu = props => {
           </View>
         ))}
       </ScrollView>
-    </View>
+    </SafeAreaView>
   );
 };
 
