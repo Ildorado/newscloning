@@ -1,4 +1,5 @@
 const initialState = {
+  currentNewsSource: null,
   items: [],
   loading: false,
   error: null,

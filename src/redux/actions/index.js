@@ -25,32 +25,50 @@ export const fetchNewsFailure = error => ({
   type: 'FETCHNEWSFAILURE',
   payload: {error},
 });
-export const fetchNews = (payload, dispatch) => {
+export async function fetchNews(payload, dispatch) {
   dispatch(fetchNewsBegin());
-  fetch(payload.src)
-    .then(responce => handleErrors(responce))
-    .then(response => response.text())
-    .then(responseData => rssParser.parse(responseData))
-    .then(rss => {
-      // console.log('rss.title:', rss.title);
-      // console.log('rss:', rss);
-      return rss.items;
-    })
-    .then(items => {
-      let news = [];
-      items.forEach(el => {
-        news.push(payload.infoHandler(el));
-      });
-      return news;
-    })
-    .then(news => {
-      dispatch(fetchNewsSuccess(news));
-    })
-    .catch(error => {
-      console.log('error:', String(error));
-      dispatch(fetchNewsFailure(String(error)));
+  try {
+    let news = [];
+    const responce = await fetch(payload.src);
+    handleErrors(responce);
+    const responseData = await responce.text();
+    const rssData = await rssParser.parse(responseData);
+    const items = rssData.items;
+    items.forEach(el => {
+      news.push(payload.infoHandler(el));
     });
-};
+    dispatch(fetchNewsSuccess(news));
+  } catch (error) {
+    console.log('error:', String(error));
+    dispatch(fetchNewsFailure(String(error)));
+  }
+}
+// export const asd = (payload, dispatch) => {
+//   dispatch(fetchNewsBegin());
+//   fetch(payload.src)
+//     .then(responce => handleErrors(responce))
+//     .then(response => response.text())
+//     .then(responseData => rssParser.parse(responseData))
+//     .then(rss => {
+//       // console.log('rss.title:', rss.title);
+//       // console.log('rss:', rss);
+//       return rss.items;
+//     })
+//     .then(items => {
+//       let news = [];
+//       items.forEach(el => {
+//         news.push(payload.infoHandler(el));
+//       });
+//       return news;
+//     })
+//     .then(news => {
+//       dispatch(fetchNewsSuccess(news));
+//     })
+//     .catch(error => {
+//       console.log('error:', String(error));
+//       dispatch(fetchNewsFailure(String(error)));
+//     });
+// };
 function handleErrors(response) {
   if (!response.ok) {
     throw Error(response.statusText);

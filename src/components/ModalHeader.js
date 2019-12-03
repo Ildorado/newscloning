@@ -7,10 +7,6 @@ import Icon from 'react-native-vector-icons/Entypo';
 Icon.loadFont();
 const Header = ({onCancel}) => {
   console.log('onCancel:', onCancel);
-  // const dispatch = useDispatch();
-  // const modalOnCancelHandler = () => {
-  //   dispatch(setWebViewVisibility(false));
-  // };
   return (
     <SafeAreaView style={styles.header}>
       <View>
