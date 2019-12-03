@@ -5,21 +5,16 @@ import {useDispatch} from 'react-redux';
 import {setWebViewVisibility} from '../redux/actions/index';
 import Icon from 'react-native-vector-icons/Entypo';
 Icon.loadFont();
-const Header = props => {
-  const dispatch = useDispatch();
-  const modalOnCancelHandler = () => {
-    dispatch(setWebViewVisibility(false));
-  };
-  console.log('Modal Header props:', props);
+const Header = ({onCancel}) => {
+  console.log('onCancel:', onCancel);
+  // const dispatch = useDispatch();
+  // const modalOnCancelHandler = () => {
+  //   dispatch(setWebViewVisibility(false));
+  // };
   return (
     <SafeAreaView style={styles.header}>
       <View>
-        <Icon
-          onPress={modalOnCancelHandler}
-          name="squared-cross"
-          size={30}
-          color="black"
-        />
+        <Icon onPress={onCancel} name="squared-cross" size={30} color="black" />
       </View>
     </SafeAreaView>
   );
