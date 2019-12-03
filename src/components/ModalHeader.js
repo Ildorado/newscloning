@@ -1,20 +1,21 @@
 import React from 'react';
 import {View, StyleSheet, SafeAreaView} from 'react-native';
 import Colors from '../constants/Colors';
-import CustomMenuButton from './CustomMenuButton';
+import {useDispatch} from 'react-redux';
+import {setWebViewVisibility} from '../redux/actions/index';
 import Icon from 'react-native-vector-icons/Entypo';
 Icon.loadFont();
 const Header = props => {
-  // const onPressHandler = () => {
-  //   props.navigation.openDrawer();
-  //   dispatch(addCounter());
-  // };
+  const dispatch = useDispatch();
+  const modalOnCancelHandler = () => {
+    dispatch(setWebViewVisibility(false));
+  };
   console.log('Modal Header props:', props);
   return (
     <SafeAreaView style={styles.header}>
       <View>
         <Icon
-          onPress={props.onCancel}
+          onPress={modalOnCancelHandler}
           name="squared-cross"
           size={30}
           color="black"

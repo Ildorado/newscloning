@@ -21,7 +21,6 @@ const newsReducer = (state = initialState, action) => {
     }
     case 'FETCHNEWSFAILURE':
       return {
-        ...state,
         loading: false,
         error: action.payload,
         items: [],

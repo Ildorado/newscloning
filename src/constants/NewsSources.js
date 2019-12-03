@@ -5,7 +5,9 @@ const NewsSources = [
     key: shortid.generate(),
     src: 'https://news.tut.by/rss/all.rss',
     infoHandler: item => {
-      const img = item.description.match(/src="[^"]+/g)[0].replace('src="', '');
+      const img = item.description.match(/src="[^"]+/g)
+        ? item.description.match(/src="[^"]+/g)[0].replace('src="', '')
+        : undefined;
       const description = item.description.replace(/<[^>]+>/g, '');
       const categories = undefined;
       return {
@@ -45,7 +47,9 @@ const NewsSources = [
     key: shortid.generate(),
     src: 'https://www.buzzfeed.com/world.xml',
     infoHandler: item => {
-      const img = item.description.match(/src="[^"]+/g)[0].replace('src="', '');
+      const img = item.description.match(/src="[^"]+/g)
+        ? item.description.match(/src="[^"]+/g)[0].replace('src="', '')
+        : undefined;
       const description = item.description
         .replace(/<[^>]+>/g, '')
         .replace('View Entire Post &rsaquo;', '');

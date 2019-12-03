@@ -1,8 +1,7 @@
 import React from 'react';
 import {TouchableOpacity, Text, StyleSheet} from 'react-native';
 import Colors from '../constants/Colors';
-import * as rssParser from 'react-native-rss-parser';
-import {setNews, fetchNews} from '../redux/actions/index';
+import {fetchNews} from '../redux/actions/index';
 import {useDispatch} from 'react-redux';
 const CustomMenuButton = props => {
   const dispatch = useDispatch();

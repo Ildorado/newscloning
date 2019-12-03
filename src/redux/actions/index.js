@@ -28,7 +28,7 @@ export const fetchNewsFailure = error => ({
 export const fetchNews = (payload, dispatch) => {
   dispatch(fetchNewsBegin());
   fetch(payload.src)
-    .then(handleErrors)
+    .then(responce => handleErrors(responce))
     .then(response => response.text())
     .then(responseData => rssParser.parse(responseData))
     .then(rss => {
@@ -46,7 +46,10 @@ export const fetchNews = (payload, dispatch) => {
     .then(news => {
       dispatch(fetchNewsSuccess(news));
     })
-    .catch(error => dispatch(fetchNewsFailure(error)));
+    .catch(error => {
+      console.log('error:', String(error));
+      dispatch(fetchNewsFailure(String(error)));
+    });
 };
 function handleErrors(response) {
   if (!response.ok) {
@@ -54,3 +57,16 @@ function handleErrors(response) {
   }
   return response;
 }
+export const setWebViewVisibility = payload => {
+  return {
+    type: 'SETWEBVIEWVISIBILITY',
+    payload: payload,
+  };
+};
+export const setWebViewUri = (payload, dispatch) => {
+  dispatch(setWebViewVisibility(true));
+  return {
+    type: 'SETWEBVIEWURI',
+    payload: payload,
+  };
+};

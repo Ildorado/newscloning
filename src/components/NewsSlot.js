@@ -7,22 +7,27 @@ import {
   TouchableWithoutFeedback,
 } from 'react-native';
 import Colors from '../constants/Colors';
+import {useDispatch} from 'react-redux';
+import {setWebViewUri} from '../redux/actions/index';
 const NewsSlot = props => {
-  // console.log('props.config:', props.config);
+  const dispatch = useDispatch();
+  const newsSlotPressHandler = () => {
+    dispatch(setWebViewUri(props.config.id, dispatch));
+  };
   return (
-    <TouchableWithoutFeedback onPress={props.onPress}>
+    <TouchableWithoutFeedback onPress={newsSlotPressHandler}>
       <View style={styles.card}>
-        <Text style={styles.h1}>{props.config.item.title}</Text>
-        {props.config.item.img && (
+        <Text style={styles.h1}>{props.config.title}</Text>
+        {props.config.img && (
           <Image
             style={styles.image}
-            source={{uri: props.config.item.img}}
+            source={{uri: props.config.img}}
             resizeMethod="scale"
             resizeMode="contain"
           />
         )}
-        <Text style={styles.description}>{props.config.item.description}</Text>
-        <Text style={styles.published}>{props.config.item.published}</Text>
+        <Text style={styles.description}>{props.config.description}</Text>
+        <Text style={styles.published}>{props.config.published}</Text>
       </View>
     </TouchableWithoutFeedback>
   );
