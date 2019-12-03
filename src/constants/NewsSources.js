@@ -6,7 +6,6 @@ const NewsSources = [
     src: 'https://news.tut.by/rss/all.rss',
     infoHandler: item => {
       const img = item.description.match(/src="[^"]+/g)[0].replace('src="', '');
-
       const description = item.description.replace(/<[^>]+>/g, '');
       const categories = undefined;
       return {

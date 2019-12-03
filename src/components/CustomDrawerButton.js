@@ -5,7 +5,6 @@ import * as rssParser from 'react-native-rss-parser';
 import {setNews} from '../redux/actions/index';
 import {useDispatch} from 'react-redux';
 const CustomMenuButton = props => {
-  // let parser = new Parser();
   const dispatch = useDispatch();
   const onPressHandler = () => {
     fetch(props.config.src)

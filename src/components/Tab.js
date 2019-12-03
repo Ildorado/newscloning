@@ -3,10 +3,8 @@ import {StyleSheet} from 'react-native';
 import {useSelector} from 'react-redux';
 import CustomMenuButton from '../components/CustomMenuButton';
 import Colors from '../constants/Colors';
-const Tab = ({focusAnim, title, onPress}) => {
-  console.log('focusAnim:', focusAnim);
+const Tab = ({title, onPress}) => {
   const focusedTabTitle = useSelector(state => state.focusedTabTitle);
-  console.log('focusedTabTitle:', focusedTabTitle);
   return (
     <CustomMenuButton
       title={title}

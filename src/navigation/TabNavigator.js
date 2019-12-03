@@ -11,9 +11,6 @@ const myTabNavigator = createMaterialTopTabNavigator(
     tabBarComponent: TabBar,
   },
 );
-console.log(
-  'myTabNavigator',
-  Object.keys(myTabNavigator.router.childRouters)[0],
-);
+
 // export default createAppContainer(myTabNavigator);
 export default myTabNavigator;
