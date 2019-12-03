@@ -9,7 +9,7 @@ const NewsSlot = props => {
       {props.config.item.img && (
         <Image
           style={styles.image}
-          source={{url: props.config.item.img}}
+          source={{uri: props.config.item.img}}
           resizeMethod="scale"
           resizeMode="contain"
         />
@@ -31,9 +31,8 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   image: {
-    width: 200,
-    height: 100,
-    borderRadius: 8,
+    width: 300,
+    height: 150,
     marginTop: 20,
   },
   h1: {
