@@ -1,22 +1,30 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TouchableWithoutFeedback,
+} from 'react-native';
 import Colors from '../constants/Colors';
 const NewsSlot = props => {
   // console.log('props.config:', props.config);
   return (
-    <View style={styles.card}>
-      <Text style={styles.h1}>{props.config.item.title}</Text>
-      {props.config.item.img && (
-        <Image
-          style={styles.image}
-          source={{uri: props.config.item.img}}
-          resizeMethod="scale"
-          resizeMode="contain"
-        />
-      )}
-      <Text style={styles.description}>{props.config.item.description}</Text>
-      <Text style={styles.published}>{props.config.item.published}</Text>
-    </View>
+    <TouchableWithoutFeedback onPress={props.onPress}>
+      <View style={styles.card}>
+        <Text style={styles.h1}>{props.config.item.title}</Text>
+        {props.config.item.img && (
+          <Image
+            style={styles.image}
+            source={{uri: props.config.item.img}}
+            resizeMethod="scale"
+            resizeMode="contain"
+          />
+        )}
+        <Text style={styles.description}>{props.config.item.description}</Text>
+        <Text style={styles.published}>{props.config.item.published}</Text>
+      </View>
+    </TouchableWithoutFeedback>
   );
 };
 const styles = StyleSheet.create({
