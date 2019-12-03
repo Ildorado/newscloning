@@ -1,8 +1,32 @@
-const newsReducer = (state = [], action) => {
+const initialState = {
+  items: [],
+  loading: false,
+  error: null,
+};
+
+const newsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'SETNEWS': {
-      return action.payload;
+    case 'FETCHNEWSBEGIN':
+      return {
+        ...state,
+        loading: true,
+        error: null,
+      };
+    case 'FETCHNEWSSUCCESS': {
+      return {
+        ...state,
+        items: action.payload,
+        loading: false,
+      };
     }
+    case 'FETCHNEWSFAILURE':
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+        items: [],
+      };
+
     default:
       return state;
   }

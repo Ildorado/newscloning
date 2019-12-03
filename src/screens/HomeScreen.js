@@ -6,8 +6,8 @@ import Colors from '../constants/Colors';
 import {useSelector} from 'react-redux';
 
 const HomeScreen = props => {
-  const news = useSelector(state => state.news);
-  console.log('news:', news);
+  const news = useSelector(state => state.news.items);
+  // console.log('news:', news);
   return (
     <View style={styles.screen}>
       <SafeAreaView style={styles.listWrapper}>

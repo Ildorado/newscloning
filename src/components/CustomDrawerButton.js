@@ -2,29 +2,12 @@ import React from 'react';
 import {TouchableOpacity, Text, StyleSheet} from 'react-native';
 import Colors from '../constants/Colors';
 import * as rssParser from 'react-native-rss-parser';
-import {setNews} from '../redux/actions/index';
+import {setNews, fetchNews} from '../redux/actions/index';
 import {useDispatch} from 'react-redux';
 const CustomMenuButton = props => {
   const dispatch = useDispatch();
   const onPressHandler = () => {
-    fetch(props.config.src)
-      .then(response => response.text())
-      .then(responseData => rssParser.parse(responseData))
-      .then(rss => {
-        // console.log('rss.title:', rss.title);
-        // console.log('rss:', rss);
-        return rss.items;
-      })
-      .then(items => {
-        let news = [];
-        items.forEach(el => {
-          news.push(props.config.infoHandler(el));
-        });
-        return news;
-      })
-      .then(news => {
-        dispatch(setNews(news));
-      });
+    fetchNews(props.config, dispatch);
   };
   return (
     <TouchableOpacity
