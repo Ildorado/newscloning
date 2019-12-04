@@ -23,12 +23,6 @@ const ModalWebView = () => {
       <WebView
         onLoadProgress={({nativeEvent}) => {
           setIsLoaded(nativeEvent.progress > 0.6);
-          console.log('Loading Progress:', nativeEvent.progress);
-        }}
-        onLoadEnd={syntheticEvent => {
-          // update component to be aware of loading status
-          const {nativeEvent} = syntheticEvent;
-          console.log('onLoadEnd:', nativeEvent.loading);
         }}
         source={{uri: webViewUri}}
         style={{
