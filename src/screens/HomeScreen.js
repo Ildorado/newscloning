@@ -6,7 +6,6 @@ import {useSelector} from 'react-redux';
 import ModalWebView from '../components/ModalWebView';
 const HomeScreen = props => {
   const news = useSelector(state => state.news.items);
-  // console.log('news:', news);
   return (
     <View style={styles.screen}>
       <ModalWebView />

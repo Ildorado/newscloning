@@ -1,8 +1,6 @@
 import React from 'react';
 import {View, StyleSheet, SafeAreaView} from 'react-native';
 import Colors from '../constants/Colors';
-import {useDispatch} from 'react-redux';
-import {setWebViewVisibility} from '../redux/actions/index';
 import Icon from 'react-native-vector-icons/Entypo';
 import WidthPoint from '../constants/ScreenWidthPercent';
 Icon.loadFont();
