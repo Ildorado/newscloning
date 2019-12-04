@@ -6,7 +6,6 @@ import {setWebViewVisibility} from '../redux/actions/index';
 import Icon from 'react-native-vector-icons/Entypo';
 Icon.loadFont();
 const Header = ({onCancel}) => {
-  console.log('onCancel:', onCancel);
   return (
     <SafeAreaView style={styles.header}>
       <View>
