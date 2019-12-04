@@ -9,6 +9,8 @@ import {
 import Colors from '../constants/Colors';
 import {useDispatch} from 'react-redux';
 import {setWebViewUri} from '../redux/actions/index';
+import CustomText from '../constants/Styles/CustomText';
+import WidthPoint from '../constants/ScreenWidthPercent';
 const NewsSlot = props => {
   const dispatch = useDispatch();
   const newsSlotPressHandler = () => {
@@ -17,7 +19,9 @@ const NewsSlot = props => {
   return (
     <TouchableWithoutFeedback onPress={newsSlotPressHandler}>
       <View style={styles.card}>
-        <Text style={styles.h1}>{props.config.title}</Text>
+        <CustomText style={styles.h1} title>
+          {props.config.title}
+        </CustomText>
         {props.config.img && (
           <Image
             style={styles.image}
@@ -26,8 +30,13 @@ const NewsSlot = props => {
             resizeMode="contain"
           />
         )}
-        <Text style={styles.description}>{props.config.description}</Text>
-        <Text style={styles.published}>{props.config.published}</Text>
+        <CustomText style={styles.description} h2>
+          {props.config.description}
+        </CustomText>
+        {/* <Text style={styles.description}>{props.config.description}</Text> */}
+        <CustomText style={styles.published} h3>
+          {props.config.published}
+        </CustomText>
       </View>
     </TouchableWithoutFeedback>
   );
@@ -37,31 +46,27 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: Colors.tertiary,
-    minHeight: 300,
-    marginVertical: 10,
-    marginHorizontal: 10,
+    minHeight: 80 * WidthPoint,
+    marginVertical: 3 * WidthPoint,
+    marginHorizontal: 3 * WidthPoint,
     borderWidth: 1,
-    borderRadius: 10,
+    borderRadius: 3 * WidthPoint,
   },
   image: {
-    width: 300,
-    height: 150,
-    marginTop: 20,
+    width: 80 * WidthPoint,
+    height: 40 * WidthPoint,
+    marginTop: 5 * WidthPoint,
   },
   h1: {
-    fontSize: 22,
-    fontWeight: 'bold',
-    marginHorizontal: 20,
+    marginHorizontal: 5 * WidthPoint,
   },
   description: {
-    fontSize: 16,
-    marginVertical: 10,
-    marginHorizontal: 10,
+    marginVertical: 3 * WidthPoint,
+    marginHorizontal: 3 * WidthPoint,
   },
   published: {
-    fontSize: 14,
-    marginVertical: 10,
-    marginHorizontal: 10,
+    marginVertical: 3 * WidthPoint,
+    marginHorizontal: 3 * WidthPoint,
   },
 });
 export default NewsSlot;

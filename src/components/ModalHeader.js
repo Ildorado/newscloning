@@ -4,6 +4,7 @@ import Colors from '../constants/Colors';
 import {useDispatch} from 'react-redux';
 import {setWebViewVisibility} from '../redux/actions/index';
 import Icon from 'react-native-vector-icons/Entypo';
+import WidthPoint from '../constants/ScreenWidthPercent';
 Icon.loadFont();
 const Header = ({onCancel}) => {
   return (
@@ -22,13 +23,13 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.secondary,
     height: '10%',
     width: '100%',
-    minHeight: 60,
+    minHeight: 16 * WidthPoint,
   },
   firstIconGroup: {},
   secondIconGroup: {},
   MenuButton: {
-    marginTop: 30,
-    marginLeft: 10,
+    marginTop: 8 * WidthPoint,
+    marginLeft: 3 * WidthPoint,
   },
 });
 export default Header;

@@ -3,6 +3,7 @@ import {ScrollView, View, StyleSheet, SafeAreaView} from 'react-native';
 import NewsSources from '../constants/NewsSources';
 import CustomDrawerButton from './CustomDrawerButton';
 import Icon from 'react-native-vector-icons/Fontisto';
+import WidthPoint from '../constants/ScreenWidthPercent';
 Icon.loadFont();
 const SideMenu = props => {
   const {closeDrawer} = props.navigation;
@@ -14,13 +15,12 @@ const SideMenu = props => {
       <Icon
         onPress={buttonClickHandler}
         name="arrow-return-right"
-        size={30}
+        size={8 * WidthPoint}
         color="black"
       />
       <ScrollView>
         {NewsSources.map(item => (
           <View style={styles.Button} key={item.key}>
-            {/* <Button title={item.Name} /> */}
             <CustomDrawerButton config={item} />
           </View>
         ))}
@@ -31,14 +31,10 @@ const SideMenu = props => {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 20,
+    paddingTop: 5.3 * WidthPoint,
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  Button: {
-    marginTop: 10,
-    width: '100%',
   },
 });
 export default SideMenu;

@@ -5,6 +5,7 @@ import ModalHeader from './ModalHeader';
 import {useSelector, useDispatch} from 'react-redux';
 import {setWebViewVisibility} from '../redux/actions/index';
 import LoadingScreen from '../screens/LoadingScreen';
+import WidthPoint from '../constants/ScreenWidthPercent';
 const ModalWebView = () => {
   const visibility = useSelector(state => state.webView.visibility);
   const webViewUri = useSelector(state => state.webView.uri);
@@ -35,7 +36,7 @@ const ModalWebView = () => {
 };
 const styles = StyleSheet.create({
   modalContainer: {},
-  webView: {marginTop: 20},
+  webView: {marginTop: 5 * WidthPoint},
   notLoaded: {
     display: 'none',
   },
