@@ -11,6 +11,12 @@ export const setFocusedTabTitle = payload => {
     payload: payload,
   };
 };
+export const SetFocusedDrawerButton = payload => {
+  return {
+    type: 'SETFOCUSEDDRAWERBUTTON',
+    payload: payload,
+  };
+};
 export const fetchNewsBegin = () => ({
   type: 'FETCHNEWSBEGIN',
 });

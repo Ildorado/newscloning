@@ -20,7 +20,7 @@ const SideMenu = props => {
       />
       <ScrollView>
         {NewsSources.map(item => (
-          <View style={styles.Button} key={item.key}>
+          <View key={item.key}>
             <CustomDrawerButton config={item} />
           </View>
         ))}
