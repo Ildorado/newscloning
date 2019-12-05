@@ -19,7 +19,10 @@ const ModalWebView = () => {
       onRequestClose={modalOnCancelHandler}
       visible={visibility}
       style={styles.modalContainer}>
-      <NewsSlotHeader config={webViewConfig} onCancel={modalOnCancelHandler} />
+      <NewsSlotHeader
+        config={webViewConfig}
+        modalOnCancel={modalOnCancelHandler}
+      />
       {!isLoaded && <LoadingScreen />}
       <WebView
         onLoadProgress={({nativeEvent}) => {

@@ -6,9 +6,10 @@ import WidthPoint from '../constants/ScreenWidthPercent';
 import IconFontisto from 'react-native-vector-icons/Fontisto';
 import {useSelector, useDispatch} from 'react-redux';
 import {addToFavorites, deleteFromFavorites} from '../redux/actions/index';
+import Share from 'react-native-share';
 IconEntypo.loadFont();
 IconFontisto.loadFont();
-const Header = ({config, onCancel, style}) => {
+const Header = ({config, modalOnCancel, style}) => {
   const dispatch = useDispatch();
   const favorites = useSelector(state => state.favorites);
   const [isFavorite, setIsFavorite] = useState(false);
@@ -22,17 +23,20 @@ const Header = ({config, onCancel, style}) => {
       dispatch(addToFavorites(config));
     }
   };
+  const onShareHandler = () => {
+    Share.open({url: config.id});
+  };
   return (
     <SafeAreaView
       style={
-        onCancel
+        modalOnCancel
           ? {...styles.header, ...styles.modal, ...style}
           : {...styles.header, ...styles.noModal, ...style}
       }>
-      {onCancel && (
+      {modalOnCancel && (
         <View style={styles.firstIconGroup}>
           <IconEntypo
-            onPress={onCancel}
+            onPress={modalOnCancel}
             name="squared-cross"
             size={8 * WidthPoint}
             color="black"
@@ -41,6 +45,14 @@ const Header = ({config, onCancel, style}) => {
       )}
       <View style={styles.secondIconGroup}>
         <IconFontisto
+          style={styles.secondIconGroupIcon}
+          onPress={onShareHandler}
+          name="share"
+          size={8 * WidthPoint}
+          color={Colors.primary}
+        />
+        <IconFontisto
+          style={styles.secondIconGroupIcon}
           onPress={modalOnFavoritelHandler}
           name="favorite"
           size={8 * WidthPoint}
@@ -70,6 +82,10 @@ const styles = StyleSheet.create({
     marginLeft: 3 * WidthPoint,
   },
   secondIconGroup: {
+    flexDirection: 'row',
+    marginRight: 3 * WidthPoint,
+  },
+  secondIconGroupIcon: {
     marginRight: 3 * WidthPoint,
   },
   MenuButton: {
