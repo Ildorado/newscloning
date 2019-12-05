@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, FlatList, StyleSheet, SafeAreaView} from 'react-native';
 import NewsSlot from '../components/NewsSlot';
+import NewsList from '../components/NewsList';
 import Colors from '../constants/Colors';
 import {useSelector} from 'react-redux';
 import ModalWebView from '../components/ModalWebView';
@@ -9,14 +10,7 @@ const HomeScreen = props => {
   return (
     <View style={styles.screen}>
       <ModalWebView />
-      <SafeAreaView style={styles.listWrapper}>
-        <FlatList
-          style={styles.list}
-          data={news}
-          renderItem={itemData => <NewsSlot config={itemData.item} />}
-          keyExtractor={itemData => itemData.id}
-        />
-      </SafeAreaView>
+      <NewsList data={news} />
     </View>
   );
 };
