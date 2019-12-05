@@ -1,50 +1,57 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  TouchableWithoutFeedback,
-} from 'react-native';
+import {View, StyleSheet, Image, TouchableWithoutFeedback} from 'react-native';
 import Colors from '../constants/Colors';
 import {useDispatch} from 'react-redux';
 import {setWebViewConfig} from '../redux/actions/index';
 import CustomText from '../constants/Styles/CustomText';
 import WidthPoint from '../constants/ScreenWidthPercent';
-const NewsSlot = props => {
+import AdditionalFavoritesHeader from './AdditionalFavoritesHeader';
+
+const NewsSlot = ({config, additionalHeaderInfo}) => {
   const dispatch = useDispatch();
   const newsSlotPressHandler = () => {
-    dispatch(setWebViewConfig(props.config, dispatch));
+    dispatch(setWebViewConfig(config, dispatch));
   };
+  const AdditionalHeader = (function() {
+    switch (additionalHeaderInfo) {
+      case 'Favorites':
+        return AdditionalFavoritesHeader;
+      default:
+        return null;
+    }
+  })();
+  // Immediately creates the output:
   return (
-    <TouchableWithoutFeedback onPress={newsSlotPressHandler}>
-      <View style={styles.card}>
-        <CustomText style={styles.h1} title>
-          {props.config.title}
-        </CustomText>
-        {props.config.img && (
-          <Image
-            style={styles.image}
-            source={{uri: props.config.img}}
-            resizeMethod="scale"
-            resizeMode="contain"
-          />
-        )}
-        <CustomText style={styles.description} h2>
-          {props.config.description}
-        </CustomText>
-        {/* <Text style={styles.description}>{props.config.description}</Text> */}
-        <CustomText style={styles.published} h3>
-          {props.config.published}
-        </CustomText>
-      </View>
-    </TouchableWithoutFeedback>
+    <View style={styles.card}>
+      {AdditionalHeader && <AdditionalHeader config={config} />}
+      <TouchableWithoutFeedback onPress={newsSlotPressHandler}>
+        <View style={styles.contentWrapper}>
+          <CustomText style={styles.h1} title>
+            {config.title}
+          </CustomText>
+          {config.img && (
+            <Image
+              style={styles.image}
+              source={{uri: config.img}}
+              resizeMethod="scale"
+              resizeMode="contain"
+            />
+          )}
+          <CustomText style={styles.description} h2>
+            {config.description}
+          </CustomText>
+          {/* <Text style={styles.description}>{props.config.description}</Text> */}
+          <CustomText style={styles.published} h3>
+            {config.published}
+          </CustomText>
+        </View>
+      </TouchableWithoutFeedback>
+    </View>
   );
 };
 const styles = StyleSheet.create({
   card: {
     alignItems: 'center',
-    justifyContent: 'center',
     backgroundColor: Colors.tertiary,
     minHeight: 80 * WidthPoint,
     marginVertical: 3 * WidthPoint,
@@ -67,6 +74,10 @@ const styles = StyleSheet.create({
   published: {
     marginVertical: 3 * WidthPoint,
     marginHorizontal: 3 * WidthPoint,
+  },
+  contentWrapper: {
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 export default NewsSlot;

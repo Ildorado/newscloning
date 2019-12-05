@@ -1,6 +1,5 @@
 import React from 'react';
-import {View, FlatList, StyleSheet, SafeAreaView} from 'react-native';
-import NewsSlot from '../components/NewsSlot';
+import {View, StyleSheet} from 'react-native';
 import NewsList from '../components/NewsList';
 import Colors from '../constants/Colors';
 import {useSelector} from 'react-redux';
@@ -20,15 +19,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.primary,
     alignItems: 'center',
-  },
-  list: {
-    flex: 1,
-    flexDirection: 'column',
-    flexWrap: 'wrap',
-  },
-  listWrapper: {
-    flex: 1,
-    width: '100%',
   },
 });
 export default HomeScreen;

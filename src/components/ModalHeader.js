@@ -29,7 +29,7 @@ const Header = ({config, onCancel}) => {
         <IconEntypo
           onPress={onCancel}
           name="squared-cross"
-          size={30}
+          size={8 * WidthPoint}
           color="black"
         />
       </View>
@@ -37,7 +37,7 @@ const Header = ({config, onCancel}) => {
         <IconFontisto
           onPress={modalOnFavoritelHandler}
           name="favorite"
-          size={30}
+          size={8 * WidthPoint}
           color={isFavorite ? 'black' : Colors.primary}
         />
       </View>
