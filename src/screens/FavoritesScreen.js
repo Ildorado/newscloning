@@ -7,10 +7,12 @@ import {useSelector} from 'react-redux';
 IconEntypo.loadFont();
 //additional header for news slots
 const FavoritesScreen = props => {
-  const favoriteNews = useSelector(state => Object.values(state.favorites));
+  const favoriteNews = useSelector(state =>
+    Object.values(state.favorites).reverse(),
+  );
   return (
     <View style={styles.screen}>
-      <NewsList data={favoriteNews} additionalHeaderInfo="Favorites" />
+      <NewsList data={favoriteNews} />
     </View>
   );
 };

@@ -5,25 +5,17 @@ import {useDispatch} from 'react-redux';
 import {setWebViewConfig} from '../redux/actions/index';
 import CustomText from '../constants/Styles/CustomText';
 import WidthPoint from '../constants/ScreenWidthPercent';
-import AdditionalFavoritesHeader from './AdditionalFavoritesHeader';
+import NewsSlotHeader from './NewsSlotHeader';
 
-const NewsSlot = ({config, additionalHeaderInfo}) => {
+const NewsSlot = ({config}) => {
   const dispatch = useDispatch();
   const newsSlotPressHandler = () => {
     dispatch(setWebViewConfig(config, dispatch));
   };
-  const AdditionalHeader = (function() {
-    switch (additionalHeaderInfo) {
-      case 'Favorites':
-        return AdditionalFavoritesHeader;
-      default:
-        return null;
-    }
-  })();
   // Immediately creates the output:
   return (
     <View style={styles.card}>
-      {AdditionalHeader && <AdditionalHeader config={config} />}
+      <NewsSlotHeader config={config} />
       <TouchableWithoutFeedback onPress={newsSlotPressHandler}>
         <View style={styles.contentWrapper}>
           <CustomText style={styles.h1} title>
@@ -40,7 +32,6 @@ const NewsSlot = ({config, additionalHeaderInfo}) => {
           <CustomText style={styles.description} h2>
             {config.description}
           </CustomText>
-          {/* <Text style={styles.description}>{props.config.description}</Text> */}
           <CustomText style={styles.published} h3>
             {config.published}
           </CustomText>
@@ -79,5 +70,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  // header{
+  //   ModalHe
+  // }
 });
 export default NewsSlot;

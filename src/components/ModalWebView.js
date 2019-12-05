@@ -1,7 +1,7 @@
 import {Modal, StyleSheet} from 'react-native';
 import React, {useState} from 'react';
 import {WebView} from 'react-native-webview';
-import ModalHeader from './ModalHeader';
+import NewsSlotHeader from './NewsSlotHeader';
 import {useSelector, useDispatch} from 'react-redux';
 import {setWebViewVisibility} from '../redux/actions/index';
 import LoadingScreen from '../screens/LoadingScreen';
@@ -19,7 +19,7 @@ const ModalWebView = () => {
       onRequestClose={modalOnCancelHandler}
       visible={visibility}
       style={styles.modalContainer}>
-      <ModalHeader config={webViewConfig} onCancel={modalOnCancelHandler} />
+      <NewsSlotHeader config={webViewConfig} onCancel={modalOnCancelHandler} />
       {!isLoaded && <LoadingScreen />}
       <WebView
         onLoadProgress={({nativeEvent}) => {

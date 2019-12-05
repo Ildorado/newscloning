@@ -8,7 +8,7 @@ import {useSelector, useDispatch} from 'react-redux';
 import {addToFavorites, deleteFromFavorites} from '../redux/actions/index';
 IconEntypo.loadFont();
 IconFontisto.loadFont();
-const Header = ({config, onCancel}) => {
+const Header = ({config, onCancel, style}) => {
   const dispatch = useDispatch();
   const favorites = useSelector(state => state.favorites);
   const [isFavorite, setIsFavorite] = useState(false);
@@ -16,7 +16,6 @@ const Header = ({config, onCancel}) => {
     setIsFavorite(config.id in favorites);
   }, [config, favorites]);
   const modalOnFavoritelHandler = () => {
-    console.log('isFavorite:', isFavorite);
     if (isFavorite) {
       dispatch(deleteFromFavorites(config.id));
     } else {
@@ -24,15 +23,22 @@ const Header = ({config, onCancel}) => {
     }
   };
   return (
-    <SafeAreaView style={styles.header}>
-      <View style={styles.firstIconGroup}>
-        <IconEntypo
-          onPress={onCancel}
-          name="squared-cross"
-          size={8 * WidthPoint}
-          color="black"
-        />
-      </View>
+    <SafeAreaView
+      style={
+        onCancel
+          ? {...styles.header, ...styles.modal, ...style}
+          : {...styles.header, ...styles.noModal, ...style}
+      }>
+      {onCancel && (
+        <View style={styles.firstIconGroup}>
+          <IconEntypo
+            onPress={onCancel}
+            name="squared-cross"
+            size={8 * WidthPoint}
+            color="black"
+          />
+        </View>
+      )}
       <View style={styles.secondIconGroup}>
         <IconFontisto
           onPress={modalOnFavoritelHandler}
@@ -46,13 +52,19 @@ const Header = ({config, onCancel}) => {
 };
 const styles = StyleSheet.create({
   header: {
+    width: '100%',
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
+  },
+  modal: {
     backgroundColor: Colors.secondary,
+    justifyContent: 'space-between',
     height: '10%',
-    width: '100%',
     minHeight: 16 * WidthPoint,
+  },
+  noModal: {
+    height: 13 * WidthPoint,
+    justifyContent: 'flex-end',
   },
   firstIconGroup: {
     marginLeft: 3 * WidthPoint,
