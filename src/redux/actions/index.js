@@ -61,10 +61,24 @@ export const setWebViewVisibility = payload => {
     payload: payload,
   };
 };
-export const setWebViewUri = (payload, dispatch) => {
+export const setWebViewConfig = (payload, dispatch) => {
   dispatch(setWebViewVisibility(true));
   return {
     type: 'SETWEBVIEWURI',
+    payload: payload,
+  };
+};
+export const addToFavorites = payload => {
+  //recieve config object
+  return {
+    type: 'ADDTOFAVORITES',
+    payload: payload,
+  };
+};
+export const deleteFromFavorites = payload => {
+  // recieve ID which is also url in this case
+  return {
+    type: 'DELETEFROMFAVORITES',
     payload: payload,
   };
 };

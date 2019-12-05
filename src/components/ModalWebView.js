@@ -8,7 +8,7 @@ import LoadingScreen from '../screens/LoadingScreen';
 import WidthPoint from '../constants/ScreenWidthPercent';
 const ModalWebView = () => {
   const visibility = useSelector(state => state.webView.visibility);
-  const webViewUri = useSelector(state => state.webView.uri);
+  const webViewConfig = useSelector(state => state.webView.config);
   const [isLoaded, setIsLoaded] = useState(false);
   const dispatch = useDispatch();
   const modalOnCancelHandler = () => {
@@ -19,13 +19,13 @@ const ModalWebView = () => {
       onRequestClose={modalOnCancelHandler}
       visible={visibility}
       style={styles.modalContainer}>
-      <ModalHeader onCancel={modalOnCancelHandler} />
+      <ModalHeader config={webViewConfig} onCancel={modalOnCancelHandler} />
       {!isLoaded && <LoadingScreen />}
       <WebView
         onLoadProgress={({nativeEvent}) => {
           setIsLoaded(nativeEvent.progress > 0.6);
         }}
-        source={{uri: webViewUri}}
+        source={{uri: webViewConfig.id}}
         style={{
           ...styles.webView,
           ...(isLoaded ? styles.loaded : styles.notLoaded),

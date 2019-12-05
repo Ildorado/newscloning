@@ -1,5 +1,5 @@
 import React from 'react';
-import {TouchableOpacity, Text, StyleSheet} from 'react-native';
+import {TouchableOpacity, StyleSheet} from 'react-native';
 import Colors from '../constants/Colors';
 import {fetchNews} from '../redux/actions/index';
 import {useDispatch, useSelector} from 'react-redux';

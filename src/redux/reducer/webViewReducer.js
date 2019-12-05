@@ -1,6 +1,6 @@
 const initialState = {
   visibility: false,
-  uri: '',
+  config: {},
 };
 
 const webViewReducer = (state = initialState, action) => {
@@ -13,7 +13,7 @@ const webViewReducer = (state = initialState, action) => {
     case 'SETWEBVIEWURI':
       return {
         ...state,
-        uri: action.payload,
+        config: action.payload,
       };
     default:
       return state;

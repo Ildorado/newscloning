@@ -8,13 +8,13 @@ import {
 } from 'react-native';
 import Colors from '../constants/Colors';
 import {useDispatch} from 'react-redux';
-import {setWebViewUri} from '../redux/actions/index';
+import {setWebViewConfig} from '../redux/actions/index';
 import CustomText from '../constants/Styles/CustomText';
 import WidthPoint from '../constants/ScreenWidthPercent';
 const NewsSlot = props => {
   const dispatch = useDispatch();
   const newsSlotPressHandler = () => {
-    dispatch(setWebViewUri(props.config.id, dispatch));
+    dispatch(setWebViewConfig(props.config, dispatch));
   };
   return (
     <TouchableWithoutFeedback onPress={newsSlotPressHandler}>
