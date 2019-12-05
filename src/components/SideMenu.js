@@ -17,6 +17,7 @@ const SideMenu = props => {
         name="arrow-return-right"
         size={8 * WidthPoint}
         color="black"
+        style={styles.icon}
       />
       <ScrollView>
         {NewsSources.map(item => (
@@ -33,8 +34,11 @@ const styles = StyleSheet.create({
   container: {
     paddingTop: 5.3 * WidthPoint,
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+  },
+  icon: {
+    alignSelf: 'flex-end',
+    marginRight: 5 * WidthPoint,
+    marginBottom: 3 * WidthPoint,
   },
 });
 export default SideMenu;

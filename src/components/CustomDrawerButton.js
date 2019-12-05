@@ -39,10 +39,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 3 * WidthPoint,
-    borderRadius: 3 * WidthPoint,
     paddingHorizontal: 3 * WidthPoint,
-    borderWidth: 1,
-    borderColor: 'black',
   },
   focused: {
     backgroundColor: Colors.tertiary,
