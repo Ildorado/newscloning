@@ -7,15 +7,21 @@ import IconFontisto from 'react-native-vector-icons/Fontisto';
 import {useSelector, useDispatch} from 'react-redux';
 import {addToFavorites, deleteFromFavorites} from '../redux/actions/index';
 import Share from 'react-native-share';
+import {useFavorite} from '../customHooks/index';
 IconEntypo.loadFont();
 IconFontisto.loadFont();
+
+// const useFavorite = config => {
+//   const favorites = useSelector(state => state.favorites);
+//   const [isFavorite, setIsFavorite] = useState(false);
+//   useEffect(() => {
+//     setIsFavorite(config.id in favorites);
+//   }, [config, favorites]);
+//   return isFavorite;
+// };
 const Header = ({config, modalOnCancel, style}) => {
   const dispatch = useDispatch();
-  const favorites = useSelector(state => state.favorites);
-  const [isFavorite, setIsFavorite] = useState(false);
-  useEffect(() => {
-    setIsFavorite(config.id in favorites);
-  }, [config, favorites]);
+  const isFavorite = useFavorite(config);
   const modalOnFavoritelHandler = () => {
     if (isFavorite) {
       dispatch(deleteFromFavorites(config.id));
