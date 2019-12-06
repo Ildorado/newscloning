@@ -6,7 +6,6 @@ import {setWebViewConfig} from '../redux/actions/index';
 import CustomText from '../constants/Styles/CustomText';
 import WidthPoint from '../constants/ScreenWidthPercent';
 import NewsSlotHeader from './NewsSlotHeader';
-
 const NewsSlot = ({config}) => {
   const dispatch = useDispatch();
   const newsSlotPressHandler = () => {
@@ -32,7 +31,7 @@ const NewsSlot = ({config}) => {
             {config.description}
           </CustomText>
           <CustomText style={styles.published} published>
-            {config.published}
+            {new Date(config.published).toUTCString()}
           </CustomText>
         </View>
       </TouchableWithoutFeedback>
@@ -50,8 +49,8 @@ const styles = StyleSheet.create({
     borderRadius: 3 * WidthPoint,
   },
   image: {
-    width: 80 * WidthPoint,
-    height: 40 * WidthPoint,
+    width: 100 * WidthPoint,
+    height: 50 * WidthPoint,
     marginTop: 5 * WidthPoint,
   },
   h1: {
@@ -69,8 +68,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  // header{
-  //   ModalHe
-  // }
 });
 export default NewsSlot;

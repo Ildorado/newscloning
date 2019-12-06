@@ -24,9 +24,6 @@ const firstLevelStyles = {
   h3: {
     fontSize: Math.round(3.75 * WidthPoint),
   },
-  GupterRegular: {
-    fontFamily: 'Lora-BoldItalic',
-  },
   bold: {
     fontWeight: 'bold',
   },
@@ -36,14 +33,17 @@ const styles = StyleSheet.create({
   title: {
     ...firstLevelStyles.h1,
     fontFamily: 'Lora-BoldItalic',
+    textAlign: 'center',
   },
   description: {
     ...firstLevelStyles.h2,
     fontFamily: 'Roboto-Regular',
+    textAlign: 'center',
   },
   published: {
     ...firstLevelStyles.h3,
     fontFamily: 'OpenSans-Italic',
+    textAlign: 'center',
   },
 });
 export default CustomText;
