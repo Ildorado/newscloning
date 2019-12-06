@@ -22,9 +22,18 @@ const SideMenu = ({navigation}) => {
       <ScrollView>
         {NewsSources.map(item => (
           <View key={item.key}>
-            <CustomDrawerButton navigation={navigation} config={item} />
+            <CustomDrawerButton
+              navigation={navigation}
+              config={item}
+              name={item.Name}
+            />
           </View>
         ))}
+        <CustomDrawerButton
+          navigation={navigation}
+          config={NewsSources}
+          name="All"
+        />
       </ScrollView>
     </SafeAreaView>
   );

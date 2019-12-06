@@ -44,10 +44,14 @@ export async function fetchNews(payload, dispatch) {
       news.push(payload.infoHandler(el));
     });
     dispatch(fetchNewsSuccess(news));
+    return news;
   } catch (error) {
     console.log('error:', String(error));
     dispatch(fetchNewsFailure(String(error)));
   }
+}
+export function setNews(payload) {
+  return {type: 'SETNEWS', payload: payload};
 }
 function handleErrors(response) {
   if (!response.ok) {

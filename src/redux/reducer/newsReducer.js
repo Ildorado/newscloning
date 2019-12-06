@@ -13,10 +13,14 @@ const newsReducer = (state = initialState, action) => {
         loading: true,
         error: null,
       };
-    case 'FETCHNEWSSUCCESS': {
+    case 'SETNEWS':
       return {
         ...state,
         items: action.payload,
+      };
+    case 'FETCHNEWSSUCCESS': {
+      return {
+        ...state,
         loading: false,
       };
     }

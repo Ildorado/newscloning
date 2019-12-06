@@ -31,7 +31,7 @@ const NewsSlot = ({config}) => {
             {config.description}
           </CustomText>
           <CustomText style={styles.published} published>
-            {new Date(config.published).toUTCString()}
+            {config.published}
           </CustomText>
         </View>
       </TouchableWithoutFeedback>

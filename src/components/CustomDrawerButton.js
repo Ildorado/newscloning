@@ -5,7 +5,7 @@ import {useSelector} from 'react-redux';
 import {useFetchNews} from '../customHooks/index';
 import WidthPoint from '../constants/ScreenWidthPercent';
 import CustomText from '../constants/Styles/CustomText';
-const CustomDrawerButton = ({navigation, config}) => {
+const CustomDrawerButton = ({navigation, config, name}) => {
   const FetchNews = useFetchNews(config);
   const focusedDrawerButton = useSelector(state => state.focusedDrawerButton);
   const onPressHandler = () => {
@@ -17,11 +17,9 @@ const CustomDrawerButton = ({navigation, config}) => {
       onPress={onPressHandler}
       style={{
         ...styles.Button,
-        ...(focusedDrawerButton === config.Name
-          ? styles.focused
-          : styles.unfocused),
+        ...(focusedDrawerButton === name ? styles.focused : styles.unfocused),
       }}>
-      <CustomText h3>{config.Name}</CustomText>
+      <CustomText h3>{name}</CustomText>
     </TouchableOpacity>
   );
 };

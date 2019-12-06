@@ -1,18 +1,14 @@
 import React from 'react';
 import {StyleSheet, SafeAreaView, FlatList} from 'react-native';
 import NewsSlot from './NewsSlot';
-const NewsList = ({data, additionalHeaderInfo}) => {
+const NewsList = ({data}) => {
   return (
     <SafeAreaView style={styles.listWrapper}>
       <FlatList
         style={styles.list}
         data={data}
-        renderItem={itemData => (
-          <NewsSlot
-            config={itemData.item}
-            additionalHeaderInfo={additionalHeaderInfo}
-          />
-        )}
+        initialNumToRender={3}
+        renderItem={itemData => <NewsSlot config={itemData.item} />}
         keyExtractor={itemData => itemData.id}
       />
     </SafeAreaView>
