@@ -28,10 +28,10 @@ const NewsSlot = ({config}) => {
               resizeMode="contain"
             />
           )}
-          <CustomText style={styles.description} h2>
+          <CustomText style={styles.description} description>
             {config.description}
           </CustomText>
-          <CustomText style={styles.published} h3>
+          <CustomText style={styles.published} published>
             {config.published}
           </CustomText>
         </View>

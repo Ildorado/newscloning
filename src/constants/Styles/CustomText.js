@@ -16,12 +16,16 @@ const CustomText = props => {
 const firstLevelStyles = {
   h1: {
     fontSize: Math.round(6.2 * WidthPoint),
+    fontFamily: 'Gupter',
   },
   h2: {
-    fontSize: Math.round(4.2 * WidthPoint),
+    fontSize: Math.round(4.5 * WidthPoint),
   },
   h3: {
     fontSize: Math.round(3.75 * WidthPoint),
+  },
+  GupterRegular: {
+    fontFamily: 'Lora-BoldItalic',
   },
   bold: {
     fontWeight: 'bold',
@@ -31,7 +35,15 @@ const styles = StyleSheet.create({
   ...firstLevelStyles,
   title: {
     ...firstLevelStyles.h1,
-    ...firstLevelStyles.bold,
+    fontFamily: 'Lora-BoldItalic',
+  },
+  description: {
+    ...firstLevelStyles.h2,
+    fontFamily: 'Roboto-Regular',
+  },
+  published: {
+    ...firstLevelStyles.h3,
+    fontFamily: 'OpenSans-Italic',
   },
 });
 export default CustomText;
