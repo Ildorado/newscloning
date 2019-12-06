@@ -5,8 +5,7 @@ import {useSelector} from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Colors from '../constants/Colors';
 Icon.loadFont();
-const TabBar = props => {
-  const {navigationState, navigation} = props;
+const TabBar = ({navigationState, navigation}) => {
   const focusedRouteName = useSelector(state => state.focusedTabTitle);
   const IconOnPressHandler = () => {
     navigation.openDrawer();

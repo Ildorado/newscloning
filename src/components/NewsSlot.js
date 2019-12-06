@@ -12,7 +12,6 @@ const NewsSlot = ({config}) => {
   const newsSlotPressHandler = () => {
     dispatch(setWebViewConfig(config, dispatch));
   };
-  // Immediately creates the output:
   return (
     <View style={styles.card}>
       <NewsSlotHeader config={config} />

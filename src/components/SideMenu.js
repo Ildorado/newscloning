@@ -5,8 +5,8 @@ import CustomDrawerButton from './CustomDrawerButton';
 import Icon from 'react-native-vector-icons/Fontisto';
 import WidthPoint from '../constants/ScreenWidthPercent';
 Icon.loadFont();
-const SideMenu = props => {
-  const {closeDrawer} = props.navigation;
+const SideMenu = ({navigation}) => {
+  const {closeDrawer} = navigation;
   const buttonClickHandler = () => {
     closeDrawer();
   };
@@ -22,7 +22,7 @@ const SideMenu = props => {
       <ScrollView>
         {NewsSources.map(item => (
           <View key={item.key}>
-            <CustomDrawerButton navigation={props.navigation} config={item} />
+            <CustomDrawerButton navigation={navigation} config={item} />
           </View>
         ))}
       </ScrollView>

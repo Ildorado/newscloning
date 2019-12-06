@@ -1,22 +1,15 @@
 import React from 'react';
 import {TouchableOpacity, StyleSheet} from 'react-native';
 import Colors from '../constants/Colors';
-import {fetchNews} from '../redux/actions/index';
-import {useDispatch, useSelector} from 'react-redux';
-import InitialScreenName from '../constants/InitialScreenName';
-import {
-  SetFocusedDrawerButton,
-  setFocusedTabTitle,
-} from '../redux/actions/index';
+import {useSelector} from 'react-redux';
+import {useFetchNews} from '../customHooks/index';
 import WidthPoint from '../constants/ScreenWidthPercent';
 import CustomText from '../constants/Styles/CustomText';
 const CustomDrawerButton = ({navigation, config}) => {
-  const dispatch = useDispatch();
+  const FetchNews = useFetchNews(config);
   const focusedDrawerButton = useSelector(state => state.focusedDrawerButton);
   const onPressHandler = () => {
-    fetchNews(config, dispatch);
-    dispatch(SetFocusedDrawerButton(config.Name));
-    dispatch(setFocusedTabTitle(InitialScreenName));
+    FetchNews();
     navigation.closeDrawer();
   };
   return (

@@ -2,14 +2,9 @@ import React from 'react';
 import {View, StyleSheet} from 'react-native';
 import Colors from '../constants/Colors';
 import CustomMenuButton from './CustomMenuButton';
-import {addCounter} from '../redux/actions/index';
-import {useDispatch} from 'react-redux';
-
-const Header = props => {
-  const dispatch = useDispatch();
+const Header = ({navigation}) => {
   const onPressHandler = () => {
-    props.navigation.openDrawer();
-    dispatch(addCounter());
+    navigation.openDrawer();
   };
   return (
     <View style={styles.header}>
