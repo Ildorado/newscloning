@@ -1,18 +1,17 @@
 import React from 'react';
 import {View, StyleSheet, SafeAreaView} from 'react-native';
-import Colors from '../constants/Colors';
 import IconEntypo from 'react-native-vector-icons/Entypo';
-import WidthPoint from '../constants/ScreenWidthPercent';
 import IconFontisto from 'react-native-vector-icons/Fontisto';
+import {WidthPoint, Colors} from '../constants/index';
 import {useDispatch} from 'react-redux';
 import {addToFavorites, deleteFromFavorites} from '../redux/actions/index';
 import Share from 'react-native-share';
-import {useFavorite} from '../customHooks/index';
+import {useIsFavorite} from '../utilities/customHooks/index';
 IconEntypo.loadFont();
 IconFontisto.loadFont();
 const Header = ({config, modalOnCancel, style}) => {
   const dispatch = useDispatch();
-  const isFavorite = useFavorite(config);
+  const isFavorite = useIsFavorite(config);
   const modalOnFavoritelHandler = () => {
     if (isFavorite) {
       dispatch(deleteFromFavorites(config.id));

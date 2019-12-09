@@ -1,4 +1,4 @@
-import InitialScreenName from '../../constants/InitialScreenName';
+import {InitialScreenName} from '../../constants/index';
 const newsReducer = (state = InitialScreenName, action) => {
   switch (action.type) {
     case 'SETFOCUSEDTABTITLE': {

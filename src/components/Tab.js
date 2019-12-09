@@ -2,11 +2,11 @@ import React from 'react';
 import {StyleSheet} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 import CustomMenuButton from '../components/CustomMenuButton';
-import Colors from '../constants/Colors';
-import WidthPoint from '../constants/ScreenWidthPercent';
+import {WidthPoint, Colors} from '../constants/index';
 import {setFocusedTabTitle} from '../redux/actions/index';
+import {getFocusedTabTitle} from '../utilities/selectors/index';
 const Tab = ({title}) => {
-  const focusedTabTitle = useSelector(state => state.focusedTabTitle);
+  const focusedTabTitle = useSelector(getFocusedTabTitle);
   const dispatch = useDispatch();
   const TabOnPressHandler = () => {
     dispatch(setFocusedTabTitle(title));

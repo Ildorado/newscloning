@@ -3,7 +3,7 @@ import {ScrollView, View, StyleSheet, SafeAreaView} from 'react-native';
 import NewsSources from '../constants/NewsSources';
 import CustomDrawerButton from './CustomDrawerButton';
 import Icon from 'react-native-vector-icons/Fontisto';
-import WidthPoint from '../constants/ScreenWidthPercent';
+import {WidthPoint} from '../constants/index';
 Icon.loadFont();
 const SideMenu = ({navigation}) => {
   const {closeDrawer} = navigation;

@@ -1,7 +1,6 @@
 import React from 'react';
 import {TouchableOpacity, StyleSheet} from 'react-native';
-import Colors from '../constants/Colors';
-import WidthPoint from '../constants/ScreenWidthPercent';
+import {Colors, WidthPoint} from '../constants/index';
 import CustomText from '../constants/Styles/CustomText';
 const CustomMenuButton = props => {
   return (

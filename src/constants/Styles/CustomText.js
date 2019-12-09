@@ -1,6 +1,6 @@
 import React from 'react';
 import {Text, StyleSheet} from 'react-native';
-import WidthPoint from '../ScreenWidthPercent';
+import {WidthPoint} from '../index';
 const CustomText = props => {
   let additionalStyles = {};
   const styleProps = Object.getOwnPropertyNames(props).filter(
@@ -16,7 +16,6 @@ const CustomText = props => {
 const firstLevelStyles = {
   h1: {
     fontSize: Math.round(6.2 * WidthPoint),
-    fontFamily: 'Gupter',
   },
   h2: {
     fontSize: Math.round(4.5 * WidthPoint),

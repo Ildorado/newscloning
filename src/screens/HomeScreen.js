@@ -1,11 +1,12 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
 import NewsList from '../components/NewsList';
-import Colors from '../constants/Colors';
+import {Colors} from '../constants/index';
 import {useSelector} from 'react-redux';
+import {getNewsItems} from '../utilities/selectors/index';
 import ModalWebView from '../components/ModalWebView';
 const HomeScreen = props => {
-  const news = useSelector(state => state.news.items);
+  const news = useSelector(getNewsItems);
   return (
     <View style={styles.screen}>
       <ModalWebView />

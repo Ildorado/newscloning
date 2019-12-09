@@ -5,9 +5,10 @@ const NewsSources = [
     key: shortid.generate(),
     src: 'https://news.tut.by/rss/all.rss',
     infoHandler: item => {
-      const img = item.description.match(/src="[^"]+/g)
-        ? item.description.match(/src="[^"]+/g)[0].replace('src="', '')
-        : undefined;
+      // const img = item.description.match(/src="[^"]+/g)
+      //   ? item.description.match(/src="[^"]+/g)[0].replace('src="', '')
+      //   : undefined;
+      const img = item.enclosures[0].url ? item.enclosures[0].url : undefined;
       const description = item.description.replace(/<[^>]+>/g, '');
       const categories = undefined;
       return {
@@ -70,7 +71,7 @@ const NewsSources = [
     key: shortid.generate(),
     src: 'https://www.nasa.gov/rss/dyn/breaking_news.rss',
     infoHandler: item => {
-      const img = item.enclosures[0].url;
+      const img = item.enclosures[0].url ? item.enclosures[0].url : undefined;
       const description = item.description;
       const categories = undefined;
       return {

@@ -1,15 +1,14 @@
 import React from 'react';
 import {View, StyleSheet, Image, TouchableWithoutFeedback} from 'react-native';
-import Colors from '../constants/Colors';
 import {useDispatch} from 'react-redux';
 import {setWebViewConfig} from '../redux/actions/index';
 import CustomText from '../constants/Styles/CustomText';
-import WidthPoint from '../constants/ScreenWidthPercent';
+import {WidthPoint, Colors} from '../constants/index';
 import NewsSlotHeader from './NewsSlotHeader';
 const NewsSlot = ({config}) => {
   const dispatch = useDispatch();
   const newsSlotPressHandler = () => {
-    dispatch(setWebViewConfig(config, dispatch));
+    dispatch(setWebViewConfig(config));
   };
   return (
     <View style={styles.card}>
@@ -41,6 +40,7 @@ const NewsSlot = ({config}) => {
 const styles = StyleSheet.create({
   card: {
     alignItems: 'center',
+    width: 80 * WidthPoint,
     backgroundColor: Colors.tertiary,
     minHeight: 80 * WidthPoint,
     marginVertical: 3 * WidthPoint,
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     borderRadius: 3 * WidthPoint,
   },
   image: {
-    width: 100 * WidthPoint,
+    width: 70 * WidthPoint,
     height: 50 * WidthPoint,
     marginTop: 5 * WidthPoint,
   },

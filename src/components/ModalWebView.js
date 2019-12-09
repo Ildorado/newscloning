@@ -5,10 +5,14 @@ import NewsSlotHeader from './NewsSlotHeader';
 import {useSelector, useDispatch} from 'react-redux';
 import {setWebViewVisibility} from '../redux/actions/index';
 import LoadingScreen from '../screens/LoadingScreen';
-import WidthPoint from '../constants/ScreenWidthPercent';
+import {WidthPoint} from '../constants/index';
+import {
+  getWebViewVisibility,
+  getWebViewConfig,
+} from '../utilities/selectors/index';
 const ModalWebView = () => {
-  const visibility = useSelector(state => state.webView.visibility);
-  const webViewConfig = useSelector(state => state.webView.config);
+  const visibility = useSelector(getWebViewVisibility);
+  const webViewConfig = useSelector(getWebViewConfig);
   const [isLoaded, setIsLoaded] = useState(false);
   const dispatch = useDispatch();
   const modalOnCancelHandler = () => {
@@ -25,7 +29,7 @@ const ModalWebView = () => {
       />
       <WebView
         onLoadProgress={({nativeEvent}) => {
-          setIsLoaded(nativeEvent.progress > 0.6);
+          setIsLoaded(nativeEvent.progress > 0.7);
         }}
         startInLoadingState={true}
         source={{uri: webViewConfig.id}}

@@ -1,8 +1,7 @@
 import {View, StyleSheet} from 'react-native';
 import {MaterialIndicator} from 'react-native-indicators';
-
 import React from 'react';
-import WidthPoint from '../constants/ScreenWidthPercent';
+import {WidthPoint} from '../constants/index';
 const LoadingScreen = props => {
   return (
     <View style={styles.screen}>

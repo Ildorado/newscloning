@@ -1,10 +1,5 @@
 import * as rssParser from 'react-native-rss-parser';
-
-export const addCounter = payload => {
-  return {
-    type: 'ADDCOUNTER',
-  };
-};
+import {InitialScreenName} from '../../constants/index';
 export const setFocusedTabTitle = payload => {
   return {
     type: 'SETFOCUSEDTABTITLE',
@@ -17,61 +12,102 @@ export const SetFocusedDrawerButton = payload => {
     payload: payload,
   };
 };
-export const fetchNewsBegin = () => ({
+export const fetchNewsBegin = id => ({
   type: 'FETCHNEWSBEGIN',
+  id: id,
 });
 
-export const fetchNewsSuccess = payload => {
+export const fetchNewsSuccess = id => {
   return {
     type: 'FETCHNEWSSUCCESS',
-    payload: payload,
+    id: id,
   };
 };
-export const fetchNewsFailure = error => ({
+export const fetchNewsFailure = (error, id) => ({
   type: 'FETCHNEWSFAILURE',
   payload: {error},
+  id: id,
 });
-export async function fetchNews(payload, dispatch) {
-  dispatch(fetchNewsBegin());
+
+// TODO: thunk!!!!!!!
+export const fetchNews = payload => dispatch => {
   try {
-    let news = [];
-    const responce = await fetch(payload.src);
-    handleErrors(responce);
-    const responseData = await responce.text();
-    const rssData = await rssParser.parse(responseData);
-    const items = rssData.items;
-    items.forEach(el => {
-      news.push(payload.infoHandler(el));
+    let configs;
+    let focusedDrawerButton;
+    if (!Array.isArray(payload)) {
+      configs = [payload];
+      focusedDrawerButton = payload.Name;
+    } else {
+      // if it's array of more then 1 elements then it's 'All' button;
+      configs = payload;
+      focusedDrawerButton = configs.length === 1 ? configs[0].Name : 'All';
+    }
+    const news = configs.map(async config => {
+      const id = config.Name;
+      try {
+        dispatch(fetchNewsBegin(id));
+        const responce = await fetch(config.src);
+        handleErrors(responce);
+        const responseData = await responce.text();
+        const rssData = await rssParser.parse(responseData);
+        const items = rssData.items;
+        const handledItems = items.map(elem => {
+          return config.infoHandler(elem);
+        });
+        dispatch(fetchNewsSuccess(id));
+        return handledItems;
+      } catch (error) {
+        dispatch(fetchNewsFailure(error.message, id));
+      }
     });
-    dispatch(fetchNewsSuccess(news));
-    return news;
+    Promise.all(news).then(value => {
+      const res = value.filter(el => Boolean(el)).flat();
+      if (res.length !== 0) {
+        focusedDrawerButton === 'All' &&
+          res.sort((a, b) => {
+            return Date.parse(b.published) - Date.parse(a.published);
+          });
+        dispatch(setNews(res));
+        dispatch(SetFocusedDrawerButton(focusedDrawerButton));
+        dispatch(setFocusedTabTitle(InitialScreenName));
+        return value.flat();
+      }
+    });
   } catch (error) {
-    console.log('error:', String(error));
-    dispatch(fetchNewsFailure(String(error)));
+    dispatch(fetchNewsFailure(error.message));
   }
-}
+};
+
 export function setNews(payload) {
   return {type: 'SETNEWS', payload: payload};
 }
+
 function handleErrors(response) {
   if (!response.ok) {
     throw Error(response.statusText);
   }
   return response;
 }
+
 export const setWebViewVisibility = payload => {
   return {
     type: 'SETWEBVIEWVISIBILITY',
     payload: payload,
   };
 };
-export const setWebViewConfig = (payload, dispatch) => {
-  dispatch(setWebViewVisibility(true));
+
+export const setWebViewURI = payload => {
   return {
     type: 'SETWEBVIEWURI',
     payload: payload,
   };
 };
+
+export const setWebViewConfig = payload => dispatch => {
+  dispatch(setWebViewVisibility(true));
+  dispatch(setWebViewURI(payload));
+};
+
 export const addToFavorites = payload => {
   //recieve config object
   return {
@@ -79,6 +115,7 @@ export const addToFavorites = payload => {
     payload: payload,
   };
 };
+
 export const deleteFromFavorites = payload => {
   // recieve ID which is also url in this case
   return {

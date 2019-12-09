@@ -1,15 +1,17 @@
 import React from 'react';
 import {TouchableOpacity, StyleSheet} from 'react-native';
-import Colors from '../constants/Colors';
-import {useSelector} from 'react-redux';
-import {useFetchNews} from '../customHooks/index';
-import WidthPoint from '../constants/ScreenWidthPercent';
+// import Colors from '../constants/Colors';
+import {useSelector, useDispatch} from 'react-redux';
+import {fetchNews} from '../redux/actions/index';
+import {WidthPoint, Colors} from '../constants/index';
 import CustomText from '../constants/Styles/CustomText';
+import {getFocusedDrawerButton} from '../utilities/selectors/index';
 const CustomDrawerButton = ({navigation, config, name}) => {
-  const FetchNews = useFetchNews(config);
-  const focusedDrawerButton = useSelector(state => state.focusedDrawerButton);
+  // const FetchNews = useFetchNews(config);
+  const dispatch = useDispatch();
+  const focusedDrawerButton = useSelector(getFocusedDrawerButton);
   const onPressHandler = () => {
-    FetchNews();
+    dispatch(fetchNews(config));
     navigation.closeDrawer();
   };
   return (

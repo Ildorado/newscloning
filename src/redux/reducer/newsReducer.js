@@ -1,7 +1,8 @@
+import mapValues from 'lodash.mapvalues';
 const initialState = {
   currentNewsSource: null,
   items: [],
-  loading: false,
+  loading: {},
   error: null,
 };
 
@@ -10,7 +11,10 @@ const newsReducer = (state = initialState, action) => {
     case 'FETCHNEWSBEGIN':
       return {
         ...state,
-        loading: true,
+        loading: {
+          ...state.loading,
+          [action.id]: true,
+        },
         error: null,
       };
     case 'SETNEWS':
@@ -21,13 +25,22 @@ const newsReducer = (state = initialState, action) => {
     case 'FETCHNEWSSUCCESS': {
       return {
         ...state,
-        loading: false,
+        loading: {
+          ...state.loading,
+          [action.id]: false,
+        },
       };
     }
     case 'FETCHNEWSFAILURE':
+      const loading = mapValues(state.loading, () => false);
       return {
-        loading: false,
-        error: action.payload,
+        loading: {
+          loading,
+        },
+        error: {
+          id: action.id ? action.id : 'not in fetching',
+          error: action.payload,
+        },
         items: [],
       };
 

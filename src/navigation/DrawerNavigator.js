@@ -1,10 +1,10 @@
 import {createDrawerNavigator} from 'react-navigation-drawer';
 import SideMenu from '../components/SideMenu';
 import {createAppContainer} from 'react-navigation';
-import myTabNavigator from './TabNavigator';
+import TabNavigator from './TabNavigator';
 const Drawer = createDrawerNavigator(
   {
-    Home: myTabNavigator,
+    Home: TabNavigator,
   },
   {
     contentComponent: SideMenu,

@@ -2,11 +2,12 @@ import React, {useEffect} from 'react';
 import {View, StyleSheet, SafeAreaView} from 'react-native';
 import Tab from './Tab';
 import {useSelector} from 'react-redux';
+import {getFocusedTabTitle} from '../utilities/selectors/index';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import Colors from '../constants/Colors';
+import {Colors} from '../constants/index';
 Icon.loadFont();
 const TabBar = ({navigationState, navigation}) => {
-  const focusedRouteName = useSelector(state => state.focusedTabTitle);
+  const focusedRouteName = useSelector(getFocusedTabTitle);
   const IconOnPressHandler = () => {
     navigation.openDrawer();
   };

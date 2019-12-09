@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
-import Colors from '../constants/Colors';
+import {Colors} from '../constants/index';
 import CustomMenuButton from './CustomMenuButton';
 const Header = ({navigation}) => {
   const onPressHandler = () => {
