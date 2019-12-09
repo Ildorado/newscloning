@@ -2,7 +2,7 @@ import {createMaterialTopTabNavigator} from 'react-navigation-tabs';
 import FavoritesScreen from '../screens/FavoritesScreen';
 import HomeScreen from '../screens/HomeScreen';
 import TabBar from '../components/TabBar';
-const myTabNavigator = createMaterialTopTabNavigator(
+const TabNavigator = createMaterialTopTabNavigator(
   {
     Home: HomeScreen,
     Favorites: FavoritesScreen,
@@ -13,4 +13,4 @@ const myTabNavigator = createMaterialTopTabNavigator(
 );
 
 // export default createAppContainer(myTabNavigator);
-export default myTabNavigator;
+export default TabNavigator;

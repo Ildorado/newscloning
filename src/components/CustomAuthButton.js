@@ -2,20 +2,24 @@ import React from 'react';
 import {TouchableOpacity, StyleSheet} from 'react-native';
 import {Colors, WidthPoint} from '../constants/index';
 import CustomText from '../constants/Styles/CustomText';
-const CustomMenuButton = ({onPress, title, style}) => {
+import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
+// FontAwesome5Icon.loadFont();
+
+const CustomAuthButton = ({navigation, style, title}) => {
   return (
-    <TouchableOpacity
-      onPress={onPress}
-      style={{...styles.MenuButton, ...style}}>
-      <CustomText h3>{title}</CustomText>
-    </TouchableOpacity>
+    <FontAwesome5Icon
+      onPress={() => navigation.navigate('Auth')}
+      name="sign-in-alt"
+      size={8 * WidthPoint}
+      color="gray"
+    />
   );
 };
 const styles = StyleSheet.create({
   MenuButton: {
-    backgroundColor: Colors.tertiary,
+    backgroundColor: '#45D09E',
     height: 8 * WidthPoint,
-    width: 22 * WidthPoint,
+    width: 10 * WidthPoint,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 10,
@@ -24,4 +28,4 @@ const styles = StyleSheet.create({
     borderColor: 'black',
   },
 });
-export default CustomMenuButton;
+export default CustomAuthButton;

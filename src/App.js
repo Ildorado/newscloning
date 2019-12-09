@@ -1,7 +1,7 @@
 import React from 'react';
-import DrawerNavigator from './navigation/DrawerNavigator';
+import SwitchNavigator from './navigation/SwitchNavigator';
 
 const App = () => {
-  return <DrawerNavigator />;
+  return <SwitchNavigator />;
 };
 export default App;

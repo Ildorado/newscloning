@@ -3,9 +3,10 @@ import {View, StyleSheet, SafeAreaView} from 'react-native';
 import Tab from './Tab';
 import {useSelector} from 'react-redux';
 import {getFocusedTabTitle} from '../utilities/selectors/index';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {Colors} from '../constants/index';
-Icon.loadFont();
+import CustomAuthButton from './CustomAuthButton';
+import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {Colors, WidthPoint} from '../constants/index';
+MaterialCommunityIcon.loadFont();
 const TabBar = ({navigationState, navigation}) => {
   const focusedRouteName = useSelector(getFocusedTabTitle);
   const IconOnPressHandler = () => {
@@ -16,16 +17,19 @@ const TabBar = ({navigationState, navigation}) => {
   }, [focusedRouteName, navigation]);
   return (
     <SafeAreaView style={styles.TabBar}>
-      <Icon
+      <MaterialCommunityIcon
         onPress={IconOnPressHandler}
         name="backburger"
-        size={40}
+        size={WidthPoint * 11}
         color="black"
       />
       <View style={styles.RoutesWrapper}>
         {navigationState.routes.map((route, index) => {
           return <Tab key={route + index} title={route.routeName} />;
         })}
+      </View>
+      <View>
+        <CustomAuthButton title="Sign in" navigation={navigation} />
       </View>
     </SafeAreaView>
   );

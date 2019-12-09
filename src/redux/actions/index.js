@@ -29,7 +29,6 @@ export const fetchNewsFailure = (error, id) => ({
   id: id,
 });
 
-// TODO: thunk!!!!!!!
 export const fetchNews = payload => dispatch => {
   try {
     let configs;

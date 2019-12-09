@@ -1,6 +1,5 @@
 import {createDrawerNavigator} from 'react-navigation-drawer';
 import SideMenu from '../components/SideMenu';
-import {createAppContainer} from 'react-navigation';
 import TabNavigator from './TabNavigator';
 const Drawer = createDrawerNavigator(
   {
@@ -12,4 +11,4 @@ const Drawer = createDrawerNavigator(
   },
 );
 // export default Drawer;
-export default createAppContainer(Drawer);
+export default Drawer;
