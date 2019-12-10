@@ -10,7 +10,7 @@ const HomeScreen = props => {
   return (
     <View style={styles.screen}>
       <ModalWebView />
-      <NewsList data={news} />
+      <NewsList screenName="Home" data={news} />
     </View>
   );
 };

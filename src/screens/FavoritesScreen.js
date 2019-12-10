@@ -12,7 +12,7 @@ const FavoritesScreen = props => {
   );
   return (
     <View style={styles.screen}>
-      <NewsList data={favoriteNews} />
+      <NewsList screenName="Favorite" data={favoriteNews} />
     </View>
   );
 };

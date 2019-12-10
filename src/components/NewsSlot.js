@@ -8,13 +8,16 @@ import NewsSlotHeader from './NewsSlotHeader';
 import NewsSlotImage from './Animated/NewsSlotImage';
 import {useSelector} from 'react-redux';
 import {getViewableItems} from '../utilities/selectors/index';
-const NewsSlot = ({config}) => {
-  const viewableItems = useSelector(getViewableItems);
+const NewsSlot = ({config, screenName}) => {
+  const viewableItems = useSelector(getViewableItems(screenName));
+  // const view = viewableItems[screenName];
   const dispatch = useDispatch();
   const newsSlotPressHandler = () => {
     dispatch(setWebViewConfig(config));
   };
-  const isVisible = viewableItems.hasOwnProperty(config.id);
+  const isVisible = viewableItems
+    ? viewableItems.hasOwnProperty(config.id)
+    : undefined;
   return (
     <View style={styles.card}>
       <NewsSlotHeader config={config} />

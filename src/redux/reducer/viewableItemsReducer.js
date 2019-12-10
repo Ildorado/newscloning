@@ -1,7 +1,10 @@
 const viewableItemsReducer = (state = {}, action) => {
   switch (action.type) {
     case 'SETVIEWABLEITEMS': {
-      return action.payload;
+      return {
+        ...state,
+        [action.name]: action.payload,
+      };
     }
     default:
       return state;

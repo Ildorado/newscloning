@@ -3,17 +3,16 @@ import {StyleSheet, SafeAreaView, FlatList} from 'react-native';
 import {useDispatch} from 'react-redux';
 import {setViewableItems} from '../redux/actions/index';
 import NewsSlot from './NewsSlot';
-const NewsList = ({data}) => {
+const NewsList = ({data, screenName}) => {
   const dispatch = useDispatch();
   const flatListRef = useRef();
-
   const toTop = () => {
     flatListRef.current.scrollToOffset({animated: false, offset: 0});
   };
 
   useEffect(() => {
-    toTop();
-  }, [data]);
+    screenName === 'Home' && toTop();
+  }, [data, screenName]);
 
   const viewabilityConfig = useRef({
     waitForInteraction: false,
@@ -27,6 +26,7 @@ const NewsList = ({data}) => {
           acc[obj.key] = true;
           return acc;
         }, {}),
+        screenName,
       ),
     );
   });
@@ -34,7 +34,7 @@ const NewsList = ({data}) => {
   return (
     <SafeAreaView style={styles.listWrapper}>
       <FlatList
-        removeClippedSubviews
+        
         viewabilityConfig={viewabilityConfig.current}
         onViewableItemsChanged={onViewableItemsChanged.current}
         windowSize={11}
@@ -43,7 +43,9 @@ const NewsList = ({data}) => {
         data={data}
         initialNumToRender={3}
         maxToRenderPerBatch={2}
-        renderItem={itemData => <NewsSlot config={itemData.item} />}
+        renderItem={itemData => (
+          <NewsSlot screenName={screenName} config={itemData.item} />
+        )}
         keyExtractor={itemData => itemData.id}
       />
     </SafeAreaView>
