@@ -10,7 +10,6 @@ import {useSelector} from 'react-redux';
 import {getViewableItems} from '../utilities/selectors/index';
 const NewsSlot = ({config, screenName}) => {
   const viewableItems = useSelector(getViewableItems(screenName));
-  // const view = viewableItems[screenName];
   const dispatch = useDispatch();
   const newsSlotPressHandler = () => {
     dispatch(setWebViewConfig(config));
@@ -47,7 +46,7 @@ const NewsSlot = ({config, screenName}) => {
 const styles = StyleSheet.create({
   card: {
     alignItems: 'center',
-    width: 80 * WidthPoint,
+    width: 90 * WidthPoint,
     backgroundColor: Colors.tertiary,
     minHeight: 80 * WidthPoint,
     marginVertical: 3 * WidthPoint,
@@ -56,7 +55,7 @@ const styles = StyleSheet.create({
     borderRadius: 3 * WidthPoint,
   },
   image: {
-    width: 70 * WidthPoint,
+    width: 80 * WidthPoint,
     height: 50 * WidthPoint,
     marginTop: 5 * WidthPoint,
   },

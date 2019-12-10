@@ -34,7 +34,6 @@ const NewsList = ({data, screenName}) => {
   return (
     <SafeAreaView style={styles.listWrapper}>
       <FlatList
-        
         viewabilityConfig={viewabilityConfig.current}
         onViewableItemsChanged={onViewableItemsChanged.current}
         windowSize={11}
