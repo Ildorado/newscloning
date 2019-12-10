@@ -1,15 +1,17 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, StyleSheet, Image, TouchableWithoutFeedback} from 'react-native';
 import {useDispatch} from 'react-redux';
 import {setWebViewConfig} from '../redux/actions/index';
 import CustomText from '../constants/Styles/CustomText';
 import {WidthPoint, Colors} from '../constants/index';
 import NewsSlotHeader from './NewsSlotHeader';
+import NewsSlotImage from './Animated/NewsSlotImage';
 const NewsSlot = ({config}) => {
   const dispatch = useDispatch();
   const newsSlotPressHandler = () => {
     dispatch(setWebViewConfig(config));
   };
+  useEffect;
   return (
     <View style={styles.card}>
       <NewsSlotHeader config={config} />
@@ -19,12 +21,7 @@ const NewsSlot = ({config}) => {
             {config.title}
           </CustomText>
           {config.img && (
-            <Image
-              style={styles.image}
-              source={{uri: config.img}}
-              resizeMethod="scale"
-              resizeMode="contain"
-            />
+            <NewsSlotImage style={styles.image} uri={config.img} />
           )}
           <CustomText style={styles.description} description>
             {config.description}
