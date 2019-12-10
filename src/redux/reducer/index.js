@@ -3,6 +3,7 @@ import focusedTabReducer from './focusedTabReducer';
 import focusedDrawerButtonReducer from './focusedDrawerButtonReducer';
 import webViewReducer from './webViewReducer';
 import favoritesReducer from './favoritesReducer';
+import viewableItemsReducer from './viewableItemsReducer';
 import {combineReducers} from 'redux';
 const rootReducer = combineReducers({
   news: newsReducer,
@@ -10,5 +11,6 @@ const rootReducer = combineReducers({
   focusedDrawerButton: focusedDrawerButtonReducer,
   webView: webViewReducer,
   favorites: favoritesReducer,
+  viewableItems: viewableItemsReducer,
 });
 export default rootReducer;

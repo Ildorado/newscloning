@@ -12,6 +12,12 @@ export const SetFocusedDrawerButton = payload => {
     payload: payload,
   };
 };
+export const setViewableItems = payload => {
+  return {
+    type: 'SETVIEWABLEITEMS',
+    payload: payload,
+  };
+};
 export const fetchNewsBegin = id => ({
   type: 'FETCHNEWSBEGIN',
   id: id,
