@@ -1,5 +1,5 @@
-import React from 'react';
-import {View, StyleSheet, SafeAreaView} from 'react-native';
+import React, {useEffect} from 'react';
+import {View, StyleSheet, SafeAreaView, LayoutAnimation} from 'react-native';
 import IconEntypo from 'react-native-vector-icons/Entypo';
 import IconFontisto from 'react-native-vector-icons/Fontisto';
 import {WidthPoint, Colors} from '../constants/index';
@@ -13,8 +13,8 @@ const Header = ({config, modalOnCancel, style, onUnfavorite}) => {
   const dispatch = useDispatch();
   const isFavorite = useIsFavorite(config);
   const modalOnFavoritelHandler = () => {
-    console.log('onUnfavorite', onUnfavorite);
     if (isFavorite) {
+      LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
       if (onUnfavorite) {
         onUnfavorite(() => dispatch(deleteFromFavorites(config.id)));
       } else {
@@ -24,6 +24,9 @@ const Header = ({config, modalOnCancel, style, onUnfavorite}) => {
       dispatch(addToFavorites(config));
     }
   };
+  // useEffect(() => {
+  //   LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
+  // }, [isFavorite]);
   const onShareHandler = () => {
     Share.open({url: config.id});
   };

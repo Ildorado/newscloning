@@ -1,5 +1,13 @@
 import React, {useState, useEffect} from 'react';
-import {View, StyleSheet, TouchableWithoutFeedback} from 'react-native';
+import {
+  View,
+  Image,
+  StyleSheet,
+  TouchableWithoutFeedback,
+  Platform,
+  UIManager,
+  LayoutAnimation,
+} from 'react-native';
 import {useDispatch} from 'react-redux';
 import {setWebViewConfig} from '../redux/actions/index';
 import CustomText from '../constants/Styles/CustomText';
@@ -9,75 +17,46 @@ import NewsSlotImage from './Animated/NewsSlotImage';
 import {useSelector} from 'react-redux';
 import {getViewableItems} from '../utilities/selectors/index';
 import Animated, {Easing} from 'react-native-reanimated';
-const {
-  Clock,
-  Value,
-  set,
-  cond,
-  startClock,
-  clockRunning,
-  timing,
-  decay,
-  debug,
-  stopClock,
-  block,
-} = Animated;
+import {getFavorites} from '../utilities/selectors/index';
+const {Value, timing} = Animated;
+
 const NewsSlot = ({config, screenName}) => {
+  // const favorites = useSelector(getFavorites);
+  // if (
+  //   Platform.OS === 'android' &&
+  //   UIManager.setLayoutAnimationEnabledExperimental
+  // ) {
+  //   UIManager.setLayoutAnimationEnabledExperimental(true);
+  // }
+  // useEffect(() => {
+  //   LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
+  // }, [favorites]);
   const viewableItems = useSelector(getViewableItems(screenName));
+  const isVisible = viewableItems
+    ? viewableItems.hasOwnProperty(config.id)
+    : undefined;
   const dispatch = useDispatch();
   const newsSlotPressHandler = () => {
     dispatch(setWebViewConfig(config));
   };
-  const isVisible = viewableItems
-    ? viewableItems.hasOwnProperty(config.id)
-    : undefined;
-
-  const [_config] = useState({
-    delete: {
-      duration: 500,
-      toValue: WidthPoint * 90,
-      easing: Easing.inOut(Easing.ease),
-    },
-  });
-  const [_transX, _setTransX] = useState(new Value(0));
-  const [_animIn, _setAnimIn] = useState();
-  const onUnfavorite =
-    screenName === 'Favorite'
-      ? func => {
-          _setAnimIn(
-            timing(_transX, _config.delete).start(data => {
-              if (data.finished) {
-                console.log('func:', func);
-                func();
-              }
-            }),
-          );
-        }
-      : false;
   return (
-    <Animated.View
-      style={[
-        styles.card,
-        {
-          transform: [
-            {translateX: _transX},
-            {perspective: 1000}, // without this line this Animation will not render on Android while working fine on iOS
-          ],
-        },
-      ]}>
-      <NewsSlotHeader config={config} onUnfavorite={onUnfavorite} />
+    <Animated.View style={styles.card}>
+      <NewsSlotHeader config={config} />
       <TouchableWithoutFeedback onPress={newsSlotPressHandler}>
         <View style={styles.contentWrapper}>
           <CustomText style={styles.h1} title>
             {config.title}
           </CustomText>
-          {config.img && (
-            <NewsSlotImage
-              isVisible={isVisible}
-              style={styles.image}
-              uri={config.img}
-            />
-          )}
+          {config.img &&
+            (Platform.OS === 'android' ? (
+              <Image style={styles.image} source={{uri: config.img}} />
+            ) : (
+              <NewsSlotImage
+                isVisible={isVisible}
+                style={styles.image}
+                uri={config.img}
+              />
+            ))}
           <CustomText style={styles.description} description>
             {config.description}
           </CustomText>

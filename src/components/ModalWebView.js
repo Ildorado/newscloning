@@ -18,6 +18,7 @@ const ModalWebView = () => {
   const modalOnCancelHandler = () => {
     dispatch(setWebViewVisibility(false));
   };
+
   return (
     <Modal
       onRequestClose={modalOnCancelHandler}

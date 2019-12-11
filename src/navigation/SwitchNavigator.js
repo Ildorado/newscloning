@@ -10,12 +10,12 @@ export default createAppContainer(
       Auth: AuthScreen,
     },
     {
-      transition: (
-        <Transition.Together>
-          <Transition.Out type="slide-bottom" durationMs={400} />
-          <Transition.In type="fade" durationMs={500} />
-        </Transition.Together>
-      ),
+      transition: <Transition.Out type="slide-bottom" durationMs={400} />,
+      // transition: (
+      //   <Transition.Together>
+      //     <Transition.Out type="slide-bottom" durationMs={400} />
+      //     <Transition.In type="fade" durationMs={500} />
+      //   </Transition.Together>
       initialRouteName: 'Auth',
     },
   ),

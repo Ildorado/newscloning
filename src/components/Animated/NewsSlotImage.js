@@ -24,11 +24,13 @@ const NewsSlotImage = ({uri, style, isVisible}) => {
       duration: 700,
       toValue: 1,
       easing: Easing.inOut(Easing.ease),
+      useNativeDriver: true,
     },
     out: {
       duration: 700,
       toValue: 0.5,
       easing: Easing.inOut(Easing.ease),
+      useNativeDriver: true,
     },
     // inSlowly: {
     //   duration: 2000,
@@ -40,7 +42,7 @@ const NewsSlotImage = ({uri, style, isVisible}) => {
   const [_animOut, _setAnimOut] = useState();
   const [outFinished, setOutFinished] = useState(false);
   // const [_animInSlowly, _setAnimInSlowly] = useState();
-  // const [onLoading, setOnLoading] = useState(false);
+  const [onLoading, setOnLoading] = useState(false);
   useEffect(() => {
     // if (onLoading === true && isVisible === false) {
     //   _setAnimInSlowly(timing(opacity, _configs.inSlowly));
@@ -50,14 +52,7 @@ const NewsSlotImage = ({uri, style, isVisible}) => {
     } else if (isVisible === false) {
       _setAnimOut(timing(opacity, _configs.out));
     }
-  }, [
-    _configs.in,
-    _configs.out,
-    isVisible,
-    opacity,
-    // onLoading,
-    _configs.inSlowly,
-  ]);
+  }, [_configs.in, _configs.out, isVisible, opacity, _configs.inSlowly]);
   useEffect(() => {
     _animOut && outFinished === false && _animOut.stop();
     _animIn && _animIn.start();
@@ -72,7 +67,7 @@ const NewsSlotImage = ({uri, style, isVisible}) => {
 
   return (
     <Animated.Image
-      // onLoad={() => setOnLoading(true)}
+      // onLoadEnd={() => setOnLoading(true)}
       style={[
         style,
         {

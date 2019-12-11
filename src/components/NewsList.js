@@ -1,8 +1,15 @@
 import React, {useRef, useEffect} from 'react';
-import {StyleSheet, SafeAreaView, FlatList} from 'react-native';
+import {
+  StyleSheet,
+  SafeAreaView,
+  FlatList,
+  UIManager,
+  Platform,
+} from 'react-native';
 import {useDispatch} from 'react-redux';
 import {setViewableItems} from '../redux/actions/index';
 import NewsSlot from './NewsSlot';
+
 const NewsList = ({data, screenName}) => {
   const dispatch = useDispatch();
   const flatListRef = useRef();
