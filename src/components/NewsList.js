@@ -17,6 +17,7 @@ const NewsList = ({data, screenName}) => {
   const viewabilityConfig = useRef({
     waitForInteraction: false,
     viewAreaCoveragePercentThreshold: 35,
+    minimumViewTime: 0,
   });
 
   const onViewableItemsChanged = useRef(info => {
@@ -36,12 +37,13 @@ const NewsList = ({data, screenName}) => {
       <FlatList
         viewabilityConfig={viewabilityConfig.current}
         onViewableItemsChanged={onViewableItemsChanged.current}
-        windowSize={11}
+        windowSize={21}
         ref={flatListRef}
         style={styles.list}
         data={data}
         initialNumToRender={3}
-        maxToRenderPerBatch={2}
+        maxToRenderPerBatch={7}
+        updateCellsBatchingPeriod={10}
         renderItem={itemData => (
           <NewsSlot screenName={screenName} config={itemData.item} />
         )}
