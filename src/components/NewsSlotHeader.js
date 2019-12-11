@@ -9,12 +9,17 @@ import Share from 'react-native-share';
 import {useIsFavorite} from '../utilities/customHooks/index';
 IconEntypo.loadFont();
 IconFontisto.loadFont();
-const Header = ({config, modalOnCancel, style}) => {
+const Header = ({config, modalOnCancel, style, onUnfavorite}) => {
   const dispatch = useDispatch();
   const isFavorite = useIsFavorite(config);
   const modalOnFavoritelHandler = () => {
+    console.log('onUnfavorite', onUnfavorite);
     if (isFavorite) {
-      dispatch(deleteFromFavorites(config.id));
+      if (onUnfavorite) {
+        onUnfavorite(() => dispatch(deleteFromFavorites(config.id)));
+      } else {
+        dispatch(deleteFromFavorites(config.id));
+      }
     } else {
       dispatch(addToFavorites(config));
     }
