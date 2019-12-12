@@ -9,6 +9,8 @@ const TabNavigator = createMaterialTopTabNavigator(
   },
   {
     tabBarComponent: TabBar,
+    order: ['Home', 'Favorites'],
+    backBehavior: 'none',
   },
 );
 
