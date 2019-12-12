@@ -32,10 +32,10 @@ const styles = StyleSheet.create({
     marginTop: 3 * WidthPoint,
     paddingHorizontal: 3 * WidthPoint,
   },
-  focused: {
+  unfocused: {
     backgroundColor: Colors.tertiary,
   },
-  unfocused: {
+  focused: {
     backgroundColor: Colors.primary,
   },
 });

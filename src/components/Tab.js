@@ -29,10 +29,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   focused: {
-    backgroundColor: Colors.tertiary,
+    backgroundColor: Colors.primary,
   },
   unfocused: {
-    backgroundColor: Colors.primary,
+    backgroundColor: Colors.tertiary,
   },
   text: {
     fontSize: 5 * WidthPoint,

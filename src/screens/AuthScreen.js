@@ -3,7 +3,6 @@ import {MaterialIndicator} from 'react-native-indicators';
 import React from 'react';
 import {WidthPoint} from '../constants/index';
 const AuthScreen = props => {
-  console.log('props:', props);
   return (
     <View style={styles.screen}>
       <Button
