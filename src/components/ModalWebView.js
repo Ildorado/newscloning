@@ -1,4 +1,5 @@
-import {Modal, StyleSheet} from 'react-native';
+import {StyleSheet} from 'react-native';
+import Modal from 'react-native-modal';
 import React, {useState} from 'react';
 import {WebView} from 'react-native-webview';
 import NewsSlotHeader from './NewsSlotHeader';
@@ -23,7 +24,13 @@ const ModalWebView = () => {
     <Modal
       onRequestClose={modalOnCancelHandler}
       visible={visibility}
-      style={styles.modalContainer}>
+      useNativeDriver={true}
+      style={styles.modalContainer}
+      animationType="slide"
+      animationOut="slideOutDown"
+      animationIn="slideInLeft"
+      coverScreen={true}
+      onBackdropPress={modalOnCancelHandler}>
       <NewsSlotHeader
         config={webViewConfig}
         modalOnCancel={modalOnCancelHandler}
@@ -44,8 +51,11 @@ const ModalWebView = () => {
   );
 };
 const styles = StyleSheet.create({
-  modalContainer: {},
-  webView: {marginTop: 5 * WidthPoint},
+  modalContainer: {
+    margin: 0,
+    width: '100%',
+  },
+  webView: {},
   notLoaded: {
     display: 'none',
   },

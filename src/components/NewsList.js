@@ -19,21 +19,23 @@ const NewsList = ({data, screenName}) => {
     viewAreaCoveragePercentThreshold: 35,
     minimumViewTime: 0,
   });
-  const onViewableItemsChanged = useRef(info => {
-    setViewableItems(
-      info.viewableItems.reduce((acc, obj) => {
-        acc[obj.key] = true;
-        return acc;
-      }, {}),
-    );
-  });
+  const onViewableItemsChanged = useRef(
+    Platform.OS === 'android'
+      ? () => {}
+      : info => {
+          setViewableItems(
+            info.viewableItems.reduce((acc, obj) => {
+              acc[obj.key] = true;
+              return acc;
+            }, {}),
+          );
+        },
+  );
   return (
     <SafeAreaView style={styles.listWrapper}>
       <FlatList
         viewabilityConfig={viewabilityConfig.current}
-        onViewableItemsChanged={
-          Platform.OS === 'android' ? {} : onViewableItemsChanged.current
-        }
+        onViewableItemsChanged={onViewableItemsChanged.current}
         windowSize={21}
         ref={flatListRef}
         style={styles.list}

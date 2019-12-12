@@ -37,7 +37,10 @@ const NewsSlotImage = ({uri, style, isVisible}) => {
   }, [_animIn]);
 
   useEffect(() => {
-    _animOut && _animOut.start(data => setOutFinished(data.finished));
+    _animOut &&
+      _animOut.start(data => {
+        setOutFinished(data.finished);
+      });
   }, [_animOut]);
   return (
     <Animated.Image

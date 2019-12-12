@@ -13,6 +13,7 @@ import {WidthPoint, Colors} from '../constants/index';
 import NewsSlotHeader from './NewsSlotHeader';
 import NewsSlotImage from './Animated/NewsSlotImage';
 import Animated from 'react-native-reanimated';
+
 const NewsSlot = ({config, viewableItems}) => {
   const isVisible = viewableItems
     ? viewableItems.hasOwnProperty(config.id)
@@ -21,11 +22,12 @@ const NewsSlot = ({config, viewableItems}) => {
   const newsSlotPressHandler = () => {
     dispatch(setWebViewConfig(config));
   };
+
   return (
-    <Animated.View style={styles.card}>
+    <View style={styles.card}>
       <NewsSlotHeader config={config} />
       <TouchableWithoutFeedback onPress={newsSlotPressHandler}>
-        <View style={styles.contentWrapper}>
+        <Animated.View style={styles.contentWrapper}>
           <CustomText style={styles.h1} title>
             {config.title}
           </CustomText>
@@ -45,9 +47,9 @@ const NewsSlot = ({config, viewableItems}) => {
           <CustomText style={styles.published} published>
             {config.published}
           </CustomText>
-        </View>
+        </Animated.View>
       </TouchableWithoutFeedback>
-    </Animated.View>
+    </View>
   );
 };
 const styles = StyleSheet.create({
