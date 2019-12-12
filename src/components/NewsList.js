@@ -1,17 +1,9 @@
-import React, {useRef, useEffect} from 'react';
-import {
-  StyleSheet,
-  SafeAreaView,
-  FlatList,
-  UIManager,
-  Platform,
-} from 'react-native';
-import {useDispatch} from 'react-redux';
-import {setViewableItems} from '../redux/actions/index';
+import React, {useRef, useEffect, useState} from 'react';
+import {StyleSheet, SafeAreaView, FlatList, Platform} from 'react-native';
+// import {setViewableItems} from '../redux/actions/index';
 import NewsSlot from './NewsSlot';
 
 const NewsList = ({data, screenName}) => {
-  const dispatch = useDispatch();
   const flatListRef = useRef();
   const toTop = () => {
     flatListRef.current.scrollToOffset({animated: false, offset: 0});
@@ -21,29 +13,27 @@ const NewsList = ({data, screenName}) => {
     screenName === 'Home' && toTop();
   }, [data, screenName]);
 
+  const [viewableItems, setViewableItems] = useState({});
   const viewabilityConfig = useRef({
     waitForInteraction: false,
     viewAreaCoveragePercentThreshold: 35,
     minimumViewTime: 0,
   });
-
   const onViewableItemsChanged = useRef(info => {
-    dispatch(
-      setViewableItems(
-        info.viewableItems.reduce((acc, obj) => {
-          acc[obj.key] = true;
-          return acc;
-        }, {}),
-        screenName,
-      ),
+    setViewableItems(
+      info.viewableItems.reduce((acc, obj) => {
+        acc[obj.key] = true;
+        return acc;
+      }, {}),
     );
   });
-
   return (
     <SafeAreaView style={styles.listWrapper}>
       <FlatList
         viewabilityConfig={viewabilityConfig.current}
-        onViewableItemsChanged={onViewableItemsChanged.current}
+        onViewableItemsChanged={
+          Platform.OS === 'android' ? {} : onViewableItemsChanged.current
+        }
         windowSize={21}
         ref={flatListRef}
         style={styles.list}
@@ -52,7 +42,11 @@ const NewsList = ({data, screenName}) => {
         maxToRenderPerBatch={7}
         updateCellsBatchingPeriod={10}
         renderItem={itemData => (
-          <NewsSlot screenName={screenName} config={itemData.item} />
+          <NewsSlot
+            viewableItems={viewableItems}
+            screenName={screenName}
+            config={itemData.item}
+          />
         )}
         keyExtractor={itemData => itemData.id}
       />

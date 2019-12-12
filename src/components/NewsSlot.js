@@ -1,12 +1,10 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import {
   View,
   Image,
   StyleSheet,
   TouchableWithoutFeedback,
   Platform,
-  UIManager,
-  LayoutAnimation,
 } from 'react-native';
 import {useDispatch} from 'react-redux';
 import {setWebViewConfig} from '../redux/actions/index';
@@ -14,24 +12,8 @@ import CustomText from '../constants/Styles/CustomText';
 import {WidthPoint, Colors} from '../constants/index';
 import NewsSlotHeader from './NewsSlotHeader';
 import NewsSlotImage from './Animated/NewsSlotImage';
-import {useSelector} from 'react-redux';
-import {getViewableItems} from '../utilities/selectors/index';
-import Animated, {Easing} from 'react-native-reanimated';
-import {getFavorites} from '../utilities/selectors/index';
-const {Value, timing} = Animated;
-
-const NewsSlot = ({config, screenName}) => {
-  // const favorites = useSelector(getFavorites);
-  // if (
-  //   Platform.OS === 'android' &&
-  //   UIManager.setLayoutAnimationEnabledExperimental
-  // ) {
-  //   UIManager.setLayoutAnimationEnabledExperimental(true);
-  // }
-  // useEffect(() => {
-  //   LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
-  // }, [favorites]);
-  const viewableItems = useSelector(getViewableItems(screenName));
+import Animated from 'react-native-reanimated';
+const NewsSlot = ({config, viewableItems}) => {
   const isVisible = viewableItems
     ? viewableItems.hasOwnProperty(config.id)
     : undefined;

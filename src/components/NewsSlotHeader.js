@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {View, StyleSheet, SafeAreaView, LayoutAnimation} from 'react-native';
 import IconEntypo from 'react-native-vector-icons/Entypo';
 import IconFontisto from 'react-native-vector-icons/Fontisto';
@@ -24,9 +24,6 @@ const Header = ({config, modalOnCancel, style, onUnfavorite}) => {
       dispatch(addToFavorites(config));
     }
   };
-  // useEffect(() => {
-  //   LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
-  // }, [isFavorite]);
   const onShareHandler = () => {
     Share.open({url: config.id});
   };
