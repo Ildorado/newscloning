@@ -122,3 +122,11 @@ export const deleteFromFavorites = payload => {
     payload: payload,
   };
 };
+
+export const setAuth = (authorized, revoked) => {
+  return {
+    type: 'SETAUTH',
+    authorized: authorized,
+    revoked: revoked,
+  };
+};

@@ -36,10 +36,10 @@ const ModalWebView = () => {
         modalOnCancel={modalOnCancelHandler}
       />
       <WebView
+        startInLoadingState={true}
         onLoadProgress={({nativeEvent}) => {
           setIsLoaded(nativeEvent.progress > 0.7);
         }}
-        startInLoadingState={true}
         source={{uri: webViewConfig.id}}
         style={{
           ...styles.webView,
