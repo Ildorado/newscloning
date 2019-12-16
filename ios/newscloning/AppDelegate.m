@@ -10,11 +10,13 @@
 #import <React/RCTBridge.h>
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+
   RCTBridge *bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:launchOptions];
   RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:bridge
                                                    moduleName:@"newscloning"
@@ -30,7 +32,8 @@
   return YES;
 }
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *, id> *) options {
-  return [self.authorizationFlowManagerDelegate resumeExternalUserAgentFlowWithURL:url];
+    BOOL handled =  [[FBSDKApplicationDelegate sharedInstance] application:app openURL:url options:options];
+  return [self.authorizationFlowManagerDelegate resumeExternalUserAgentFlowWithURL:url] || handled;
 }
 - (NSURL *)sourceURLForBridge:(RCTBridge *)bridge
 {
@@ -41,4 +44,13 @@
 #endif
 }
 
+
+// - (BOOL)application:(UIApplication *)application 
+//             openURL:(NSURL *)url 
+//             options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
+
+//   BOOL handled =  [[FBSDKApplicationDelegate sharedInstance] application:application openURL:url options:options];
+//   // Add any custom logic here.
+//   return handled;
+// }
 @end

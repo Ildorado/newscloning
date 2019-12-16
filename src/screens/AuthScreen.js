@@ -7,6 +7,7 @@ import {AuthConfigs} from '../constants/index';
 import {getAuth} from '../utilities/selectors/index';
 import {setAuth} from '../redux/actions/index';
 import {useSelector, useDispatch} from 'react-redux';
+import {LoginButton, AccessToken} from 'react-native-fbsdk';
 
 const AuthScreen = props => {
   const authState = useSelector(getAuth);
@@ -39,14 +40,18 @@ const AuthScreen = props => {
   const logOutOfCurrent = async () => {
     let revokedData = authState.revoked.data;
     let revokedName = authState.revoked.name;
-    if (authState.authorized.data && authState.authorized.data !== null) {
-      revokedName = authState.authorized.name;
+    if (authState.authorized.data !== null) {
+      revokedName = authState.authorized.name
+        ? authState.authorized.name
+        : revokedName;
       revokedData = await revoke(AuthConfigs[revokedName], {
         tokenToRevoke: authState.authorized.data.refreshToken,
+      }).then(value => {
+        console.log('vaue:', value);
+        return value ? value : revokedData;
       });
     }
-    Promise.all([revokedData]);
-    if (revokedData !== null) {
+    if (revokedData) {
       dispatch(
         setAuth(
           {
@@ -63,7 +68,7 @@ const AuthScreen = props => {
     return {name: revokedName, data: revokedData};
   };
   const SignIn = async source => {
-    let revoked = logOutOfCurrent();
+    let revoked = await logOutOfCurrent();
     console.log('revoked:', revoked);
     let authorized;
     authorized = await authorize(AuthConfigs[source]);
@@ -96,6 +101,21 @@ const AuthScreen = props => {
         onPress={() => props.navigation.navigate('App')}
       />
       <Button title="Sign Out" onPress={() => signOut()} />
+      <LoginButton
+        onLoginFinished={(error, result) => {
+          if (error) {
+            console.log('login has error:');
+            console.log(error);
+          } else if (result.isCancelled) {
+            console.log('login is cancelled.');
+          } else {
+            AccessToken.getCurrentAccessToken().then(data => {
+              console.log(data.accessToken.toString());
+            });
+          }
+        }}
+        onLogoutFinished={() => console.log('logout.')}
+      />
     </View>
   );
 };
