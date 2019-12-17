@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, StyleSheet, SafeAreaView, LayoutAnimation} from 'react-native';
 import IconEntypo from 'react-native-vector-icons/Entypo';
 import IconFontisto from 'react-native-vector-icons/Fontisto';
@@ -7,11 +7,14 @@ import {useDispatch} from 'react-redux';
 import {addToFavorites, deleteFromFavorites} from '../redux/actions/index';
 import Share from 'react-native-share';
 import {useIsFavorite} from '../utilities/customHooks/index';
+import ShareForm from './ShareForm';
+import Modal from 'react-native-modal';
 IconEntypo.loadFont();
 IconFontisto.loadFont();
 const Header = ({config, modalOnCancel, style}) => {
   const dispatch = useDispatch();
   const isFavorite = useIsFavorite(config);
+  const [shareModalVisibility, setShareModalVisibility] = useState(false);
   const modalOnFavoritelHandler = () => {
     if (isFavorite) {
       LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
@@ -21,7 +24,8 @@ const Header = ({config, modalOnCancel, style}) => {
     }
   };
   const onShareHandler = () => {
-    Share.open({url: config.id});
+    setShareModalVisibility(true);
+    // Share.open({url: config.id});
   };
   return (
     <SafeAreaView
@@ -30,6 +34,18 @@ const Header = ({config, modalOnCancel, style}) => {
           ? {...styles.header, ...styles.modal, ...style}
           : {...styles.header, ...styles.noModal, ...style}
       }>
+      <ShareForm
+        onSubmit={values => {
+          const {title, message} = values;
+          // setShareModalVisibility(false);
+          Share.open({
+            url: config.id,
+            title: title,
+            message: message,
+          }).finally(() => setShareModalVisibility(false));
+        }}
+        shareModalVisibility={shareModalVisibility}
+      />
       {modalOnCancel && (
         <View style={styles.firstIconGroup}>
           <IconEntypo
