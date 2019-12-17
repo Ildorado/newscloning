@@ -26,6 +26,9 @@ const firstLevelStyles = {
   bold: {
     fontWeight: 'bold',
   },
+  white: {
+    color: 'white',
+  },
 };
 const styles = StyleSheet.create({
   ...firstLevelStyles,

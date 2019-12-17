@@ -123,10 +123,32 @@ export const deleteFromFavorites = payload => {
   };
 };
 
-export const setAuth = (authorized, revoked) => {
+export const setAuth = authorized => {
   return {
     type: 'SETAUTH',
     authorized: authorized,
-    revoked: revoked,
   };
+};
+export const logOutOfGoogle = authorized => {
+  return {
+    type: 'LOGOUTOFGOOGLE',
+    authorized: authorized,
+  };
+};
+import {facebookLogout} from '../../components/AuthButtons/Facebook';
+import {revoke} from 'react-native-app-auth';
+import {googleConfig} from '../../components/AuthButtons/Google';
+export const logOut = authorizedState => dispatch => {
+  if (authorizedState.name === 'Facebook') {
+    facebookLogout();
+    dispatch(setAuth({name: null, data: null}));
+  } else if (authorizedState.name === 'Google') {
+    if (authorizedState && authorizedState.data !== null) {
+      revoke(googleConfig, {
+        tokenToRevoke: authorizedState.data.accessToken,
+      }).then(() => {
+        dispatch(setAuth({name: null, data: null}));
+      });
+    }
+  }
 };
