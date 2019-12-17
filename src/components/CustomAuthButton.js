@@ -1,31 +1,47 @@
 import React from 'react';
-import {TouchableOpacity, StyleSheet} from 'react-native';
-import {Colors, WidthPoint} from '../constants/index';
-import CustomText from '../constants/Styles/CustomText';
-import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
-// FontAwesome5Icon.loadFont();
+import {StyleSheet} from 'react-native';
+import {WidthPoint} from '../constants/index';
+import {useSelector} from 'react-redux';
+import Entypo from 'react-native-vector-icons/Entypo';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
-const CustomAuthButton = ({navigation, style, title}) => {
-  return (
-    <FontAwesome5Icon
+import {getAuth} from '../utilities/selectors/index';
+Entypo.loadFont();
+AntDesign.loadFont();
+
+const CustomAuthButton = ({navigation}) => {
+  const authState = useSelector(getAuth);
+  let name;
+  switch (authState.authorized.name) {
+    case 'Facebook':
+      name = 'facebook-with-circle';
+      break;
+    case 'Google':
+      name = 'google--with-circle';
+      break;
+    default:
+      name = null;
+      break;
+  }
+  return name ? (
+    <Entypo
+      style={styles.MenuButton}
       onPress={() => navigation.navigate('Auth')}
-      name="sign-in-alt"
+      name={name}
       size={8 * WidthPoint}
-      color="gray"
+      color="green"
+    />
+  ) : (
+    <AntDesign
+      style={styles.MenuButton}
+      onPress={() => navigation.navigate('Auth')}
+      name="login"
+      size={8 * WidthPoint}
+      color="yellow"
     />
   );
 };
 const styles = StyleSheet.create({
-  MenuButton: {
-    backgroundColor: '#45D09E',
-    height: 8 * WidthPoint,
-    width: 10 * WidthPoint,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 10,
-    paddingHorizontal: 3 * WidthPoint,
-    borderWidth: 1,
-    borderColor: 'black',
-  },
+  MenuButton: {},
 });
 export default CustomAuthButton;
