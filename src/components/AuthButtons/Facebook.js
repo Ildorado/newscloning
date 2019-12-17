@@ -8,7 +8,7 @@ import {useSelector, useDispatch} from 'react-redux';
 import {LoginManager} from 'react-native-fbsdk';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 FontAwesome.loadFont();
-const Facebook = () => {
+const Facebook = ({goToApp}) => {
   const authState = useSelector(getAuth);
   const dispatch = useDispatch();
   // const logOutOfCurrent = async () => {
@@ -34,13 +34,14 @@ const Facebook = () => {
           console.log(
             'Login success with permissions: ' +
               result.grantedPermissions.toString(),
-            dispatch(
-              setAuth({
-                name: 'Facebook',
-                data: [],
-              }),
-            ),
           );
+          dispatch(
+            setAuth({
+              name: 'Facebook',
+              data: [],
+            }),
+          );
+          goToApp();
         }
       },
       function(error) {

@@ -16,7 +16,7 @@ export const googleConfig = {
   scopes: ['openid', 'profile'],
 };
 FontAwesome.loadFont();
-const Google = () => {
+const Google = ({goToApp}) => {
   const authState = useSelector(getAuth);
   const dispatch = useDispatch();
   // const logOutOfCurrent = async () => {
@@ -43,6 +43,7 @@ const Google = () => {
         data: authorized,
       }),
     );
+    goToApp();
   };
 
   const signOut = async () => {

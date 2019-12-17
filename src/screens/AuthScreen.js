@@ -1,54 +1,20 @@
-import {View, StyleSheet, Button} from 'react-native';
+import {View, StyleSheet, Text} from 'react-native';
 import React from 'react';
-import {authorize, revoke} from 'react-native-app-auth';
-import {AuthConfigs} from '../constants/index';
-import {getAuth} from '../utilities/selectors/index';
-import {setAuth} from '../redux/actions/index';
-import {useSelector, useDispatch} from 'react-redux';
 import FacebookAuthButton from '../components/AuthButtons/Facebook.js';
 import GoogleAuthButton from '../components/AuthButtons/Google';
+import ToAppButton from '../components/AuthButtons/ToApp';
+import {WidthPoint} from '../constants';
 const AuthScreen = props => {
-  const authState = useSelector(getAuth);
-  const dispatch = useDispatch();
-  const logOutOfCurrent = async () => {
-    let revokedData = authState.revoked.data;
-    let revokedName = authState.revoked.name;
-    if (authState.authorized.data !== null) {
-      revokedName = authState.authorized.name
-        ? authState.authorized.name
-        : revokedName;
-      revokedData = await revoke(AuthConfigs[revokedName], {
-        tokenToRevoke: authState.authorized.data.refreshToken,
-      }).then(value => {
-        console.log('vaue:', value);
-        return value ? value : revokedData;
-      });
-    }
-    if (revokedData) {
-      dispatch(
-        setAuth(
-          {
-            name: null,
-            data: null,
-          },
-          {
-            name: revokedName,
-            data: revokedData,
-          },
-        ),
-      );
-    }
-    return {name: revokedName, data: revokedData};
-  };
-
-  const signOut = async () => {
-    logOutOfCurrent();
+  const goToApp = () => {
+    props.navigation.navigate('App');
   };
   return (
     <View style={styles.screen}>
-      <GoogleAuthButton />
-      <FacebookAuthButton />
-      <Button title="to app" onPress={() => props.navigation.navigate('App')} />
+      <GoogleAuthButton goToApp={goToApp} />
+      <FacebookAuthButton goToApp={goToApp} />
+      <ToAppButton goToApp={goToApp}>
+        <Text>to app"</Text>
+      </ToAppButton>
     </View>
   );
 };
@@ -59,6 +25,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     height: '100%',
+  },
+  button: {
+    width: WidthPoint * 70,
+    height: WidthPoint * 10,
+    backgroundColor: 'red',
   },
 });
 export default AuthScreen;
