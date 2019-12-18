@@ -1,11 +1,35 @@
 import React from 'react';
-import {View, Text, StyleSheet, Button, TextInput} from 'react-native';
+import {View, StyleSheet, TextInput, Alert} from 'react-native';
 import {Form, Field} from 'react-final-form';
 import Modal from 'react-native-modal';
 import {WidthPoint, Colors} from '../constants';
-const ShareForm = ({shareModalVisibility, onSubmit}) => {
+import CustomMenuButton from './CustomMenuButton';
+import IconEntypo from 'react-native-vector-icons/Entypo';
+import {useSelector} from 'react-redux';
+import {getAuth} from '../utilities/selectors/index';
+IconEntypo.loadFont();
+const ShareForm = ({shareModalVisibility, onSubmit, onCancelHandler}) => {
+  const authorized = useSelector(getAuth).authorized;
   return (
-    <Modal style={styles.modal} isVisible={shareModalVisibility}>
+    <Modal
+      style={styles.modal}
+      isVisible={shareModalVisibility}
+      onBackdropPress={onCancelHandler}
+      onRequestClose={onCancelHandler}
+      animationType="slide"
+      animationOut="rotate"
+      animationOutTiming={500}
+      animationIn="pulse"
+      animationInTiming={500}
+      useNativeDriver={true}
+      coverScreen={true}>
+      <IconEntypo
+        style={styles.cancelIcon}
+        onPress={onCancelHandler}
+        name="squared-cross"
+        size={8 * WidthPoint}
+        color="black"
+      />
       <Form
         onSubmit={values => {
           onSubmit(values);
@@ -13,7 +37,8 @@ const ShareForm = ({shareModalVisibility, onSubmit}) => {
         initialValues={{title: '', message: ''}}
         render={formProps => {
           // console.log('formProps:', formProps);
-          const {handleSubmit, submitting, valid} = formProps;
+
+          const {handleSubmit} = formProps;
           return (
             <View>
               <Field
@@ -51,12 +76,25 @@ const ShareForm = ({shareModalVisibility, onSubmit}) => {
                   );
                 }}
               />
-              <Button
+              <CustomMenuButton
+                style={styles.submitButton}
                 title="Submit"
-                color="info"
-                round={true}
-                size="small"
-                onPress={handleSubmit}
+                onPress={
+                  authorized.name
+                    ? handleSubmit
+                    : () => {
+                        Alert.alert(
+                          "Can't submit ",
+                          'You should be logged in to share news',
+                          [
+                            {
+                              text: 'OK',
+                            },
+                          ],
+                          {cancelable: false},
+                        );
+                      }
+                }
               />
             </View>
           );
@@ -92,6 +130,16 @@ const styles = StyleSheet.create({
     height: WidthPoint * 40,
     fontSize: 4 * WidthPoint,
     textAlign: 'center',
+  },
+  submitButton: {
+    marginTop: 5 * WidthPoint,
+    alignSelf: 'center',
+    backgroundColor: Colors.secondary,
+  },
+  cancelIcon: {
+    position: 'absolute',
+    top: 3 * WidthPoint,
+    right: 3 * WidthPoint,
   },
 });
 export default ShareForm;

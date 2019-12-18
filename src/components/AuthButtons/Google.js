@@ -36,7 +36,6 @@ const Google = ({goToApp}) => {
     // await logOutOfCurrent();
     signOut();
     const authorized = await authorize(googleConfig);
-    console.log('authorized:', authorized);
     dispatch(
       setAuth({
         name: 'Google',

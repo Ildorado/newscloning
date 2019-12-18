@@ -8,7 +8,6 @@ import {addToFavorites, deleteFromFavorites} from '../redux/actions/index';
 import Share from 'react-native-share';
 import {useIsFavorite} from '../utilities/customHooks/index';
 import ShareForm from './ShareForm';
-import Modal from 'react-native-modal';
 IconEntypo.loadFont();
 IconFontisto.loadFont();
 const Header = ({config, modalOnCancel, style}) => {
@@ -37,7 +36,6 @@ const Header = ({config, modalOnCancel, style}) => {
       <ShareForm
         onSubmit={values => {
           const {title, message} = values;
-          // setShareModalVisibility(false);
           Share.open({
             url: config.id,
             title: title,
@@ -45,6 +43,7 @@ const Header = ({config, modalOnCancel, style}) => {
           }).finally(() => setShareModalVisibility(false));
         }}
         shareModalVisibility={shareModalVisibility}
+        onCancelHandler={() => setShareModalVisibility(false)}
       />
       {modalOnCancel && (
         <View style={styles.firstIconGroup}>

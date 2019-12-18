@@ -10,7 +10,6 @@ const SideMenu = ({navigation}) => {
   const buttonClickHandler = () => {
     closeDrawer();
   };
-  console.log(NewsSources[0].key);
   return (
     <SafeAreaView style={styles.container}>
       <Icon

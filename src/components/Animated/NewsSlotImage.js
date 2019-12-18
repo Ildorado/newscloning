@@ -3,7 +3,6 @@ import React, {useState, useEffect} from 'react';
 import Animated, {Easing} from 'react-native-reanimated';
 
 const {Value, timing} = Animated;
-
 const NewsSlotImage = ({uri, style, isVisible}) => {
   const [opacity] = useState(new Value(0.5));
   const [_configs] = useState({
@@ -22,7 +21,8 @@ const NewsSlotImage = ({uri, style, isVisible}) => {
   });
   const [_animIn, _setAnimIn] = useState();
   const [_animOut, _setAnimOut] = useState();
-  const [outFinished, setOutFinished] = useState(false);
+  const [outFinished, setOutFinished] = useState(true);
+  const [inFinished, setInFinished] = useState(true);
   useEffect(() => {
     if (isVisible) {
       _setAnimIn(timing(opacity, _configs.in));
@@ -32,8 +32,14 @@ const NewsSlotImage = ({uri, style, isVisible}) => {
   }, [_configs.in, _configs.out, isVisible, opacity, _configs.inSlowly]);
 
   useEffect(() => {
-    _animOut && outFinished === false && _animOut.stop();
-    _animIn && _animIn.start();
+    _animOut && !outFinished && _animOut.stop();
+    _animIn &&
+      _animIn.start(data => {
+        setInFinished(data.finished);
+      });
+    return () => {
+      _animIn && !inFinished && _animIn.stop();
+    };
   }, [_animIn]);
 
   useEffect(() => {
@@ -41,6 +47,9 @@ const NewsSlotImage = ({uri, style, isVisible}) => {
       _animOut.start(data => {
         setOutFinished(data.finished);
       });
+    return () => {
+      _animOut && !outFinished && _animOut.stop();
+    };
   }, [_animOut]);
   return (
     <Animated.Image
