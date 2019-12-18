@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, PropsWithChildren} from 'react';
 import {View, StyleSheet, SafeAreaView} from 'react-native';
 import Tab from './Tab';
 import {useSelector} from 'react-redux';
@@ -7,7 +7,13 @@ import CustomAuthButton from './CustomAuthButton';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {Colors, WidthPoint} from '../constants/index';
 MaterialCommunityIcon.loadFont();
-const TabBar = ({navigationState, navigation}) => {
+interface Props {
+  navigation: any;
+  navigationState: any;
+}
+const TabBar: React.FC<Props> = ({navigationState, navigation}) => {
+  console.log('navigationState:', navigationState);
+  console.log('navigation:', navigation);
   const focusedRouteName = useSelector(getFocusedTabTitle);
   const IconOnPressHandler = () => {
     navigation.openDrawer();
@@ -24,7 +30,7 @@ const TabBar = ({navigationState, navigation}) => {
         color="black"
       />
       <View style={styles.RoutesWrapper}>
-        {navigationState.routes.map((route, index) => {
+        {navigationState.routes.map((route: any, index: any) => {
           return <Tab key={route + index} title={route.routeName} />;
         })}
       </View>
