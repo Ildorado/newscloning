@@ -1,8 +1,13 @@
 import React from 'react';
-import {TouchableOpacity, StyleSheet} from 'react-native';
+import {TouchableOpacity, StyleSheet, ViewStyle} from 'react-native';
 import {Colors, WidthPoint} from '../constants/index';
 import CustomText from '../constants/Styles/CustomText';
-const CustomMenuButton = ({onPress, title, style}) => {
+interface Props {
+  onPress: () => void;
+  title: string;
+  style?: ViewStyle;
+}
+const CustomMenuButton: React.FC<Props> = ({onPress, title, style}) => {
   return (
     <TouchableOpacity
       onPress={onPress}

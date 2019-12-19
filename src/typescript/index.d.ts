@@ -13,9 +13,17 @@ export interface NewsDataProps {
   contentlink: string;
 }
 export interface NewsSourcesItemProps {
+  key?: string | number | undefined;
+  Name: string;
   title: string;
   enclosures: any;
   description: string;
   published: string;
   id: string;
+}
+export interface NewsSourcesProps {
+  Name: string;
+  key: string;
+  src: string;
+  infoHandler: (item: NewsSourcesItemProps) => NewsDataProps;
 }

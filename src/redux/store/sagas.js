@@ -1,10 +1,11 @@
-import {put, takeEvery} from 'redux-saga/effects';
+import {put, takeLatest, delay} from 'redux-saga/effects';
 import {setFocusedTabTitle} from '../actions/index';
-export function* incrementAsync(payload) {
+export function* setFocusedTabTitleAsync(payload) {
+  yield delay(200);
   yield put(setFocusedTabTitle(payload.payload));
 }
 
 export function* helloSaga() {
   console.log('Hello Sagas!');
-  yield takeEvery('SETFOCUSEDTABTITLEASYNC', incrementAsync);
+  yield takeLatest('SETFOCUSEDTABTITLEASYNC', setFocusedTabTitleAsync);
 }

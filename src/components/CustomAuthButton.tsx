@@ -8,8 +8,11 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import {getAuth} from '../utilities/selectors/index';
 Entypo.loadFont();
 AntDesign.loadFont();
-
-const CustomAuthButton = ({navigation}) => {
+import {NavigationScreenType} from '../typescript/index';
+interface Props {
+  navigation: NavigationScreenType;
+}
+const CustomAuthButton: React.FC<Props> = ({navigation}) => {
   const authState = useSelector(getAuth);
   let name;
   switch (authState.authorized.name) {

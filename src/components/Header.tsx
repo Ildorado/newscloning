@@ -2,7 +2,11 @@ import React from 'react';
 import {View, StyleSheet} from 'react-native';
 import {Colors} from '../constants/index';
 import CustomMenuButton from './CustomMenuButton';
-const Header = ({navigation}) => {
+import {NavigationScreenType} from '../typescript/index';
+interface Props {
+  navigation: NavigationScreenType;
+}
+const Header: React.FC<Props> = ({navigation}) => {
   const onPressHandler = () => {
     navigation.openDrawer();
   };

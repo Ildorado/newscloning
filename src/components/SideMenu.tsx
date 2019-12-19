@@ -4,7 +4,12 @@ import NewsSources from '../constants/NewsSources';
 import CustomDrawerButton from './CustomDrawerButton';
 import Icon from 'react-native-vector-icons/Fontisto';
 import {WidthPoint} from '../constants/index';
-import {NavigationScreenType} from '../typescript/index.d';
+import {
+  NavigationScreenType,
+  NewsSourcesItemProps,
+  NewsSourcesProps,
+  NewsDataProps,
+} from '../typescript/index.d';
 Icon.loadFont();
 interface Props {
   navigation: NavigationScreenType;
@@ -24,7 +29,7 @@ const SideMenu: React.FC<Props> = ({navigation}) => {
         style={styles.icon}
       />
       <ScrollView>
-        {NewsSources.map(item => (
+        {NewsSources.map((item: any) => (
           <View key={item.key}>
             <CustomDrawerButton
               navigation={navigation}

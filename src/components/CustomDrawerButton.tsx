@@ -5,7 +5,13 @@ import {fetchNews} from '../redux/actions/index';
 import {WidthPoint, Colors} from '../constants/index';
 import CustomText from '../constants/Styles/CustomText';
 import {getFocusedDrawerButton} from '../utilities/selectors/index';
-const CustomDrawerButton = ({navigation, config, name}) => {
+import {NavigationScreenType, NewsSourcesProps} from '../typescript/index';
+interface Props {
+  navigation: NavigationScreenType;
+  name: string;
+  config: NewsSourcesProps[];
+}
+const CustomDrawerButton: React.FC<Props> = ({navigation, config, name}) => {
   const dispatch = useDispatch();
   const focusedDrawerButton = useSelector(getFocusedDrawerButton);
   const onPressHandler = () => {

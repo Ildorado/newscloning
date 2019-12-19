@@ -4,7 +4,7 @@ import {
   StyleSheet,
   SafeAreaView,
   LayoutAnimation,
-  StyleSheetProperties,
+  ViewStyle,
 } from 'react-native';
 import IconEntypo from 'react-native-vector-icons/Entypo';
 import IconFontisto from 'react-native-vector-icons/Fontisto';
@@ -19,7 +19,7 @@ IconFontisto.loadFont();
 interface Props {
   config: any;
   modalOnCancel?(): void;
-  style?: StyleSheetProperties;
+  style?: ViewStyle;
 }
 const Header: React.FC<Props> = ({config, modalOnCancel, style}) => {
   const dispatch = useDispatch();
