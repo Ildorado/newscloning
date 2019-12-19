@@ -3,7 +3,7 @@ import {StyleSheet} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 import CustomMenuButton from './CustomMenuButton';
 import {WidthPoint, Colors} from '../constants/index';
-import {setFocusedTabTitle} from '../redux/actions/index';
+import {setFocusedTabTitleAsync} from '../redux/actions/index';
 import {getFocusedTabTitle} from '../utilities/selectors/index';
 interface Props {
   title: string;
@@ -12,7 +12,7 @@ const Tab: React.FC<Props> = ({title}) => {
   const focusedTabTitle = useSelector(getFocusedTabTitle);
   const dispatch = useDispatch();
   const TabOnPressHandler = () => {
-    dispatch(setFocusedTabTitle(title));
+    dispatch(setFocusedTabTitleAsync(title));
   };
 
   return (

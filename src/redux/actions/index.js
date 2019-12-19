@@ -6,6 +6,12 @@ export const setFocusedTabTitle = payload => {
     payload: payload,
   };
 };
+export const setFocusedTabTitleAsync = payload => {
+  return {
+    type: 'SETFOCUSEDTABTITLEASYNC',
+    payload: payload,
+  };
+};
 export const SetFocusedDrawerButton = payload => {
   return {
     type: 'SETFOCUSEDDRAWERBUTTON',
@@ -66,7 +72,7 @@ export const fetchNews = payload => dispatch => {
           res.sort((a, b) => {
             return Date.parse(b.published) - Date.parse(a.published);
           });
-        dispatch(setNews(res));
+        dispatch(setNews(res, focusedDrawerButton));
         dispatch(SetFocusedDrawerButton(focusedDrawerButton));
         dispatch(setFocusedTabTitle(InitialScreenName));
         return value.flat();
@@ -77,8 +83,12 @@ export const fetchNews = payload => dispatch => {
   }
 };
 
-export function setNews(payload) {
-  return {type: 'SETNEWS', payload: payload};
+export function setNews(payload, currentNewsSource) {
+  return {
+    type: 'SETNEWS',
+    payload: payload,
+    currentNewsSource: currentNewsSource,
+  };
 }
 
 function handleErrors(response) {

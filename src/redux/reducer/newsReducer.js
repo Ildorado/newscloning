@@ -21,6 +21,7 @@ const newsReducer = (state = initialState, action) => {
       return {
         ...state,
         items: action.payload,
+        currentNewsSource: action.currentNewsSource,
       };
     case 'FETCHNEWSSUCCESS': {
       return {
