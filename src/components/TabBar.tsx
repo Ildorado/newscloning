@@ -6,14 +6,13 @@ import {getFocusedTabTitle} from '../utilities/selectors/index';
 import CustomAuthButton from './CustomAuthButton';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {Colors, WidthPoint} from '../constants/index';
+import {NavigationScreenType} from '../typescript/index';
 MaterialCommunityIcon.loadFont();
 interface Props {
-  navigation: any;
+  navigation: NavigationScreenType;
   navigationState: any;
 }
 const TabBar: React.FC<Props> = ({navigationState, navigation}) => {
-  console.log('navigationState:', navigationState);
-  console.log('navigation:', navigation);
   const focusedRouteName = useSelector(getFocusedTabTitle);
   const IconOnPressHandler = () => {
     navigation.openDrawer();
@@ -35,7 +34,7 @@ const TabBar: React.FC<Props> = ({navigationState, navigation}) => {
         })}
       </View>
       <View>
-        <CustomAuthButton title="Sign in" navigation={navigation} />
+        <CustomAuthButton navigation={navigation} />
       </View>
     </SafeAreaView>
   );

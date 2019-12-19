@@ -1,22 +1,18 @@
 import shortid from 'shortid';
+import {NewsSourcesItemProps} from '../typescript/index';
 const NewsSources = [
   {
     Name: 'Tut.by',
     key: shortid.generate(),
     src: 'https://news.tut.by/rss/all.rss',
-    infoHandler: item => {
-      // const img = item.description.match(/src="[^"]+/g)
-      //   ? item.description.match(/src="[^"]+/g)[0].replace('src="', '')
-      //   : undefined;
+    infoHandler: (item: NewsSourcesItemProps) => {
       const img = item.enclosures[0].url ? item.enclosures[0].url : undefined;
       const description = item.description.replace(/<[^>]+>/g, '');
-      const categories = undefined;
       return {
         title: item.title,
         img: img,
         description: description,
         published: item.published,
-        categories: categories,
         id: item.id,
         contentlink: item.id,
       };
@@ -26,18 +22,14 @@ const NewsSources = [
     Name: 'New York Times',
     key: shortid.generate(),
     src: 'https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml',
-    infoHandler: item => {
+    infoHandler: (item: NewsSourcesItemProps) => {
       const img = undefined;
       const description = item.description;
-      const categories = item.categories.map(category => {
-        return category.name;
-      });
       return {
         title: item.title,
         img: img,
         description: description,
         published: item.published,
-        categories: categories,
         id: item.id,
         contentlink: item.id,
       };
@@ -47,20 +39,21 @@ const NewsSources = [
     Name: 'Buzzfeed',
     key: shortid.generate(),
     src: 'https://www.buzzfeed.com/world.xml',
-    infoHandler: item => {
-      const img = item.description.match(/src="[^"]+/g)
-        ? item.description.match(/src="[^"]+/g)[0].replace('src="', '')
-        : undefined;
+    infoHandler: (item: NewsSourcesItemProps) => {
+      let match = item.description.match(/src="[^"]+/g);
+      let img;
+      if (match) {
+        img = match ? match[0].replace('src="', '') : undefined;
+      }
+
       const description = item.description
         .replace(/<[^>]+>/g, '')
         .replace('View Entire Post &rsaquo;', '');
-      const categories = undefined;
       return {
         title: item.title,
         img: img,
         description: description,
         published: item.published,
-        categories: categories,
         id: item.id,
         contentlink: item.id,
       };
@@ -70,16 +63,14 @@ const NewsSources = [
     Name: 'NASA news',
     key: shortid.generate(),
     src: 'https://www.nasa.gov/rss/dyn/breaking_news.rss',
-    infoHandler: item => {
+    infoHandler: (item: NewsSourcesItemProps) => {
       const img = item.enclosures[0].url ? item.enclosures[0].url : undefined;
       const description = item.description;
-      const categories = undefined;
       return {
         title: item.title,
         img: img,
         description: description,
         published: item.published,
-        categories: categories,
         id: item.id,
         contentlink: item.id,
       };

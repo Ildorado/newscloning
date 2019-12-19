@@ -11,7 +11,7 @@ import {
   getWebViewVisibility,
   getWebViewConfig,
 } from '../utilities/selectors/index';
-const ModalWebView = () => {
+const ModalWebView: React.FC = () => {
   const visibility = useSelector(getWebViewVisibility);
   const webViewConfig = useSelector(getWebViewConfig);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -22,6 +22,7 @@ const ModalWebView = () => {
 
   return (
     <Modal
+      // @ts-ignore
       onRequestClose={modalOnCancelHandler}
       visible={visibility}
       useNativeDriver={true}
@@ -45,7 +46,12 @@ const ModalWebView = () => {
           ...styles.webView,
           ...(isLoaded ? styles.loaded : styles.notLoaded),
         }}
-        renderLoading={() => !isLoaded && <LoadingScreen />}
+        // @ts-ignore
+        renderLoading={() => {
+          if (!isLoaded) {
+            return <LoadingScreen />;
+          }
+        }}
       />
     </Modal>
   );

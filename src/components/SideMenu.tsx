@@ -4,8 +4,12 @@ import NewsSources from '../constants/NewsSources';
 import CustomDrawerButton from './CustomDrawerButton';
 import Icon from 'react-native-vector-icons/Fontisto';
 import {WidthPoint} from '../constants/index';
+import {NavigationScreenType} from '../typescript/index.d';
 Icon.loadFont();
-const SideMenu = ({navigation}) => {
+interface Props {
+  navigation: NavigationScreenType;
+}
+const SideMenu: React.FC<Props> = ({navigation}) => {
   const {closeDrawer} = navigation;
   const buttonClickHandler = () => {
     closeDrawer();

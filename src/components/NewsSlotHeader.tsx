@@ -1,5 +1,11 @@
 import React, {useState} from 'react';
-import {View, StyleSheet, SafeAreaView, LayoutAnimation} from 'react-native';
+import {
+  View,
+  StyleSheet,
+  SafeAreaView,
+  LayoutAnimation,
+  StyleSheetProperties,
+} from 'react-native';
 import IconEntypo from 'react-native-vector-icons/Entypo';
 import IconFontisto from 'react-native-vector-icons/Fontisto';
 import {WidthPoint, Colors} from '../constants/index';
@@ -10,7 +16,12 @@ import {useIsFavorite} from '../utilities/customHooks/index';
 import ShareForm from './ShareForm';
 IconEntypo.loadFont();
 IconFontisto.loadFont();
-const Header = ({config, modalOnCancel, style}) => {
+interface Props {
+  config: any;
+  modalOnCancel?(): void;
+  style?: StyleSheetProperties;
+}
+const Header: React.FC<Props> = ({config, modalOnCancel, style}) => {
   const dispatch = useDispatch();
   const isFavorite = useIsFavorite(config);
   const [shareModalVisibility, setShareModalVisibility] = useState(false);
@@ -34,7 +45,7 @@ const Header = ({config, modalOnCancel, style}) => {
           : {...styles.header, ...styles.noModal, ...style}
       }>
       <ShareForm
-        onSubmit={values => {
+        onSubmit={(values: {title: string; message: string}) => {
           const {title, message} = values;
           Share.open({
             url: config.id,

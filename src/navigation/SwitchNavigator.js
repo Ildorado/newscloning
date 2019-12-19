@@ -1,7 +1,5 @@
-import {createAppContainer, createSwitchNavigator} from 'react-navigation';
+import {createAppContainer} from 'react-navigation';
 import createAnimatedSwitchNavigator from 'react-navigation-animated-switch';
-import {useSelector} from 'react-redux';
-import {getFocusedTabTitle} from '../utilities/selectors/index';
 import {Transition} from 'react-native-reanimated';
 import React from 'react';
 import AuthScreen from '../screens/AuthScreen';

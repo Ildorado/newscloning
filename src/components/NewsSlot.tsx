@@ -13,8 +13,14 @@ import {WidthPoint, Colors} from '../constants/index';
 import NewsSlotHeader from './NewsSlotHeader';
 import NewsSlotImage from './Animated/NewsSlotImage';
 import Animated from 'react-native-reanimated';
+import {NewsDataProps} from '../typescript/index';
 
-const NewsSlot = ({config, viewableItems}) => {
+interface Props {
+  config: NewsDataProps;
+  viewableItems: any;
+  screenName?: string;
+}
+const NewsSlot: React.FC<Props> = ({config, viewableItems}) => {
   const isVisible = viewableItems
     ? viewableItems.hasOwnProperty(config.id)
     : undefined;

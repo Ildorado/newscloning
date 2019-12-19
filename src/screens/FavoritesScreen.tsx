@@ -2,12 +2,11 @@ import {View, StyleSheet} from 'react-native';
 import React from 'react';
 import Colors from '../constants/Colors';
 import NewsList from '../components/NewsList';
-// import IconEntypo from 'react-native-vector-icons/Entypo';
 import {useSelector} from 'react-redux';
-// IconEntypo.loadFont();
-//additional header for news slots
-const FavoritesScreen = props => {
-  const favoriteNews = useSelector(state =>
+import {NewsDataProps} from '../typescript/index';
+
+const FavoritesScreen: React.FC = () => {
+  const favoriteNews = useSelector((state: NewsDataProps) =>
     Object.values(state.favorites).reverse(),
   );
   return (

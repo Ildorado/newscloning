@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, StyleSheet, TextInput, Alert} from 'react-native';
-import {Form, Field} from 'react-final-form';
+import {Form, Field, FieldInputProps, FieldRenderProps} from 'react-final-form';
 import Modal from 'react-native-modal';
 import {WidthPoint, Colors} from '../constants';
 import CustomMenuButton from './CustomMenuButton';
@@ -8,13 +8,23 @@ import IconEntypo from 'react-native-vector-icons/Entypo';
 import {useSelector} from 'react-redux';
 import {getAuth} from '../utilities/selectors/index';
 IconEntypo.loadFont();
-const ShareForm = ({shareModalVisibility, onSubmit, onCancelHandler}) => {
+interface Props {
+  shareModalVisibility: boolean;
+  onCancelHandler: () => void;
+  onSubmit: (values: {title: string; message: string}) => void;
+}
+const ShareForm: React.FC<Props> = ({
+  shareModalVisibility,
+  onSubmit,
+  onCancelHandler,
+}) => {
   const authorized = useSelector(getAuth).authorized;
   return (
     <Modal
       style={styles.modal}
       isVisible={shareModalVisibility}
       onBackdropPress={onCancelHandler}
+      // @ts-ignore
       onRequestClose={onCancelHandler}
       animationType="slide"
       animationOut="rotate"
@@ -44,15 +54,16 @@ const ShareForm = ({shareModalVisibility, onSubmit, onCancelHandler}) => {
               <Field
                 name="title"
                 placeholder="title"
-                render={fieldProps => {
-                  // console.log('props:', fieldProps.input);
+                render={(fieldProps: FieldRenderProps<any, any>) => {
                   return (
                     <View style={styles.inputContainer}>
                       <TextInput
                         style={styles.titleInput}
-                        placeholder={fieldProps.placeholder}
-                        {...fieldProps.input}
-                        color="black"
+                        placeholder={fieldProps.input.name}
+                        onBlur={() => fieldProps.input.onBlur}
+                        onChange={fieldProps.input.onChange}
+                        onFocus={() => fieldProps.input.onFocus}
+                        value={fieldProps.input.value}
                       />
                     </View>
                   );
@@ -61,16 +72,18 @@ const ShareForm = ({shareModalVisibility, onSubmit, onCancelHandler}) => {
               <Field
                 name="message"
                 placeholder="message"
-                render={fieldProps => {
+                render={(fieldProps: FieldRenderProps<any, any>) => {
                   // console.log('props:', fieldProps.input);
                   return (
                     <View style={styles.inputContainer}>
                       <TextInput
                         multiline
                         style={styles.messageInput}
-                        placeholder={fieldProps.placeholder}
-                        {...fieldProps.input}
-                        color="black"
+                        placeholder={fieldProps.input.name}
+                        onBlur={() => fieldProps.input.onBlur}
+                        onChange={fieldProps.input.onChange}
+                        onFocus={() => fieldProps.input.onFocus}
+                        value={fieldProps.input.value}
                       />
                     </View>
                   );

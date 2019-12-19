@@ -2,18 +2,24 @@ import React, {useRef, useEffect, useState} from 'react';
 import {StyleSheet, SafeAreaView, FlatList, Platform} from 'react-native';
 // import {setViewableItems} from '../redux/actions/index';
 import NewsSlot from './NewsSlot';
-
-const NewsList = ({data, screenName}) => {
-  const flatListRef = useRef();
+import {NewsDataProps} from '../typescript/index';
+interface Props {
+  data: NewsDataProps[];
+  screenName: string;
+}
+const NewsList: React.FC<Props> = ({data, screenName}) => {
+  const flatListRef = useRef<any>();
   const toTop = () => {
-    flatListRef.current.scrollToOffset({animated: false, offset: 0});
+    flatListRef?.current?.scrollToOffset({animated: false, offset: 0});
   };
 
   useEffect(() => {
     screenName === 'Home' && toTop();
   }, [data, screenName]);
 
-  const [viewableItems, setViewableItems] = useState({});
+  const [viewableItems, setViewableItems] = useState<{
+    [index: string]: boolean;
+  }>({});
   const viewabilityConfig = useRef({
     waitForInteraction: false,
     viewAreaCoveragePercentThreshold: 35,
@@ -22,7 +28,7 @@ const NewsList = ({data, screenName}) => {
   const onViewableItemsChanged = useRef(
     Platform.OS === 'android'
       ? () => {}
-      : info => {
+      : (info: {viewableItems: any[]}) => {
           setViewableItems(
             info.viewableItems.reduce((acc, obj) => {
               acc[obj.key] = true;
@@ -50,7 +56,7 @@ const NewsList = ({data, screenName}) => {
             config={itemData.item}
           />
         )}
-        keyExtractor={itemData => itemData.id}
+        keyExtractor={(itemData: NewsDataProps) => itemData.id}
       />
     </SafeAreaView>
   );
