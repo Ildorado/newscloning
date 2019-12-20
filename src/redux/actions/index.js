@@ -18,6 +18,12 @@ export const SetFocusedDrawerButton = payload => {
     payload: payload,
   };
 };
+export const SetFocusedDrawerButtonAsync = payload => {
+  return {
+    type: 'SETFOCUSEDDRAWERBUTTON',
+    payload: payload,
+  };
+};
 export const fetchNewsBegin = id => ({
   type: 'FETCHNEWSBEGIN',
   id: id,
@@ -83,6 +89,13 @@ export const fetchNews = payload => dispatch => {
   }
 };
 
+export function fetchNewsAsync(payload) {
+  console.log('fetch payload:', payload);
+  return {
+    type: 'FETCHNEWSASYNC',
+    payload: payload,
+  };
+}
 export function setNews(payload, currentNewsSource) {
   return {
     type: 'SETNEWS',

@@ -7,7 +7,6 @@ import {setAuth, logOut} from '../../redux/actions/index';
 import {useSelector, useDispatch} from 'react-redux';
 import {LoginManager} from 'react-native-fbsdk';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-FontAwesome.loadFont();
 const Facebook = ({goToApp}) => {
   const authState = useSelector(getAuth);
   const dispatch = useDispatch();

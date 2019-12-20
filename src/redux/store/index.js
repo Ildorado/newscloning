@@ -5,7 +5,7 @@ import {composeWithDevTools} from 'redux-devtools-extension';
 import {persistStore, persistReducer} from 'redux-persist';
 import AsyncStorage from '@react-native-community/async-storage';
 import createSagaMiddleware from 'redux-saga';
-import {helloSaga} from './sagas';
+import rootSaga from './sagas';
 const SagaMiddleWare = createSagaMiddleware();
 const persistConfig = {
   key: 'root',
@@ -18,6 +18,6 @@ export const store = createStore(
   persistedReducer,
   composeWithDevTools(applyMiddleware(ReduxThunk, SagaMiddleWare)),
 );
-SagaMiddleWare.run(helloSaga);
+SagaMiddleWare.run(rootSaga);
 
 export const persistor = persistStore(store);

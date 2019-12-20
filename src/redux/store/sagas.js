@@ -1,11 +1,17 @@
-import {put, takeLatest, delay} from 'redux-saga/effects';
-import {setFocusedTabTitle} from '../actions/index';
-export function* setFocusedTabTitleAsync(payload) {
-  yield delay(200);
+import {put, takeLatest, all, throttle} from 'redux-saga/effects';
+import {setFocusedTabTitle, fetchNews} from '../actions/index';
+function* setFocusedTabTitleAsync(payload) {
   yield put(setFocusedTabTitle(payload.payload));
 }
-
-export function* helloSaga() {
-  console.log('Hello Sagas!');
-  yield takeLatest('SETFOCUSEDTABTITLEASYNC', setFocusedTabTitleAsync);
+function* fetchNewsAsync(payload) {
+  yield put(fetchNews(payload.payload));
+}
+function* watchFocusedTabTItleAsync() {
+  yield throttle(400, 'SETFOCUSEDTABTITLEASYNC', setFocusedTabTitleAsync);
+}
+function* watchfetchNewsAsync() {
+  yield takeLatest('FETCHNEWSASYNC', fetchNewsAsync);
+}
+export default function* rootSaga() {
+  yield all([watchFocusedTabTItleAsync(), watchfetchNewsAsync()]);
 }

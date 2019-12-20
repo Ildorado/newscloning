@@ -15,7 +15,6 @@ export const googleConfig = {
     'com.googleusercontent.apps.280211408355-lrhpl79blovc56dppp7uiipvf9r0onk9:/oauth2redirect/google',
   scopes: ['openid', 'profile'],
 };
-FontAwesome.loadFont();
 const Google = ({goToApp}) => {
   const authState = useSelector(getAuth);
   const dispatch = useDispatch();

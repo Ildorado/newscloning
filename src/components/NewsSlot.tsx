@@ -38,7 +38,8 @@ const NewsSlot: React.FC<Props> = ({config, viewableItems}) => {
             {config.title}
           </CustomText>
           {config.img &&
-            (Platform.OS === 'android' ? (
+            (Platform.OS === 'android' ||
+            !config.img.search(/(jpg|jpeg|tiff|png)$/) ? (
               <Image style={styles.image} source={{uri: config.img}} />
             ) : (
               <NewsSlotImage
