@@ -2,7 +2,7 @@ import React from 'react';
 import {TouchableOpacity, StyleSheet, ViewStyle} from 'react-native';
 import {Colors, WidthPoint} from '../constants/index';
 import CustomText from '../constants/Styles/CustomText';
-interface Props {
+export interface Props {
   onPress: () => void;
   title: string;
   style?: ViewStyle;

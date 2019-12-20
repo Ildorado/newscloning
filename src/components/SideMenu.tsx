@@ -11,7 +11,7 @@ import {
   NewsDataProps,
 } from '../typescript/index.d';
 Icon.loadFont();
-interface Props {
+export interface Props {
   navigation: NavigationScreenType;
 }
 const SideMenu: React.FC<Props> = ({navigation}) => {

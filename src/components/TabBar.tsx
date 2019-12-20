@@ -8,7 +8,7 @@ import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIc
 import {Colors, WidthPoint} from '../constants/index';
 import {NavigationScreenType} from '../typescript/index';
 MaterialCommunityIcon.loadFont();
-interface Props {
+export interface Props {
   navigation: NavigationScreenType;
   navigationState: any;
 }

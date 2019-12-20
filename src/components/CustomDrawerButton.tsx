@@ -6,7 +6,7 @@ import {WidthPoint, Colors} from '../constants/index';
 import CustomText from '../constants/Styles/CustomText';
 import {getFocusedDrawerButton} from '../utilities/selectors/index';
 import {NavigationScreenType, NewsSourcesProps} from '../typescript/index';
-interface Props {
+export interface Props {
   navigation: NavigationScreenType;
   name: string;
   config: NewsSourcesProps[];

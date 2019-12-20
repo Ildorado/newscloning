@@ -9,7 +9,7 @@ import {getAuth} from '../utilities/selectors/index';
 Entypo.loadFont();
 AntDesign.loadFont();
 import {NavigationScreenType} from '../typescript/index';
-interface Props {
+export interface Props {
   navigation: NavigationScreenType;
 }
 const CustomAuthButton: React.FC<Props> = ({navigation}) => {

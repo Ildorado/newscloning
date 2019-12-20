@@ -16,7 +16,7 @@ import {useIsFavorite} from '../utilities/customHooks/index';
 import ShareForm from './ShareForm';
 IconEntypo.loadFont();
 IconFontisto.loadFont();
-interface Props {
+export interface Props {
   config: any;
   modalOnCancel?(): void;
   style?: ViewStyle;

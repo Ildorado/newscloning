@@ -3,6 +3,17 @@ import {NavigationTabScreenProps} from 'react-navigation-tabs';
 //   NavigationTabScreenProps: NavigationTabScreenProps['navigation'];
 // }
 export type NavigationScreenType = NavigationTabScreenProps['navigation'];
+export {Props as CustomDrawerProps} from '../components/CustomDrawerButton';
+export {Props as CustomAuthButtonProps} from '../components/CustomAuthButton';
+export {Props as CustomMenuButtonProps} from '../components/CustomMenuButton';
+export {Props as HeaderProps} from '../components/Header';
+export {Props as NewsListProps} from '../components/NewsList';
+export {Props as NewsSlotProps} from '../components/NewsSlot';
+export {Props as NewsSlotHeaderProps} from '../components/NewsSlotHeader';
+export {Props as ShareFormProps} from '../components/ShareForm';
+export {Props as SideMenuProps} from '../components/SideMenu';
+export {Props as TabProps} from '../components/Tab';
+export {Props as TabBarProps} from '../components/TabBar';
 export interface NewsDataProps {
   [x: string]: any;
   title: string;

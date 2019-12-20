@@ -8,7 +8,7 @@ import IconEntypo from 'react-native-vector-icons/Entypo';
 import {useSelector} from 'react-redux';
 import {getAuth} from '../utilities/selectors/index';
 IconEntypo.loadFont();
-interface Props {
+export interface Props {
   shareModalVisibility: boolean;
   onCancelHandler: () => void;
   onSubmit: (values: {title: string; message: string}) => void;

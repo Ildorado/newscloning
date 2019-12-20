@@ -15,7 +15,7 @@ import NewsSlotImage from './Animated/NewsSlotImage';
 import Animated from 'react-native-reanimated';
 import {NewsDataProps} from '../typescript/index';
 
-interface Props {
+export interface Props {
   config: NewsDataProps;
   viewableItems: any;
   screenName?: string;

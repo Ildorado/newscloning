@@ -3,7 +3,7 @@ import {View, StyleSheet} from 'react-native';
 import {Colors} from '../constants/index';
 import CustomMenuButton from './CustomMenuButton';
 import {NavigationScreenType} from '../typescript/index';
-interface Props {
+export interface Props {
   navigation: NavigationScreenType;
 }
 const Header: React.FC<Props> = ({navigation}) => {

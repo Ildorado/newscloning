@@ -3,7 +3,7 @@ import {StyleSheet, SafeAreaView, FlatList, Platform} from 'react-native';
 // import {setViewableItems} from '../redux/actions/index';
 import NewsSlot from './NewsSlot';
 import {NewsDataProps} from '../typescript/index';
-interface Props {
+export interface Props {
   data: NewsDataProps[];
   screenName: string;
 }

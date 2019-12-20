@@ -5,7 +5,7 @@ import CustomMenuButton from './CustomMenuButton';
 import {WidthPoint, Colors} from '../constants/index';
 import {setFocusedTabTitleAsync} from '../redux/actions/index';
 import {getFocusedTabTitle} from '../utilities/selectors/index';
-interface Props {
+export interface Props {
   title: string;
 }
 const Tab: React.FC<Props> = ({title}) => {
