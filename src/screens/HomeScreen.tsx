@@ -5,7 +5,7 @@ import {Colors} from '../constants/index';
 import {useSelector} from 'react-redux';
 import {getNewsItems} from '../utilities/selectors/index';
 import ModalWebView from '../components/ModalWebView';
-const HomeScreen = props => {
+const HomeScreen: React.FC = () => {
   const news = useSelector(getNewsItems);
   return (
     <View style={styles.screen}>

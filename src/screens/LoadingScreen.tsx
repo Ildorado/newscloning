@@ -2,7 +2,7 @@ import {View, StyleSheet} from 'react-native';
 import {MaterialIndicator} from 'react-native-indicators';
 import React from 'react';
 import {WidthPoint, Colors} from '../constants/index';
-const LoadingScreen = props => {
+const LoadingScreen: React.FC = () => {
   return (
     <View style={styles.screen}>
       <MaterialIndicator color-="black" size={WidthPoint * 30} />

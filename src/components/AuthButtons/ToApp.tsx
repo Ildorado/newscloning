@@ -4,7 +4,10 @@ import {WidthPoint} from '../../constants/index';
 import CustomText from '../../constants/Styles/CustomText';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 MaterialIcons.loadFont();
-const ToApp = ({goToApp}) => {
+export interface Props {
+  goToApp: () => void;
+}
+const ToApp: React.FC<Props> = ({goToApp}) => {
   return (
     <MaterialIcons.Button
       name="exit-to-app"

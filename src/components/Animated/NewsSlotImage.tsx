@@ -1,9 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, {useState, useEffect} from 'react';
 import Animated, {Easing} from 'react-native-reanimated';
-
+import {ImageStyle} from 'react-native';
 const {Value, timing} = Animated;
-const NewsSlotImage = ({uri, style, isVisible}) => {
+export interface Props {
+  uri: string;
+  style: ImageStyle;
+  isVisible: boolean;
+}
+const NewsSlotImage: React.FC<Props> = ({uri, style, isVisible}) => {
   const [opacity] = useState(new Value(0.5));
   const [_configs] = useState({
     in: {
@@ -29,12 +34,12 @@ const NewsSlotImage = ({uri, style, isVisible}) => {
     } else {
       _setAnimOut(timing(opacity, _configs.out));
     }
-  }, [_configs.in, _configs.out, isVisible, opacity, _configs.inSlowly]);
+  }, [_configs.in, _configs.out, isVisible, opacity]);
 
   useEffect(() => {
     _animOut && !outFinished && _animOut.stop();
     _animIn &&
-      _animIn.start(data => {
+      _animIn.start((data: any) => {
         setInFinished(data.finished);
       });
     return () => {
@@ -44,7 +49,7 @@ const NewsSlotImage = ({uri, style, isVisible}) => {
 
   useEffect(() => {
     _animOut &&
-      _animOut.start(data => {
+      _animOut.start((data: any) => {
         setOutFinished(data.finished);
       });
     return () => {

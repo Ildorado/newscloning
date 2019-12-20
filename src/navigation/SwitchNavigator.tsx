@@ -5,6 +5,7 @@ import React from 'react';
 import AuthScreen from '../screens/AuthScreen';
 import DrawerNavigator from './DrawerNavigator';
 export default createAppContainer(
+  //@ts-ignore
   createAnimatedSwitchNavigator(
     {
       Auth: AuthScreen,

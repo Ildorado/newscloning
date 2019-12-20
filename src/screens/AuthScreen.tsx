@@ -4,9 +4,13 @@ import FacebookAuthButton from '../components/AuthButtons/Facebook.js';
 import GoogleAuthButton from '../components/AuthButtons/Google';
 import ToAppButton from '../components/AuthButtons/ToApp';
 import {WidthPoint} from '../constants';
-const AuthScreen = props => {
+import {NavigationScreenType} from '../typescript/index';
+export interface Props {
+  navigation: NavigationScreenType;
+}
+const AuthScreen: React.FC<Props> = ({navigation}) => {
   const goToApp = () => {
-    props.navigation.navigate('App');
+    navigation.navigate('App');
   };
   return (
     <View style={styles.screen}>

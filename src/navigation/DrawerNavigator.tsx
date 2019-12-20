@@ -5,6 +5,7 @@ const Drawer = createDrawerNavigator(
   {
     Home: TabNavigator,
   },
+  //@ts-ignore
   {
     contentComponent: SideMenu,
     drawerWidth: '50%',

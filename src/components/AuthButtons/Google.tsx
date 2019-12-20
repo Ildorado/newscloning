@@ -15,7 +15,10 @@ export const googleConfig = {
     'com.googleusercontent.apps.280211408355-lrhpl79blovc56dppp7uiipvf9r0onk9:/oauth2redirect/google',
   scopes: ['openid', 'profile'],
 };
-const Google = ({goToApp}) => {
+export interface Props {
+  goToApp: () => void;
+}
+const Google: React.FC<Props> = ({goToApp}) => {
   const authState = useSelector(getAuth);
   const dispatch = useDispatch();
   // const logOutOfCurrent = async () => {

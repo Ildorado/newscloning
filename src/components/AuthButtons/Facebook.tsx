@@ -7,7 +7,10 @@ import {setAuth, logOut} from '../../redux/actions/index';
 import {useSelector, useDispatch} from 'react-redux';
 import {LoginManager} from 'react-native-fbsdk';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-const Facebook = ({goToApp}) => {
+export interface Props {
+  goToApp: () => void;
+}
+const Facebook: React.FC<Props> = ({goToApp}) => {
   const authState = useSelector(getAuth);
   const dispatch = useDispatch();
   // const logOutOfCurrent = async () => {
@@ -30,10 +33,11 @@ const Facebook = ({goToApp}) => {
         if (result.isCancelled) {
           console.log('Login cancelled');
         } else {
-          console.log(
-            'Login success with permissions: ' +
-              result.grantedPermissions.toString(),
-          );
+          const grantedPermissions =
+            result && result.grantedPermissions
+              ? result.grantedPermissions.toString()
+              : '';
+          console.log('Login success with permissions: ' + grantedPermissions);
           dispatch(
             setAuth({
               name: 'Facebook',
