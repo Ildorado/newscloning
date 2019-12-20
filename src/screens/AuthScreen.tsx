@@ -1,6 +1,6 @@
 import {View, StyleSheet, Text} from 'react-native';
 import React from 'react';
-import FacebookAuthButton from '../components/AuthButtons/Facebook.js';
+import FacebookAuthButton from '../components/AuthButtons/Facebook';
 import GoogleAuthButton from '../components/AuthButtons/Google';
 import ToAppButton from '../components/AuthButtons/ToApp';
 import {WidthPoint} from '../constants';
