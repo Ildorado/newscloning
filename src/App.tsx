@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {Platform, UIManager} from 'react-native';
 import SwitchNavigator from './navigation/SwitchNavigator';
 
-const App = () => {
+const App: React.FC = () => {
   useEffect(() => {
     if (
       Platform.OS === 'android' &&

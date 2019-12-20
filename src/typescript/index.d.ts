@@ -13,6 +13,11 @@ export {Props as NewsSlotHeaderProps} from '../components/NewsSlotHeader';
 export {Props as ShareFormProps} from '../components/ShareForm';
 export {Props as SideMenuProps} from '../components/SideMenu';
 export {Props as TabProps} from '../components/Tab';
+export {Props as FacebookProps} from '../components/AuthButtons/Facebook';
+export {Props as GoogleGoogle} from '../components/AuthButtons/Google';
+export {Props as GoToAppProps} from '../components/AuthButtons/ToApp';
+export {Props as NewsSlotImageProps} from '../components/Animated/NewsSlotImage';
+export {Props as AuthScreenProps} from '../screens/AuthScreen';
 export {Props as TabBarProps} from '../components/TabBar';
 export interface NewsDataProps {
   [x: string]: any;
