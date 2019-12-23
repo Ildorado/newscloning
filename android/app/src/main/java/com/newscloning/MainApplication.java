@@ -8,11 +8,13 @@ import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.soloader.SoLoader;
 import java.lang.reflect.InvocationTargetException;
+import com.facebook.reactnative.androidsdk.FBSDKPackage;
 import java.util.List;
 
 public class MainApplication extends Application implements ReactApplication {
 
   private final ReactNativeHost mReactNativeHost =
+
       new ReactNativeHost(this) {
         @Override
         public boolean getUseDeveloperSupport() {
