@@ -19,6 +19,12 @@ export {Props as GoToAppProps} from '../components/AuthButtons/ToApp';
 export {Props as NewsSlotImageProps} from '../components/Animated/NewsSlotImage';
 export {Props as AuthScreenProps} from '../screens/AuthScreen';
 export {Props as TabBarProps} from '../components/TabBar';
+export {AuthorizedActionTypes} from '../redux/actions/index';
+export {FavoritesActionTypes} from '../redux/actions/index';
+export {WebViesActionTypes} from '../redux/actions/index';
+export {FocusedTabTitleActionTypes} from '../redux/actions/index';
+export {FocusedDrawerButtonActionTypes} from '../redux/actions/index';
+export {NewsActionTypes} from '../redux/actions/index';
 export interface NewsDataProps {
   [x: string]: any;
   title: string;
@@ -43,3 +49,6 @@ export interface NewsSourcesProps {
   src: string;
   infoHandler: (item: NewsSourcesItemProps) => NewsDataProps;
 }
+
+export type authorized = {name: string | null; data: any | null};
+export type addToFavoritesPayload = NewsDataProps;

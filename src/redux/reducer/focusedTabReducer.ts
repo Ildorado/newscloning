@@ -1,5 +1,9 @@
 import {InitialScreenName} from '../../constants/index';
-const newsReducer = (state = InitialScreenName, action) => {
+import {FocusedTabTitleActionTypes} from '../../typescript/index';
+const newsReducer = (
+  state: string = InitialScreenName,
+  action: FocusedTabTitleActionTypes,
+) => {
   switch (action.type) {
     case 'SETFOCUSEDTABTITLE': {
       return action.payload;

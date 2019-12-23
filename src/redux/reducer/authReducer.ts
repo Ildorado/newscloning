@@ -1,10 +1,13 @@
-const initialState = {
+import {AuthorizedActionTypes, authorized} from '../../typescript/index';
+const initialState: {
+  authorized: authorized;
+} = {
   authorized: {
     name: null,
     data: null,
   },
 };
-const authReducer = (state = initialState, action) => {
+const authReducer = (state = initialState, action: AuthorizedActionTypes) => {
   switch (action.type) {
     case 'SETAUTH': {
       return {

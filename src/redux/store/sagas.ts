@@ -1,4 +1,12 @@
-import {put, takeEvery, all, throttle, call} from 'redux-saga/effects';
+import {
+  put,
+  takeEvery,
+  takeLatest,
+  all,
+  throttle,
+  call,
+  take,
+} from 'redux-saga/effects';
 import {
   setFocusedTabTitle,
   fetchNewsBegin,
@@ -10,10 +18,16 @@ import {
 } from '../actions/index';
 import {InitialScreenName} from '../../constants/index';
 import * as rssParser from 'react-native-rss-parser';
-function* setFocusedTabTitleAsync(payload) {
+import {
+  NewsSourcesProps,
+  NewsSourcesItemProps,
+  NewsDataProps,
+} from '../../typescript/index';
+import {setFocusedTabTitleAsync as setFocusedTabTitleAsyncProps} from '../actions/index';
+function* setFocusedTabTitleAsync(payload: setFocusedTabTitleAsyncProps) {
   yield put(setFocusedTabTitle(payload.payload));
 }
-function* fetchNewsSource(config) {
+function* fetchNewsSource(config: NewsSourcesProps) {
   try {
     yield put(fetchNewsBegin(config.Name));
     const responce = yield call(fetch, config.src);
@@ -21,7 +35,7 @@ function* fetchNewsSource(config) {
     const rssData = yield call(rssParser.parse, responseData);
     const items = rssData.items;
     const handledItems = yield all(
-      items.map(elem => {
+      items.map((elem: NewsSourcesItemProps) => {
         return config.infoHandler(elem);
       }),
     );
@@ -31,7 +45,11 @@ function* fetchNewsSource(config) {
     yield put(fetchNewsFailure(error.message, config.Name));
   }
 }
-function* fetchNewsAsync({payload}) {
+function* fetchNewsAsync({
+  payload,
+}: {
+  payload: NewsSourcesProps | NewsSourcesProps[];
+}) {
   let configs;
   let focusedDrawerButton;
   if (!Array.isArray(payload)) {
@@ -47,10 +65,10 @@ function* fetchNewsAsync({payload}) {
       return call(fetchNewsSource, config);
     }),
   );
-  const res = news.filter(el => Boolean(el)).flat();
+  const res = news.filter((el: any) => Boolean(el)).flat();
   if (res.length !== 0) {
     focusedDrawerButton === 'All' &&
-      res.sort((a, b) => {
+      res.sort((a: NewsDataProps, b: NewsDataProps) => {
         return Date.parse(b.published) - Date.parse(a.published);
       });
     yield put(fetchNewsProcessEnd());
@@ -63,7 +81,8 @@ function* watchFocusedTabTItleAsync() {
   yield throttle(400, 'SETFOCUSEDTABTITLEASYNC', setFocusedTabTitleAsync);
 }
 function* watchfetchNewsProcessBegin() {
-  yield takeEvery('FETCHNEWSPROCESSBEGIN', fetchNewsAsync);
+  //@ts-ignore
+  yield takeLatest('FETCHNEWSPROCESSBEGIN', fetchNewsAsync);
 }
 
 export default function* rootSaga() {

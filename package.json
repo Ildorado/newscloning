@@ -13,6 +13,7 @@
   "dependencies": {
     "@react-native-community/async-storage": "^1.6.3",
     "@react-navigation/core": "^3.5.1",
+    "@types/lodash.mapvalues": "^4.6.6",
     "@types/react-native-modal": "^4.1.1",
     "@types/react-native-share": "^1.1.4",
     "@types/react-native-vector-icons": "^6.4.4",
@@ -59,6 +60,7 @@
     "@types/react-native": "^0.60.25",
     "@types/react-native-fbsdk": "^1.0.0",
     "@types/react-native-indicators": "^0.13.3",
+    "@types/react-native-rss-parser": "^1.4.0",
     "@types/react-test-renderer": "^16.9.1",
     "@types/shortid": "0.0.29",
     "babel-jest": "^24.9.0",

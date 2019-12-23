@@ -1,12 +1,18 @@
 import mapValues from 'lodash.mapvalues';
-const initialState = {
+import {NewsActionTypes, NewsDataProps} from '../../typescript/index';
+export const initialState: {
+  currentNewsSource?: null | string;
+  items: [] | NewsDataProps[];
+  loading: any;
+  error: any;
+} = {
   currentNewsSource: null,
   items: [],
   loading: {},
   error: null,
 };
 
-const newsReducer = (state = initialState, action) => {
+const newsReducer = (state = initialState, action: NewsActionTypes) => {
   switch (action.type) {
     case 'FETCHNEWSBEGIN':
       return {
