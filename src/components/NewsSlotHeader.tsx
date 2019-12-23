@@ -51,7 +51,7 @@ const Header: React.FC<Props> = ({config, modalOnCancel, style}) => {
             url: config.id,
             title: title,
             message: message,
-          }).finally(() => setShareModalVisibility(false));
+          }).then(() => setShareModalVisibility(false));
         }}
         shareModalVisibility={shareModalVisibility}
         onCancelHandler={() => setShareModalVisibility(false)}

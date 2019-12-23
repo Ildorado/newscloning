@@ -41,59 +41,63 @@ export const fetchNewsFailure = (error, id) => ({
   id: id,
 });
 
-export const fetchNews = payload => dispatch => {
-  try {
-    let configs;
-    let focusedDrawerButton;
-    if (!Array.isArray(payload)) {
-      configs = [payload];
-      focusedDrawerButton = payload.Name;
-    } else {
-      // if it's array of more then 1 elements then it's 'All' button;
-      configs = payload;
-      focusedDrawerButton = configs.length === 1 ? configs[0].Name : 'All';
-    }
-    const news = configs.map(async config => {
-      const id = config.Name;
-      try {
-        dispatch(fetchNewsBegin(id));
-        const responce = await fetch(config.src);
-        handleErrors(responce);
-        const responseData = await responce.text();
-        const rssData = await rssParser.parse(responseData);
-        const items = rssData.items;
-        const handledItems = items.map(elem => {
-          return config.infoHandler(elem);
-        });
-        dispatch(fetchNewsSuccess(id));
-        return handledItems;
-      } catch (error) {
-        dispatch(fetchNewsFailure(error.message, id));
-      }
-    });
-    Promise.all(news).then(value => {
-      const res = value.filter(el => Boolean(el)).flat();
-      if (res.length !== 0) {
-        focusedDrawerButton === 'All' &&
-          res.sort((a, b) => {
-            return Date.parse(b.published) - Date.parse(a.published);
-          });
-        dispatch(setNews(res, focusedDrawerButton));
-        dispatch(SetFocusedDrawerButton(focusedDrawerButton));
-        dispatch(setFocusedTabTitle(InitialScreenName));
-        return value.flat();
-      }
-    });
-  } catch (error) {
-    dispatch(fetchNewsFailure(error.message));
-  }
-};
+// export const fetchNews = payload => dispatch => {
+//   try {
+//     let configs;
+//     let focusedDrawerButton;
+//     if (!Array.isArray(payload)) {
+//       configs = [payload];
+//       focusedDrawerButton = payload.Name;
+//     } else {
+//       // if it's array of more then 1 elements then it's 'All' button;
+//       configs = payload;
+//       focusedDrawerButton = configs.length === 1 ? configs[0].Name : 'All';
+//     }
+//     const news = configs.map(async config => {
+//       const id = config.Name;
+//       try {
+//         dispatch(fetchNewsBegin(id));
+//         const responce = await fetch(config.src);
+//         handleErrors(responce);
+//         const responseData = await responce.text();
+//         const rssData = await rssParser.parse(responseData);
+//         const items = rssData.items;
+//         const handledItems = items.map(elem => {
+//           return config.infoHandler(elem);
+//         });
+//         dispatch(fetchNewsSuccess(id));
+//         return handledItems;
+//       } catch (error) {
+//         dispatch(fetchNewsFailure(error.message, id));
+//       }
+//     });
+//     Promise.all(news).then(value => {
+//       const res = value.filter(el => Boolean(el)).flat();
+//       if (res.length !== 0) {
+//         focusedDrawerButton === 'All' &&
+//           res.sort((a, b) => {
+//             return Date.parse(b.published) - Date.parse(a.published);
+//           });
+//         dispatch(setNews(res, focusedDrawerButton));
+//         dispatch(SetFocusedDrawerButton(focusedDrawerButton));
+//         dispatch(setFocusedTabTitle(InitialScreenName));
+//         return value.flat();
+//       }
+//     });
+//   } catch (error) {
+//     dispatch(fetchNewsFailure(error.message));
+//   }
+// };
 
-export function fetchNewsAsync(payload) {
-  console.log('fetch payload:', payload);
+export function fetchNewsProcessBegin(payload) {
   return {
-    type: 'FETCHNEWSASYNC',
+    type: 'FETCHNEWSPROCESSBEGIN',
     payload: payload,
+  };
+}
+export function fetchNewsProcessEnd() {
+  return {
+    type: 'FETCHNEWSPROCESSEND',
   };
 }
 export function setNews(payload, currentNewsSource) {
