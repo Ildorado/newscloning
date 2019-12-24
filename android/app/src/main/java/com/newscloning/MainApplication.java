@@ -9,6 +9,8 @@ import com.facebook.react.ReactPackage;
 import com.facebook.soloader.SoLoader;
 import java.lang.reflect.InvocationTargetException;
 import com.facebook.reactnative.androidsdk.FBSDKPackage;
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
 import java.util.List;
 
 public class MainApplication extends Application implements ReactApplication {
@@ -46,8 +48,9 @@ public class MainApplication extends Application implements ReactApplication {
     super.onCreate();
     SoLoader.init(this, /* native exopackage */ false);
     initializeFlipper(this); // Remove this line if you don't want Flipper enabled
+      FacebookSdk.sdkInitialize(getApplicationContext());
+      AppEventsLogger.activateApp(this);
   }
-
   /**
    * Loads Flipper in React Native templates.
    *
