@@ -64,6 +64,5 @@ function* fetchNewsAsync({payload}: fetchNewsProcessBegin) {
 }
 
 export default function* watchFetchNewsProcessBegin() {
-  //@ts-ignore
   yield takeLatest('FETCHNEWSPROCESSBEGIN', fetchNewsAsync);
 }

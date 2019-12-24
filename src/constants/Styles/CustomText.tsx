@@ -1,19 +1,8 @@
 import React from 'react';
-import {Text, StyleSheet} from 'react-native';
+import {Text, StyleSheet, TextStyle} from 'react-native';
 import {WidthPoint} from '../index';
-const CustomText = (props: any) => {
-  let additionalStyles = {};
-  const styleProps = Object.getOwnPropertyNames(props).filter(
-    el => el !== 'children' && el !== 'style',
-  );
-  styleProps.forEach(el => {
-    additionalStyles = {...additionalStyles, ...styles[el]};
-  });
-  return (
-    <Text style={{...props.style, ...additionalStyles}}>{props.children}</Text>
-  );
-};
-const firstLevelStyles = {
+
+const firstLevelStyles = StyleSheet.create({
   h1: {
     fontSize: Math.round(6.2 * WidthPoint),
   },
@@ -29,8 +18,7 @@ const firstLevelStyles = {
   white: {
     color: 'white',
   },
-};
-//@ts-ignore
+});
 const styles = StyleSheet.create({
   ...firstLevelStyles,
   title: {
@@ -49,4 +37,27 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
 });
+
+type StyleKeys = keyof typeof styles;
+
+type CustomStyleProps = {
+  [key in StyleKeys]?: boolean;
+};
+interface Props extends CustomStyleProps {
+  style?: TextStyle;
+}
+const CustomText: React.FC<Props> = props => {
+  const customStyleKeys = Object.keys(props) as StyleKeys[];
+  const customStyle = customStyleKeys.reduce((acc, key) => {
+    if (styles[key]) {
+      return {
+        ...acc,
+        ...styles[key],
+      };
+    }
+    return acc;
+  }, {});
+  return <Text style={{...customStyle, ...props.style}}>{props.children}</Text>;
+};
+
 export default CustomText;

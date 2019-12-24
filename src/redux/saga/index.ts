@@ -1,7 +1,7 @@
 import {all} from 'redux-saga/effects';
-import watchFocusedTabTItleAsync from './WatchFocusedTabTItleAsync';
+import watchFocusedTabTItleAsync from './watchFocusedTabTItleAsync';
 import watchFetchNewsProcessBegin from './watchFetchNewsProcessBegin';
-import watchWebViewConfig from './WatchWebViewConfig';
+import watchWebViewConfig from './watchWebViewConfig';
 import watchLogOutAsync from './watchLogOutAsync';
 export default function* rootSaga() {
   yield all([

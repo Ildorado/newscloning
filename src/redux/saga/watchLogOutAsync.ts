@@ -19,6 +19,5 @@ function* logOutAsync({authorizedState}: logOut) {
 }
 
 export default function* watchLogOutAsync() {
-  //@ts-ignore
   yield takeLatest('LOGOUTASYNC', logOutAsync);
 }

@@ -7,6 +7,5 @@ function* setWebViewConfigAsync({payload}: setWebViewConfig) {
 }
 
 export default function* watchWebViewConfig() {
-  //@ts-ignore
   yield takeLatest('SETWEBVIEWCONFIG', setWebViewConfigAsync);
 }
