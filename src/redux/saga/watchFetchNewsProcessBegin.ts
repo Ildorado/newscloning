@@ -1,12 +1,4 @@
-import {
-  put,
-  takeEvery,
-  takeLatest,
-  all,
-  throttle,
-  call,
-  take,
-} from 'redux-saga/effects';
+import {put, takeLatest, all, call} from 'redux-saga/effects';
 import {
   setFocusedTabTitle,
   fetchNewsBegin,
@@ -15,10 +7,6 @@ import {
   fetchNewsSuccess,
   SetFocusedDrawerButton,
   fetchNewsProcessEnd,
-  setWebViewVisibility,
-  setWebViewURI,
-  logOut,
-  setAuth,
 } from '../actions/index';
 import {InitialScreenName} from '../../constants/index';
 import * as rssParser from 'react-native-rss-parser';
@@ -27,10 +15,7 @@ import {
   NewsSourcesItemProps,
   NewsDataProps,
 } from '../../typescript/index';
-import {setFocusedTabTitleAsync as setFocusedTabTitleAsyncProps} from '../actions/index';
-function* setFocusedTabTitleAsync(payload: setFocusedTabTitleAsyncProps) {
-  yield put(setFocusedTabTitle(payload.payload));
-}
+import {fetchNewsProcessBegin} from '../actions/index';
 function* fetchNewsSource(config: NewsSourcesProps) {
   try {
     yield put(fetchNewsBegin(config.Name));
@@ -49,11 +34,7 @@ function* fetchNewsSource(config: NewsSourcesProps) {
     yield put(fetchNewsFailure(error.message, config.Name));
   }
 }
-function* fetchNewsAsync({
-  payload,
-}: {
-  payload: NewsSourcesProps | NewsSourcesProps[];
-}) {
+function* fetchNewsAsync({payload}: fetchNewsProcessBegin) {
   let configs;
   let focusedDrawerButton;
   if (!Array.isArray(payload)) {
@@ -81,46 +62,8 @@ function* fetchNewsAsync({
     yield put(setFocusedTabTitle(InitialScreenName));
   }
 }
-function* setWebViewConfigAsync({payload}: {payload: NewsDataProps}) {
-  yield put(setWebViewVisibility(true));
-  yield put(setWebViewURI(payload));
-}
-import {facebookLogout} from '../../components/AuthButtons/Facebook';
-import {revoke} from 'react-native-app-auth';
-import {googleConfig} from '../../components/AuthButtons/Google';
-function* logOutAsync({authorizedState}: logOut) {
-  if (authorizedState.name === 'Facebook') {
-    facebookLogout();
-    yield put(setAuth({name: null, data: null}));
-  } else if (authorizedState.name === 'Google') {
-    if (authorizedState && authorizedState.data !== null) {
-      yield call(revoke, googleConfig, {
-        tokenToRevoke: authorizedState.data.accessToken,
-      });
-      yield put(setAuth({name: null, data: null}));
-    }
-  }
-}
-function* watchFocusedTabTItleAsync() {
-  yield throttle(400, 'SETFOCUSEDTABTITLEASYNC', setFocusedTabTitleAsync);
-}
-function* watchfetchNewsProcessBegin() {
+
+export default function* watchFetchNewsProcessBegin() {
   //@ts-ignore
   yield takeLatest('FETCHNEWSPROCESSBEGIN', fetchNewsAsync);
-}
-function* watchWebViewConfig() {
-  //@ts-ignore
-  yield takeLatest('SETWEBVIEWCONFIG', setWebViewConfigAsync);
-}
-function* watchLogOutAsync() {
-  //@ts-ignore
-  yield takeLatest('LOGOUTASYNC', logOutAsync);
-}
-export default function* rootSaga() {
-  yield all([
-    watchFocusedTabTItleAsync(),
-    watchfetchNewsProcessBegin(),
-    watchWebViewConfig(),
-    watchLogOutAsync(),
-  ]);
 }
