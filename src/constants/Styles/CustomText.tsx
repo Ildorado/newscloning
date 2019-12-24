@@ -1,7 +1,7 @@
 import React from 'react';
 import {Text, StyleSheet} from 'react-native';
 import {WidthPoint} from '../index';
-const CustomText = props => {
+const CustomText = (props: any) => {
   let additionalStyles = {};
   const styleProps = Object.getOwnPropertyNames(props).filter(
     el => el !== 'children' && el !== 'style',
@@ -30,6 +30,7 @@ const firstLevelStyles = {
     color: 'white',
   },
 };
+//@ts-ignore
 const styles = StyleSheet.create({
   ...firstLevelStyles,
   title: {

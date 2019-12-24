@@ -135,8 +135,9 @@ android {
         versionCode 1
         versionName "1.0"
         manifestPlaceholders = [
-          appAuthRedirectScheme: 'com.your.app.identifier',
           appAuthRedirectScheme: 'io.identityserver.demo',
+          appAuthRedirectScheme: 'com.your.app.identifier',
+          appAuthRedirectScheme:'com.googleusercontent.apps.280211408355-6hg3h47udo255t5cmuek9io2u7qrdvg1',
         ]
     }
     splits {
