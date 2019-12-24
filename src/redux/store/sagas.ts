@@ -15,6 +15,10 @@ import {
   fetchNewsSuccess,
   SetFocusedDrawerButton,
   fetchNewsProcessEnd,
+  setWebViewVisibility,
+  setWebViewURI,
+  logOut,
+  setAuth,
 } from '../actions/index';
 import {InitialScreenName} from '../../constants/index';
 import * as rssParser from 'react-native-rss-parser';
@@ -77,6 +81,26 @@ function* fetchNewsAsync({
     yield put(setFocusedTabTitle(InitialScreenName));
   }
 }
+function* setWebViewConfigAsync({payload}: {payload: NewsDataProps}) {
+  yield put(setWebViewVisibility(true));
+  yield put(setWebViewURI(payload));
+}
+import {facebookLogout} from '../../components/AuthButtons/Facebook';
+import {revoke} from 'react-native-app-auth';
+import {googleConfig} from '../../components/AuthButtons/Google';
+function* logOutAsync({authorizedState}: logOut) {
+  if (authorizedState.name === 'Facebook') {
+    facebookLogout();
+    yield put(setAuth({name: null, data: null}));
+  } else if (authorizedState.name === 'Google') {
+    if (authorizedState && authorizedState.data !== null) {
+      yield call(revoke, googleConfig, {
+        tokenToRevoke: authorizedState.data.accessToken,
+      });
+      yield put(setAuth({name: null, data: null}));
+    }
+  }
+}
 function* watchFocusedTabTItleAsync() {
   yield throttle(400, 'SETFOCUSEDTABTITLEASYNC', setFocusedTabTitleAsync);
 }
@@ -84,7 +108,21 @@ function* watchfetchNewsProcessBegin() {
   //@ts-ignore
   yield takeLatest('FETCHNEWSPROCESSBEGIN', fetchNewsAsync);
 }
-
-export default function* rootSaga() {
-  yield all([watchFocusedTabTItleAsync(), watchfetchNewsProcessBegin()]);
+function* watchWebViewConfig() {
+  //@ts-ignore
+  yield takeLatest('SETWEBVIEWCONFIG', setWebViewConfigAsync);
 }
+function* watchLogOutAsync() {
+  //@ts-ignore
+  yield takeLatest('LOGOUTASYNC', logOutAsync);
+}
+export default function* rootSaga() {
+  yield all([
+    watchFocusedTabTItleAsync(),
+    watchfetchNewsProcessBegin(),
+    watchWebViewConfig(),
+    watchLogOutAsync(),
+  ]);
+}
+// dispatch(setWebViewVisibility(true));
+// dispatch(setWebViewURI(payload));

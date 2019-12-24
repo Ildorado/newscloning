@@ -90,54 +90,6 @@ export const fetchNewsFailure = (error: string | null, id: string | null) => ({
   id: id,
 });
 
-// export const fetchNews = payload => dispatch => {
-//   try {
-//     let configs;
-//     let focusedDrawerButton;
-//     if (!Array.isArray(payload)) {
-//       configs = [payload];
-//       focusedDrawerButton = payload.Name;
-//     } else {
-//       // if it's array of more then 1 elements then it's 'All' button;
-//       configs = payload;
-//       focusedDrawerButton = configs.length === 1 ? configs[0].Name : 'All';
-//     }
-//     const news = configs.map(async config => {
-//       const id = config.Name;
-//       try {
-//         dispatch(fetchNewsBegin(id));
-//         const responce = await fetch(config.src);
-//         handleErrors(responce);
-//         const responseData = await responce.text();
-//         const rssData = await rssParser.parse(responseData);
-//         const items = rssData.items;
-//         const handledItems = items.map(elem => {
-//           return config.infoHandler(elem);
-//         });
-//         dispatch(fetchNewsSuccess(id));
-//         return handledItems;
-//       } catch (error) {
-//         dispatch(fetchNewsFailure(error.message, id));
-//       }
-//     });
-//     Promise.all(news).then(value => {
-//       const res = value.filter(el => Boolean(el)).flat();
-//       if (res.length !== 0) {
-//         focusedDrawerButton === 'All' &&
-//           res.sort((a, b) => {
-//             return Date.parse(b.published) - Date.parse(a.published);
-//           });
-//         dispatch(setNews(res, focusedDrawerButton));
-//         dispatch(SetFocusedDrawerButton(focusedDrawerButton));
-//         dispatch(setFocusedTabTitle(InitialScreenName));
-//         return value.flat();
-//       }
-//     });
-//   } catch (error) {
-//     dispatch(fetchNewsFailure(error.message));
-//   }
-// };
-
 export interface fetchNewsProcessBegin {
   type: 'FETCHNEWSPROCESSBEGIN';
   payload: NewsSourcesProps | NewsSourcesProps[];
@@ -179,7 +131,10 @@ export function setNews(
 //* Web View Actions
 
 import {NewsDataProps} from '../../typescript/index';
-export type WebViesActionTypes = setWebViewVisibility | setWebViewURI;
+export type WebViesActionTypes =
+  | setWebViewVisibility
+  | setWebViewURI
+  | setWebViewConfig;
 export interface setWebViewVisibility {
   type: 'SETWEBVIEWVISIBILITY';
   payload: boolean;
@@ -200,12 +155,15 @@ export const setWebViewURI = (payload: NewsDataProps) => {
     payload: payload,
   };
 };
-
-export const setWebViewConfig = (payload: NewsDataProps) => (
-  dispatch: (arg0: {type: string; payload: boolean | NewsDataProps}) => void,
-) => {
-  dispatch(setWebViewVisibility(true));
-  dispatch(setWebViewURI(payload));
+export interface setWebViewConfig {
+  type: 'SETWEBVIEWCONFIG';
+  payload: NewsDataProps;
+}
+export const setWebViewConfig = (payload: NewsDataProps) => {
+  return {
+    type: 'SETWEBVIEWCONFIG',
+    payload: payload,
+  };
 };
 
 //* Favorites Actions
@@ -238,7 +196,7 @@ export const deleteFromFavorites = (payload: string) => {
 //* Authorized actions
 
 import {authorized} from '../../typescript/index';
-export type AuthorizedActionTypes = setAuthAction | LogOutOfGoogleAction;
+export type AuthorizedActionTypes = setAuthAction | LogOutOfGoogleAction | logOut;
 
 export interface setAuthAction {
   type: 'SETAUTH';
@@ -265,19 +223,13 @@ export const logOutOfGoogle = (
 import {facebookLogout} from '../../components/AuthButtons/Facebook';
 import {revoke} from 'react-native-app-auth';
 import {googleConfig} from '../../components/AuthButtons/Google';
-export const logOut = (authorizedState: authorized) => (
-  dispatch: (arg0: {type: string; authorized: authorized}) => void,
-) => {
-  if (authorizedState.name === 'Facebook') {
-    facebookLogout();
-    dispatch(setAuth({name: null, data: null}));
-  } else if (authorizedState.name === 'Google') {
-    if (authorizedState && authorizedState.data !== null) {
-      revoke(googleConfig, {
-        tokenToRevoke: authorizedState.data.accessToken,
-      }).then(() => {
-        dispatch(setAuth({name: null, data: null}));
-      });
-    }
-  }
+export interface logOut {
+  type: 'LOGOUTASYNC';
+  authorizedState: authorized;
+}
+export const logOut = (authorizedState: authorized) => {
+  return {
+    type: 'LOGOUTASYNC',
+    authorizedState: authorizedState,
+  };
 };
