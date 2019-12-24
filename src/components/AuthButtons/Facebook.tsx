@@ -13,19 +13,6 @@ export interface Props {
 const Facebook: React.FC<Props> = ({goToApp}) => {
   const authState = useSelector(getAuth);
   const dispatch = useDispatch();
-  // const logOutOfCurrent = async () => {
-  //   if (authState.authorized.data !== null) {
-  //     await revoke(googleConfig, {
-  //       tokenToRevoke: authState.authorized.data.accessToken,
-  //     });
-  //   }
-  //   dispatch(
-  //     setAuth({
-  //       name: null,
-  //       data: null,
-  //     }),
-  //   );
-  // };
   const login = async () => {
     logout();
     LoginManager.logInWithPermissions(['public_profile']).then(

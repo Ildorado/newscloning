@@ -46,7 +46,6 @@ const ShareForm: React.FC<Props> = ({
         }}
         initialValues={{title: '', message: ''}}
         render={formProps => {
-          // console.log('formProps:', formProps);
 
           const {handleSubmit} = formProps;
           return (

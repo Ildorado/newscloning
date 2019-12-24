@@ -21,21 +21,7 @@ export interface Props {
 const Google: React.FC<Props> = ({goToApp}) => {
   const authState = useSelector(getAuth);
   const dispatch = useDispatch();
-  // const logOutOfCurrent = async () => {
-  //   if (authState.authorized.data !== null) {
-  //     await revoke(googleConfig, {
-  //       tokenToRevoke: authState.authorized.data.accessToken,
-  //     });
-  //   }
-  //   dispatch(
-  //     setAuth({
-  //       name: null,
-  //       data: null,
-  //     }),
-  //   );
-  // };
   const signIn = async () => {
-    // await logOutOfCurrent();
     signOut();
     const authorized = await authorize(googleConfig);
     dispatch(

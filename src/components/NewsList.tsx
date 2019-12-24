@@ -1,6 +1,5 @@
 import React, {useRef, useEffect, useState} from 'react';
 import {StyleSheet, SafeAreaView, FlatList, Platform} from 'react-native';
-// import {setViewableItems} from '../redux/actions/index';
 import NewsSlot from './NewsSlot';
 import {NewsDataProps} from '../typescript/index';
 export interface Props {

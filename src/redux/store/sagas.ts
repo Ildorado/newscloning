@@ -124,5 +124,3 @@ export default function* rootSaga() {
     watchLogOutAsync(),
   ]);
 }
-// dispatch(setWebViewVisibility(true));
-// dispatch(setWebViewURI(payload));

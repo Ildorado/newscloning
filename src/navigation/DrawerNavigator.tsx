@@ -11,5 +11,4 @@ const Drawer = createDrawerNavigator(
     drawerWidth: '50%',
   },
 );
-// export default Drawer;
 export default Drawer;

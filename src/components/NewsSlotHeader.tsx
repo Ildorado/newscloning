@@ -35,7 +35,6 @@ const Header: React.FC<Props> = ({config, modalOnCancel, style}) => {
   };
   const onShareHandler = () => {
     setShareModalVisibility(true);
-    // Share.open({url: config.id});
   };
   return (
     <SafeAreaView

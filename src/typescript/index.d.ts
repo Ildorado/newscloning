@@ -1,7 +1,4 @@
 import {NavigationTabScreenProps} from 'react-navigation-tabs';
-// export interface navigationProps {
-//   NavigationTabScreenProps: NavigationTabScreenProps['navigation'];
-// }
 export type NavigationScreenType = NavigationTabScreenProps['navigation'];
 export {Props as CustomDrawerProps} from '../components/CustomDrawerButton';
 export {Props as CustomAuthButtonProps} from '../components/CustomAuthButton';
