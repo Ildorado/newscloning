@@ -1,5 +1,5 @@
 import {put, takeLatest, call} from 'redux-saga/effects';
-import {LogOutActionProps, setAuth} from '../actions/index';
+import {LogOutActionProps, setAuth, LOGOUTASYNC} from '../actions/index';
 import {facebookLogout} from '../../components/AuthButtons/Facebook';
 import {revoke} from 'react-native-app-auth';
 import {googleConfig} from '../../components/AuthButtons/Google';
@@ -19,5 +19,5 @@ function* logOutAsync({authorizedState}: LogOutActionProps) {
 }
 
 export default function* watchLogOutAsync() {
-  yield takeLatest('LOGOUTASYNC', logOutAsync);
+  yield takeLatest(LOGOUTASYNC, logOutAsync);
 }

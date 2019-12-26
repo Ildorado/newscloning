@@ -3,23 +3,25 @@
 export type FocusedTabTitleActionTypes =
   | SetFocusedTabTitleActionProps
   | SetFocusedTabTitleAsyncActionProps;
+export const SETFOCUSEDTABTITLE = 'SETFOCUSEDTABTITLE';
 export interface SetFocusedTabTitleActionProps {
-  type: 'SETFOCUSEDTABTITLE';
+  type: typeof SETFOCUSEDTABTITLE;
   payload: string;
 }
 export const setFocusedTabTitle = (payload: string) => {
   return {
-    type: 'SETFOCUSEDTABTITLE',
+    type: SETFOCUSEDTABTITLE,
     payload: payload,
   };
 };
+export const SETFOCUSEDTABTITLEASYNC = 'SETFOCUSEDTABTITLEASYNC';
 export interface SetFocusedTabTitleAsyncActionProps {
-  type: 'SETFOCUSEDTABTITLEASYNC';
+  type: typeof SETFOCUSEDTABTITLEASYNC;
   payload: string;
 }
 export const setFocusedTabTitleAsync = (payload: string) => {
   return {
-    type: 'SETFOCUSEDTABTITLEASYNC',
+    type: SETFOCUSEDTABTITLEASYNC,
     payload: payload,
   };
 };
@@ -29,23 +31,25 @@ export const setFocusedTabTitleAsync = (payload: string) => {
 export type FocusedDrawerButtonActionTypes =
   | SetFocusedDrawerButton
   | SetFocusedDrawerButtonAsync;
+export const SETFOCUSEDDRAWERBUTTON = 'SETFOCUSEDDRAWERBUTTON';
 export interface SetFocusedDrawerButton {
-  type: 'SETFOCUSEDDRAWERBUTTON';
+  type: typeof SETFOCUSEDDRAWERBUTTON;
   payload: string;
 }
 export const SetFocusedDrawerButton = (payload: string) => {
   return {
-    type: 'SETFOCUSEDDRAWERBUTTON',
+    type: SETFOCUSEDDRAWERBUTTON,
     payload: payload,
   };
 };
+export const SETFOCUSEDDRAWERBUTTONASYNC = 'SETFOCUSEDDRAWERBUTTONASYNC';
 export interface SetFocusedDrawerButtonAsync {
-  type: 'SETFOCUSEDDRAWERBUTTONASYNC';
+  type: typeof SETFOCUSEDDRAWERBUTTONASYNC;
   payload: string;
 }
 export const SetFocusedDrawerButtonAsync = (payload: string) => {
   return {
-    type: 'SETFOCUSEDDRAWERBUTTONASYNC',
+    type: SETFOCUSEDDRAWERBUTTONASYNC,
     payload: payload,
   };
 };
@@ -60,60 +64,65 @@ export type NewsActionTypes =
   | FetchNewsProcessEndActionProps
   | SetNewsActionProps;
 
+export const FETCHNEWSBEGIN = 'FETCHNEWSBEGIN';
 export interface FetchNewsBeginActionProps {
-  type: 'FETCHNEWSBEGIN';
+  type: typeof FETCHNEWSBEGIN;
   id: string;
 }
 export const fetchNewsBegin = (id: string) => ({
-  type: 'FETCHNEWSBEGIN',
+  type: FETCHNEWSBEGIN,
   id: id,
 });
-
+export const FETCHNEWSSUCCESS = 'FETCHNEWSSUCCESS';
 export interface FetchNewsSuccessActionProps {
-  type: 'FETCHNEWSSUCCESS';
+  type: typeof FETCHNEWSSUCCESS;
   id: string;
 }
 export const fetchNewsSuccess = (id: string) => {
   return {
-    type: 'FETCHNEWSSUCCESS',
+    type: FETCHNEWSSUCCESS,
     id: id,
   };
 };
+export const FETCHNEWSFAILURE = 'FETCHNEWSFAILURE';
 export interface FetchNewsFailureActionProps {
-  type: 'FETCHNEWSFAILURE';
+  type: typeof FETCHNEWSFAILURE;
   id: string | null;
   payload: string | null;
 }
 export const fetchNewsFailure = (error: string | null, id: string | null) => ({
-  type: 'FETCHNEWSFAILURE',
+  type: FETCHNEWSFAILURE,
   payload: {error},
   id: id,
 });
 
+export const FETCHNEWSPROCESSBEGIN = 'FETCHNEWSPROCESSBEGIN';
 export interface FetchNewsProcessBeginActionProps {
-  type: 'FETCHNEWSPROCESSBEGIN';
+  type: typeof FETCHNEWSPROCESSBEGIN;
   payload: NewsSourcesProps | NewsSourcesProps[];
 }
 export function fetchNewsProcessBegin(
   payload: NewsSourcesProps | NewsSourcesProps[],
 ) {
   return {
-    type: 'FETCHNEWSPROCESSBEGIN',
+    type: FETCHNEWSPROCESSBEGIN,
     payload: payload,
   };
 }
 
+export const FETCHNEWSPROCESSEND = 'FETCHNEWSPROCESSEND';
 export interface FetchNewsProcessEndActionProps {
-  type: 'FETCHNEWSPROCESSEND';
+  type: typeof FETCHNEWSPROCESSEND;
 }
 export function fetchNewsProcessEnd() {
   return {
-    type: 'FETCHNEWSPROCESSEND',
+    type: FETCHNEWSPROCESSEND,
   };
 }
 
+export const SETNEWS = 'SETNEWS';
 export interface SetNewsActionProps {
-  type: 'SETNEWS';
+  type: typeof SETNEWS;
   payload: NewsDataProps[];
   currentNewsSource: string | null;
 }
@@ -122,7 +131,7 @@ export function setNews(
   currentNewsSource: string | null,
 ) {
   return {
-    type: 'SETNEWS',
+    type: SETNEWS,
     payload: payload,
     currentNewsSource: currentNewsSource,
   };
@@ -135,33 +144,36 @@ export type WebViesActionTypes =
   | SetWebViewVisibilityActionProps
   | SetWebViewURIActionProps
   | SetWebViewConfigActionProps;
+export const SETWEBVIEWVISIBILITY = 'SETWEBVIEWVISIBILITY';
 export interface SetWebViewVisibilityActionProps {
-  type: 'SETWEBVIEWVISIBILITY';
+  type: typeof SETWEBVIEWVISIBILITY;
   payload: boolean;
 }
 export const setWebViewVisibility = (payload: boolean) => {
   return {
-    type: 'SETWEBVIEWVISIBILITY',
+    type: SETWEBVIEWVISIBILITY,
     payload: payload,
   };
 };
+export const SETWEBVIEWURI = 'SETWEBVIEWURI';
 export interface SetWebViewURIActionProps {
-  type: 'SETWEBVIEWURI';
+  type: typeof SETWEBVIEWURI;
   payload: NewsDataProps;
 }
 export const setWebViewURI = (payload: NewsDataProps) => {
   return {
-    type: 'SETWEBVIEWURI',
+    type: SETWEBVIEWURI,
     payload: payload,
   };
 };
+export const SETWEBVIEWCONFIG = 'SETWEBVIEWCONFIG';
 export interface SetWebViewConfigActionProps {
-  type: 'SETWEBVIEWCONFIG';
+  type: typeof SETWEBVIEWCONFIG;
   payload: NewsDataProps;
 }
 export const setWebViewConfig = (payload: NewsDataProps) => {
   return {
-    type: 'SETWEBVIEWCONFIG',
+    type: SETWEBVIEWCONFIG,
     payload: payload,
   };
 };
@@ -172,25 +184,27 @@ import {addToFavoritesPayload} from '../../typescript/index';
 export type FavoritesActionTypes =
   | AddToFavoritesActionProps
   | DeleteFromFavoritesActionProps;
+export const ADDTOFAVORITES = 'ADDTOFAVORITES';
 export interface AddToFavoritesActionProps {
-  type: 'ADDTOFAVORITES';
+  type: typeof ADDTOFAVORITES;
   payload: addToFavoritesPayload;
 }
 export const addToFavorites = (payload: addToFavoritesPayload) => {
   //recieve config object
   return {
-    type: 'ADDTOFAVORITES',
+    type: ADDTOFAVORITES,
     payload: payload,
   };
 };
+export const DELETEFROMFAVORITES = 'DELETEFROMFAVORITES';
 export interface DeleteFromFavoritesActionProps {
-  type: 'DELETEFROMFAVORITES';
+  type: typeof DELETEFROMFAVORITES;
   payload: string;
 }
 export const deleteFromFavorites = (payload: string) => {
   // recieve ID which is also url in this case
   return {
-    type: 'DELETEFROMFAVORITES',
+    type: DELETEFROMFAVORITES,
     payload: payload,
   };
 };
@@ -203,38 +217,38 @@ export type AuthorizedActionTypes =
   | LogOutOfGoogleActionProps
   | LogOutActionProps;
 
+export const SETAUTH = 'SETAUTH';
 export interface SetAuthActionProps {
-  type: 'SETAUTH';
+  type: typeof SETAUTH;
   authorized: authorized;
 }
 export const setAuth = (authorized: authorized): AuthorizedActionTypes => {
   return {
-    type: 'SETAUTH',
+    type: SETAUTH,
     authorized: authorized,
   };
 };
+export const LOGOUTOFGOOGLE = 'LOGOUTOFGOOGLE';
 export interface LogOutOfGoogleActionProps {
-  type: 'LOGOUTOFGOOGLE';
+  type: typeof LOGOUTOFGOOGLE;
   authorized: authorized;
 }
 export const logOutOfGoogle = (
   authorized: authorized,
 ): AuthorizedActionTypes => {
   return {
-    type: 'LOGOUTOFGOOGLE',
+    type: LOGOUTOFGOOGLE,
     authorized: authorized,
   };
 };
-import {facebookLogout} from '../../components/AuthButtons/Facebook';
-import {revoke} from 'react-native-app-auth';
-import {googleConfig} from '../../components/AuthButtons/Google';
+export const LOGOUTASYNC = 'LOGOUTASYNC';
 export interface LogOutActionProps {
-  type: 'LOGOUTASYNC';
+  type: typeof LOGOUTASYNC;
   authorizedState: authorized;
 }
 export const logOut = (authorizedState: authorized) => {
   return {
-    type: 'LOGOUTASYNC',
+    type: LOGOUTASYNC,
     authorizedState: authorizedState,
   };
 };

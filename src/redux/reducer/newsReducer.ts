@@ -1,5 +1,7 @@
 import mapValues from 'lodash.mapvalues';
 import {NewsActionTypes, NewsDataProps} from '../../typescript/index';
+import {FETCHNEWSBEGIN, SETNEWS, FETCHNEWSSUCCESS, FETCHNEWSFAILURE} from '../actions/index';
+
 export const initialState: {
   currentNewsSource?: null | string;
   items: [] | NewsDataProps[];
@@ -14,7 +16,7 @@ export const initialState: {
 
 const newsReducer = (state = initialState, action: NewsActionTypes) => {
   switch (action.type) {
-    case 'FETCHNEWSBEGIN':
+    case FETCHNEWSBEGIN:
       return {
         ...state,
         loading: {
@@ -23,13 +25,13 @@ const newsReducer = (state = initialState, action: NewsActionTypes) => {
         },
         error: null,
       };
-    case 'SETNEWS':
+    case SETNEWS:
       return {
         ...state,
         items: action.payload,
         currentNewsSource: action.currentNewsSource,
       };
-    case 'FETCHNEWSSUCCESS': {
+    case FETCHNEWSSUCCESS: {
       return {
         ...state,
         loading: {
@@ -38,7 +40,7 @@ const newsReducer = (state = initialState, action: NewsActionTypes) => {
         },
       };
     }
-    case 'FETCHNEWSFAILURE':
+    case FETCHNEWSFAILURE:
       const loading = mapValues(state.loading, () => false);
       return {
         loading: {

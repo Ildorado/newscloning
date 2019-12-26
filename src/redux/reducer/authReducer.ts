@@ -1,4 +1,5 @@
 import {AuthorizedActionTypes, authorized} from '../../typescript/index';
+import {SETAUTH} from '../actions/index';
 const initialState: {
   authorized: authorized;
 } = {
@@ -9,7 +10,7 @@ const initialState: {
 };
 const authReducer = (state = initialState, action: AuthorizedActionTypes) => {
   switch (action.type) {
-    case 'SETAUTH': {
+    case SETAUTH: {
       return {
         authorized: {
           name: action.authorized.name,

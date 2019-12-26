@@ -1,10 +1,12 @@
 import {FocusedDrawerButtonActionTypes} from '../../typescript/index';
+import {SETFOCUSEDDRAWERBUTTON} from '../actions/index';
+
 const newsReducer = (
   state: string = '',
   action: FocusedDrawerButtonActionTypes,
 ) => {
   switch (action.type) {
-    case 'SETFOCUSEDDRAWERBUTTON': {
+    case SETFOCUSEDDRAWERBUTTON: {
       return action.payload;
     }
     default:

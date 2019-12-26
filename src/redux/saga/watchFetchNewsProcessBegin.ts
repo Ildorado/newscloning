@@ -8,6 +8,7 @@ import {
   SetFocusedDrawerButton,
   fetchNewsProcessEnd,
   FetchNewsProcessBeginActionProps,
+  FETCHNEWSPROCESSBEGIN
 } from '../actions/index';
 import {InitialScreenName} from '../../constants/index';
 import * as rssParser from 'react-native-rss-parser';
@@ -64,5 +65,5 @@ function* fetchNewsAsync({payload}: FetchNewsProcessBeginActionProps) {
 }
 
 export default function* watchFetchNewsProcessBegin() {
-  yield takeLatest('FETCHNEWSPROCESSBEGIN', fetchNewsAsync);
+  yield takeLatest(FETCHNEWSPROCESSBEGIN, fetchNewsAsync);
 }

@@ -1,4 +1,5 @@
 import {FavoritesActionTypes, NewsDataProps} from '../../typescript/index';
+import {ADDTOFAVORITES, DELETEFROMFAVORITES} from '../actions/index';
 const initialState: {
   [index: string]: NewsDataProps;
 } = {};
@@ -7,12 +8,12 @@ const favoritesReducer = (
   action: FavoritesActionTypes,
 ) => {
   switch (action.type) {
-    case 'ADDTOFAVORITES':
+    case ADDTOFAVORITES:
       return {
         ...state,
         [action.payload.id]: action.payload,
       };
-    case 'DELETEFROMFAVORITES': {
+    case DELETEFROMFAVORITES: {
       return Object.keys(state).reduce((object: any, key: string) => {
         if (key !== action.payload) {
           object[key] = state[key];
