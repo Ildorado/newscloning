@@ -7,6 +7,7 @@ import {
   fetchNewsSuccess,
   SetFocusedDrawerButton,
   fetchNewsProcessEnd,
+  FetchNewsProcessBeginActionProps,
 } from '../actions/index';
 import {InitialScreenName} from '../../constants/index';
 import * as rssParser from 'react-native-rss-parser';
@@ -15,12 +16,11 @@ import {
   NewsSourcesItemProps,
   NewsDataProps,
 } from '../../typescript/index';
-import {fetchNewsProcessBegin} from '../actions/index';
 function* fetchNewsSource(config: NewsSourcesProps) {
   try {
     yield put(fetchNewsBegin(config.Name));
-    const responce = yield call(fetch, config.src);
-    const responseData = yield responce.text();
+    const response = yield call(fetch, config.src);
+    const responseData = yield response.text();
     const rssData = yield call(rssParser.parse, responseData);
     const items = rssData.items;
     const handledItems = yield all(
@@ -34,7 +34,7 @@ function* fetchNewsSource(config: NewsSourcesProps) {
     yield put(fetchNewsFailure(error.message, config.Name));
   }
 }
-function* fetchNewsAsync({payload}: fetchNewsProcessBegin) {
+function* fetchNewsAsync({payload}: FetchNewsProcessBeginActionProps) {
   let configs;
   let focusedDrawerButton;
   if (!Array.isArray(payload)) {

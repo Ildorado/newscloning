@@ -6,7 +6,12 @@ const NewsSources = [
     key: shortid.generate(),
     src: 'https://news.tut.by/rss/all.rss',
     infoHandler: (item: NewsSourcesItemProps) => {
-      const img = item.enclosures[0].url ? item.enclosures[0].url : undefined;
+      let img;
+      if (item.enclosures && item.enclosures[0] && item.enclosures[0].url) {
+        img = item.enclosures[0].url;
+      } else {
+        img = undefined;
+      }
       const description = item.description.replace(/<[^>]+>/g, '');
       return {
         title: item.title,
