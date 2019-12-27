@@ -1,4 +1,10 @@
 {
+  "target": "esnext",
+  "baseUrl": ".",
+  "paths": {
+    "*": ["src/*"],
+    "tests": ["tests/*"]
+  },
   "compilerOptions": {
     "allowJs": true,
     "allowSyntheticDefaultImports": true,

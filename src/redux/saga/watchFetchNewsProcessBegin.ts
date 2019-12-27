@@ -8,7 +8,7 @@ import {
   SetFocusedDrawerButton,
   fetchNewsProcessEnd,
   FetchNewsProcessBeginActionProps,
-  FETCHNEWSPROCESSBEGIN
+  FETCHNEWSPROCESSBEGIN,
 } from '../actions/index';
 import {InitialScreenName} from '../../constants/index';
 import * as rssParser from 'react-native-rss-parser';
