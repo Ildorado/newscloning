@@ -11,18 +11,18 @@ import {
   FETCHNEWSPROCESSBEGIN,
 } from '../actions/index';
 import {InitialScreenName} from '../../constants/index';
-import * as rssParser from 'react-native-rss-parser';
 import {
   NewsSourcesProps,
   NewsSourcesItemProps,
   NewsDataProps,
 } from '../../typescript/index';
-function* fetchNewsSource(config: NewsSourcesProps) {
+import {fetchApi, fetchToText, textToRss} from '../../api/index';
+export function* fetchNewsSource(config: NewsSourcesProps) {
   try {
     yield put(fetchNewsBegin(config.Name));
-    const response = yield call(fetch, config.src);
-    const responseData = yield response.text();
-    const rssData = yield call(rssParser.parse, responseData);
+    const response = yield call(fetchApi, config.src);
+    const responseData = yield call(fetchToText, response);
+    const rssData = yield call(textToRss, responseData);
     const items = rssData.items;
     const handledItems = yield all(
       items.map((elem: NewsSourcesItemProps) => {

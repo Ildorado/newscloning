@@ -50,6 +50,7 @@
     "redux-thunk": "^2.3.0",
     "rss-parser": "^3.7.3",
     "shortid": "^2.2.15",
+    "sinon": "^8.0.1",
     "tape": "^4.12.0"
   },
   "devDependencies": {
@@ -57,6 +58,7 @@
     "@babel/runtime": "^7.6.2",
     "@react-native-community/eslint-config": "^0.0.5",
     "@types/jest": "^24.0.24",
+    "@types/node-fetch": "^2.5.4",
     "@types/react": "^16.9.17",
     "@types/react-native": "^0.60.25",
     "@types/react-native-fbsdk": "^1.0.0",
@@ -64,13 +66,16 @@
     "@types/react-native-rss-parser": "^1.4.0",
     "@types/react-test-renderer": "^16.9.1",
     "@types/shortid": "0.0.29",
+    "@types/sinon": "^7.5.1",
     "babel-jest": "^24.9.0",
     "babel-plugin-module-resolver": "^4.0.0",
     "eslint": "^6.5.1",
     "jest": "^24.9.0",
     "jetifier": "^1.6.4",
     "metro-react-native-babel-preset": "^0.56.0",
+    "node-fetch": "^2.6.0",
     "react-test-renderer": "16.9.0",
+    "redux-saga-test-plan": "^4.0.0-rc.3",
     "typescript": "^3.7.4"
   }
 }

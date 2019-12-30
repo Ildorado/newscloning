@@ -1,5 +1,6 @@
 import shortid from 'shortid';
 import {NewsSourcesItemProps} from '../typescript/index';
+// eslint-disable-next-line no-undef
 const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 const localDateOptions = {
   timeZone: timeZone,
