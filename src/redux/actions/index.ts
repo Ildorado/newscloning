@@ -28,9 +28,7 @@ export const setFocusedTabTitleAsync = (payload: string) => {
 
 //* Focused Drawer Button Actions
 
-export type FocusedDrawerButtonActionTypes =
-  | SetFocusedDrawerButton
-  | SetFocusedDrawerButtonAsync;
+export type FocusedDrawerButtonActionTypes = SetFocusedDrawerButton;
 export const SETFOCUSEDDRAWERBUTTON = 'SETFOCUSEDDRAWERBUTTON';
 export interface SetFocusedDrawerButton {
   type: typeof SETFOCUSEDDRAWERBUTTON;
@@ -39,17 +37,6 @@ export interface SetFocusedDrawerButton {
 export const SetFocusedDrawerButton = (payload: string) => {
   return {
     type: SETFOCUSEDDRAWERBUTTON,
-    payload: payload,
-  };
-};
-export const SETFOCUSEDDRAWERBUTTONASYNC = 'SETFOCUSEDDRAWERBUTTONASYNC';
-export interface SetFocusedDrawerButtonAsync {
-  type: typeof SETFOCUSEDDRAWERBUTTONASYNC;
-  payload: string;
-}
-export const SetFocusedDrawerButtonAsync = (payload: string) => {
-  return {
-    type: SETFOCUSEDDRAWERBUTTONASYNC,
     payload: payload,
   };
 };

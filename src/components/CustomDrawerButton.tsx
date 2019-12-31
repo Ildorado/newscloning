@@ -6,7 +6,7 @@ import {fetchNewsProcessBegin} from '../redux/actions/index';
 import {WidthPoint, Colors} from '../constants/index';
 import CustomText from '../constants/Styles/CustomText';
 import {getFocusedDrawerButton} from '../utilities/selectors/index';
-import {NavigationScreenType, NewsSourcesProps} from '../typescript/index';
+import {NewsSourcesProps} from '../typescript/index';
 export interface Props {
   navigation: DrawerContentComponentProps['navigation'];
   name: string;
