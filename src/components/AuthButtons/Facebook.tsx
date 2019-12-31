@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 import React from 'react';
-import {WidthPoint} from '../../constants/index';
+import {WidthPoint, FACEBOOK} from '../../constants/index';
 import CustomText from '../../constants/Styles/CustomText';
 import {getAuth} from '../../utilities/selectors/index';
 import {setAuth, logOut} from '../../redux/actions/index';
@@ -27,7 +27,7 @@ const Facebook: React.FC<Props> = ({goToApp}) => {
           console.log('Login success with permissions: ' + grantedPermissions);
           dispatch(
             setAuth({
-              name: 'Facebook',
+              name: FACEBOOK,
               data: [],
             }),
           );
@@ -49,12 +49,12 @@ const Facebook: React.FC<Props> = ({goToApp}) => {
       backgroundColor="#3b5998"
       style={styles.button}
       onPress={() => {
-        authState.authorized.name === 'Facebook' ? logout() : login();
+        authState.authorized.name === FACEBOOK ? logout() : login();
       }}>
       <CustomText h2 white>
-        {authState.authorized.name === 'Facebook'
-          ? 'Logout from Facebook'
-          : 'Login with Facebook'}
+        {authState.authorized.name === FACEBOOK
+          ? `Logout from ${FACEBOOK}`
+          : `Login with ${FACEBOOK}`}
       </CustomText>
     </FontAwesome.Button>
   );

@@ -7,7 +7,7 @@ it('renders correctly', () => {
     .create(
       <CustomMenuButton
         onPress={() => console.log('pressed')}
-        title="title1"
+        title="title2"
       />,
     )
     .toJSON();

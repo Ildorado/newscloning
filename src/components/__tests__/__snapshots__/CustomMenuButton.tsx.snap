@@ -34,7 +34,7 @@ exports[`renders correctly 1`] = `
       }
     }
   >
-    title1
+    title2
   </Text>
 </View>
 `;

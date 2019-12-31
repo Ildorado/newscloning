@@ -1,7 +1,7 @@
 import React from 'react';
 import {TouchableOpacity, StyleSheet} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
-import { DrawerContentComponentProps } from 'react-navigation-drawer';
+import {DrawerContentComponentProps} from 'react-navigation-drawer';
 import {fetchNewsProcessBegin} from '../redux/actions/index';
 import {WidthPoint, Colors} from '../constants/index';
 import CustomText from '../constants/Styles/CustomText';

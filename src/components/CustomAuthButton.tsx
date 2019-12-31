@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
-import {WidthPoint} from '../constants/index';
+import {WidthPoint, FACEBOOK, GOOGLE} from '../constants/index';
 import {useSelector} from 'react-redux';
 import Entypo from 'react-native-vector-icons/Entypo';
 import AntDesign from 'react-native-vector-icons/AntDesign';
@@ -16,10 +16,10 @@ const CustomAuthButton: React.FC<Props> = ({navigation}) => {
   const authState = useSelector(getAuth);
   let name;
   switch (authState.authorized.name) {
-    case 'Facebook':
+    case FACEBOOK:
       name = 'facebook-with-circle';
       break;
-    case 'Google':
+    case GOOGLE:
       name = 'google--with-circle';
       break;
     default:

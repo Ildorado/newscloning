@@ -1,7 +1,7 @@
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import {StyleSheet, Platform} from 'react-native';
 import React from 'react';
-import {WidthPoint} from '../../constants/index';
+import {WidthPoint, GOOGLE} from '../../constants/index';
 import {authorize} from 'react-native-app-auth';
 import {getAuth} from '../../utilities/selectors/index';
 import {setAuth, logOut} from '../../redux/actions/index';
@@ -36,7 +36,7 @@ const Google: React.FC<Props> = ({goToApp}) => {
     const authorized = await authorize(googleConfig);
     dispatch(
       setAuth({
-        name: 'Google',
+        name: GOOGLE,
         data: authorized,
       }),
     );
@@ -52,12 +52,12 @@ const Google: React.FC<Props> = ({goToApp}) => {
       backgroundColor="red"
       style={styles.button}
       onPress={() => {
-        authState.authorized.name === 'Google' ? signOut() : signIn();
+        authState.authorized.name === GOOGLE ? signOut() : signIn();
       }}>
       <CustomText h2 white>
-        {authState.authorized.name === 'Google'
-          ? 'Logout from Google'
-          : 'Login with Google'}
+        {authState.authorized.name === GOOGLE
+          ? `Logout from ${GOOGLE}`
+          : `Login with ${GOOGLE}`}
       </CustomText>
     </FontAwesome.Button>
   );
