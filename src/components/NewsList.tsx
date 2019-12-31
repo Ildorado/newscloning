@@ -15,26 +15,28 @@ const NewsList: React.FC<Props> = ({data, screenName}) => {
   useEffect(() => {
     screenName === 'Home' && toTop();
   }, [data, screenName]);
-
   const [viewableItems, setViewableItems] = useState<{
     [index: string]: boolean;
   }>({});
+
   const viewabilityConfig = useRef({
     waitForInteraction: false,
     viewAreaCoveragePercentThreshold: 35,
     minimumViewTime: 0,
   });
+
   const onViewableItemsChanged = useRef(
-    Platform.OS === 'android'
-      ? () => {}
-      : (info: {viewableItems: any[]}) => {
-          setViewableItems(
-            info.viewableItems.reduce((acc, obj) => {
-              acc[obj.key] = true;
-              return acc;
-            }, {}),
-          );
-        },
+    Platform.select({
+      android: () => {},
+      default: (info: {viewableItems: any[]}) => {
+        setViewableItems(
+          info.viewableItems.reduce((acc, obj) => {
+            acc[obj.key] = true;
+            return acc;
+          }, {}),
+        );
+      },
+    }),
   );
   return (
     <SafeAreaView style={styles.listWrapper}>

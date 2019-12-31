@@ -7,24 +7,24 @@ import {getAuth} from '../../utilities/selectors/index';
 import {setAuth, logOut} from '../../redux/actions/index';
 import {useSelector, useDispatch} from 'react-redux';
 import CustomText from '../../constants/Styles/CustomText';
-export const googleConfig =
-  Platform.OS === 'android'
-    ? {
-        issuer: 'https://accounts.google.com',
-        clientId:
-          '280211408355-6hg3h47udo255t5cmuek9io2u7qrdvg1.apps.googleusercontent.com',
-        redirectUrl:
-          'com.googleusercontent.apps.280211408355-6hg3h47udo255t5cmuek9io2u7qrdvg1:/oauth2redirect/google',
-        scopes: ['openid', 'profile'],
-      }
-    : {
-        issuer: 'https://accounts.google.com',
-        clientId:
-          '280211408355-lrhpl79blovc56dppp7uiipvf9r0onk9.apps.googleusercontent.com',
-        redirectUrl:
-          'com.googleusercontent.apps.280211408355-lrhpl79blovc56dppp7uiipvf9r0onk9:/oauth2redirect/google',
-        scopes: ['openid', 'profile'],
-      };
+export const googleConfig = Platform.select({
+  android: {
+    issuer: 'https://accounts.google.com',
+    clientId:
+      '280211408355-6hg3h47udo255t5cmuek9io2u7qrdvg1.apps.googleusercontent.com',
+    redirectUrl:
+      'com.googleusercontent.apps.280211408355-6hg3h47udo255t5cmuek9io2u7qrdvg1:/oauth2redirect/google',
+    scopes: ['openid', 'profile'],
+  },
+  ios: {
+    issuer: 'https://accounts.google.com',
+    clientId:
+      '280211408355-lrhpl79blovc56dppp7uiipvf9r0onk9.apps.googleusercontent.com',
+    redirectUrl:
+      'com.googleusercontent.apps.280211408355-lrhpl79blovc56dppp7uiipvf9r0onk9:/oauth2redirect/google',
+    scopes: ['openid', 'profile'],
+  },
+});
 export interface Props {
   goToApp: () => void;
 }
