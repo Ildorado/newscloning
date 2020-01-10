@@ -40,9 +40,7 @@ const styles = StyleSheet.create({
 
 type StyleKeys = keyof typeof styles;
 
-type CustomStyleProps = {
-  [key in StyleKeys]?: boolean;
-};
+type CustomStyleProps = {[key in StyleKeys]?: boolean};
 interface Props extends CustomStyleProps {
   style?: TextStyle;
 }

@@ -26,6 +26,7 @@ const NewsSlot: React.FC<Props> = ({config, viewableItems}) => {
     : undefined;
   const dispatch = useDispatch();
   const newsSlotPressHandler = () => {
+    console.log('config:', config);
     dispatch(setWebViewConfig(config));
   };
 

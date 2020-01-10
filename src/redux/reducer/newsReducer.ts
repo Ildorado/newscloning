@@ -1,6 +1,11 @@
 import mapValues from 'lodash.mapvalues';
 import {NewsActionTypes, NewsDataProps} from '../../typescript/index';
-import {FETCHNEWSBEGIN, SETNEWS, FETCHNEWSSUCCESS, FETCHNEWSFAILURE} from '../actions/index';
+import {
+  FETCHNEWSBEGIN,
+  SETNEWS,
+  FETCHNEWSSUCCESS,
+  FETCHNEWSFAILURE,
+} from '../actions/index';
 
 export const initialState: {
   currentNewsSource?: null | string;

@@ -1,5 +1,6 @@
 import {WebViesActionTypes} from '../../typescript/index';
 import {NewsDataProps} from '../../typescript/index';
+import {SETWEBVIEWVISIBILITY, SETWEBVIEWURI} from '../actions/webViewActions';
 export const initialState: {
   visibility: boolean;
   config: NewsDataProps | {};
@@ -10,12 +11,12 @@ export const initialState: {
 
 const webViewReducer = (state = initialState, action: WebViesActionTypes) => {
   switch (action.type) {
-    case 'SETWEBVIEWVISIBILITY':
+    case SETWEBVIEWVISIBILITY:
       return {
         ...state,
         visibility: action.payload,
       };
-    case 'SETWEBVIEWURI':
+    case SETWEBVIEWURI:
       return {
         ...state,
         config: action.payload,

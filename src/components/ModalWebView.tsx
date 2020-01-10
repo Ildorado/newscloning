@@ -6,7 +6,6 @@ import NewsSlotHeader from './NewsSlotHeader';
 import {useSelector, useDispatch} from 'react-redux';
 import {setWebViewVisibility} from '../redux/actions/index';
 import LoadingScreen from '../screens/LoadingScreen';
-import {WidthPoint} from '../constants/index';
 import {
   getWebViewVisibility,
   getWebViewConfig,
