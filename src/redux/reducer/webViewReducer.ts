@@ -1,10 +1,6 @@
-import {WebViesActionTypes} from '../../typescript/index';
-import {NewsDataProps} from '../../typescript/index';
+import {WebViesActionTypes, WebViewReducerState} from '../../typescript/index';
 import {SETWEBVIEWVISIBILITY, SETWEBVIEWURI} from '../actions/webViewActions';
-export const initialState: {
-  visibility: boolean;
-  config: NewsDataProps | {};
-} = {
+export const initialState: WebViewReducerState = {
   visibility: false,
   config: {},
 };

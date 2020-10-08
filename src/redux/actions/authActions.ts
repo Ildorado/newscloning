@@ -1,4 +1,4 @@
-import {authorized} from '../../typescript/index';
+import {Authorized} from '../../typescript/index';
 export type AuthorizedActionTypes =
   | SetAuthActionProps
   | LogOutOfGoogleActionProps
@@ -7,9 +7,9 @@ export type AuthorizedActionTypes =
 export const SETAUTH = 'auth/SETAUTH';
 export interface SetAuthActionProps {
   type: typeof SETAUTH;
-  authorized: authorized;
+  authorized: Authorized;
 }
-export const setAuth = (authorized: authorized): AuthorizedActionTypes => {
+export const setAuth = (authorized: Authorized): AuthorizedActionTypes => {
   return {
     type: SETAUTH,
     authorized: authorized,
@@ -18,10 +18,10 @@ export const setAuth = (authorized: authorized): AuthorizedActionTypes => {
 export const LOGOUTOFGOOGLE = 'auth/LOGOUTOFGOOGLE';
 export interface LogOutOfGoogleActionProps {
   type: typeof LOGOUTOFGOOGLE;
-  authorized: authorized;
+  authorized: Authorized;
 }
 export const logOutOfGoogle = (
-  authorized: authorized,
+  authorized: Authorized,
 ): AuthorizedActionTypes => {
   return {
     type: LOGOUTOFGOOGLE,
@@ -31,9 +31,9 @@ export const logOutOfGoogle = (
 export const LOGOUTASYNC = 'auth/LOGOUTASYNC';
 export interface LogOutActionProps {
   type: typeof LOGOUTASYNC;
-  authorizedState: authorized;
+  authorizedState: Authorized;
 }
-export const logOut = (authorizedState: authorized) => {
+export const logOut = (authorizedState: Authorized) => {
   return {
     type: LOGOUTASYNC,
     authorizedState: authorizedState,

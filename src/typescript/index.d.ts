@@ -8,12 +8,13 @@ export {Props as NewsListProps} from '../components/NewsList';
 export {Props as NewsSlotProps} from '../components/NewsSlot';
 export {Props as NewsSlotHeaderProps} from '../components/NewsSlotHeader';
 export {Props as ShareFormProps} from '../components/ShareForm';
-export {Props as SideMenuProps} from '../components/SideMenu';
 export {Props as TabProps} from '../components/Tab';
 export {Props as FacebookProps} from '../components/AuthButtons/Facebook';
 export {Props as GoogleGoogle} from '../components/AuthButtons/Google';
 export {Props as GoToAppProps} from '../components/AuthButtons/ToApp';
-export {Props as NewsSlotImageProps} from '../components/Animated/NewsSlotImage';
+export {
+  Props as NewsSlotImageProps,
+} from '../components/Animated/NewsSlotImage';
 export {Props as AuthScreenProps} from '../screens/AuthScreen';
 export {Props as TabBarProps} from '../components/TabBar';
 export {AuthorizedActionTypes} from '../redux/actions/index';
@@ -22,6 +23,7 @@ export {WebViesActionTypes} from '../redux/actions/index';
 export {FocusedTabTitleActionTypes} from '../redux/actions/index';
 export {FocusedDrawerButtonActionTypes} from '../redux/actions/index';
 export {NewsActionTypes} from '../redux/actions/index';
+
 export interface NewsDataProps {
   [x: string]: any;
   title: string;
@@ -47,5 +49,31 @@ export interface NewsSourcesProps {
   infoHandler: (item: NewsSourcesItemProps) => NewsDataProps;
 }
 
-export type authorized = {name: string | null; data: any | null};
-export type addToFavoritesPayload = NewsDataProps;
+export type Authorized = {name: string | null; data: any | null};
+export type AddToFavoritesPayload = NewsDataProps;
+export type NewsReducerState = {
+  currentNewsSource?: null | string;
+  items: [] | NewsDataProps[];
+  loading: any;
+  error: any;
+};
+export type FocusedTabReducerState = string;
+export type WebViewReducerState = {
+  visibility: boolean;
+  config: NewsDataProps | {};
+};
+export type FavoritesReducerState = {
+  [index: string]: NewsDataProps;
+};
+export type AuthReducerState = {
+  authorized: Authorized;
+};
+export type FocusedDrawerButtonReducerState = string;
+export type State = {
+  news: NewsReducerState;
+  focusedTabTitle: FocusedTabReducerState;
+  focusedDrawerButton: FocusedDrawerButtonReducerState;
+  webView: WebViewReducerState;
+  favorites: FavoritesReducerState;
+  authState: AuthReducerState;
+};

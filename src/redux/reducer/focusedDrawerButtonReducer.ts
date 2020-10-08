@@ -1,8 +1,11 @@
-import {FocusedDrawerButtonActionTypes} from '../../typescript/index';
+import {
+  FocusedDrawerButtonActionTypes,
+  FocusedDrawerButtonReducerState,
+} from '../../typescript/index';
 import {SETFOCUSEDDRAWERBUTTON} from '../actions/index';
 
 const newsReducer = (
-  state: string = '',
+  state: FocusedDrawerButtonReducerState = '',
   action: FocusedDrawerButtonActionTypes,
 ) => {
   switch (action.type) {

@@ -13,4 +13,5 @@ const rootReducer = combineReducers({
   favorites: favoritesReducer,
   authState: authReducer,
 });
+type RootReducer = typeof rootReducer;
 export default rootReducer;

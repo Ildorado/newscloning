@@ -1,9 +1,12 @@
 import {InitialScreenName} from '../../constants/index';
-import {FocusedTabTitleActionTypes} from '../../typescript/index';
+import {
+  FocusedTabTitleActionTypes,
+  FocusedTabReducerState,
+} from '../../typescript/index';
 import {SETFOCUSEDTABTITLE} from '../actions/index';
 
 const newsReducer = (
-  state: string = InitialScreenName,
+  state: FocusedTabReducerState = InitialScreenName,
   action: FocusedTabTitleActionTypes,
 ) => {
   switch (action.type) {

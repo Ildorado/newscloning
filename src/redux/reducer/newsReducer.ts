@@ -1,5 +1,5 @@
 import mapValues from 'lodash.mapvalues';
-import {NewsActionTypes, NewsDataProps} from '../../typescript/index';
+import {NewsActionTypes, NewsReducerState} from '../../typescript/index';
 import {
   FETCHNEWSBEGIN,
   SETNEWS,
@@ -7,12 +7,7 @@ import {
   FETCHNEWSFAILURE,
 } from '../actions/index';
 
-export const initialState: {
-  currentNewsSource?: null | string;
-  items: [] | NewsDataProps[];
-  loading: any;
-  error: any;
-} = {
+export const initialState: NewsReducerState = {
   currentNewsSource: null,
   items: [],
   loading: {},

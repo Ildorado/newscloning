@@ -1,8 +1,9 @@
-import {FavoritesActionTypes, NewsDataProps} from '../../typescript/index';
+import {
+  FavoritesActionTypes,
+  FavoritesReducerState,
+} from '../../typescript/index';
 import {ADDTOFAVORITES, DELETEFROMFAVORITES} from '../actions/index';
-const initialState: {
-  [index: string]: NewsDataProps;
-} = {};
+const initialState: FavoritesReducerState = {};
 const favoritesReducer = (
   state = initialState,
   action: FavoritesActionTypes,

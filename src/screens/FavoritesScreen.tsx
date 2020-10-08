@@ -3,15 +3,16 @@ import React from 'react';
 import Colors from '../constants/Colors';
 import NewsList from '../components/NewsList';
 import {useSelector} from 'react-redux';
-import {NewsDataProps} from '../typescript/index';
-
+import {getFavorites} from '../utilities/selectors';
 const FavoritesScreen: React.FC = () => {
-  const favoriteNews = useSelector((state: NewsDataProps) =>
-    Object.values(state.favorites).reverse(),
-  );
+  // Object.values(state.favorites).reverse(),
+  const favoriteNews = useSelector(getFavorites);
   return (
     <View style={styles.screen}>
-      <NewsList screenName="Favorite" data={favoriteNews} />
+      <NewsList
+        screenName="Favorite"
+        data={Object.values(favoriteNews).reverse()}
+      />
     </View>
   );
 };

@@ -5,9 +5,10 @@ const Drawer = createDrawerNavigator(
   {
     Home: TabNavigator,
   },
-  // @ts-ignore
   {
+    // @ts-ignore
     contentComponent: SideMenu,
+    // @ts-ignore
     drawerWidth: '50%',
   },
 );

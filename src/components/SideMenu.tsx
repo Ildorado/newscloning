@@ -1,19 +1,13 @@
 import React from 'react';
 import {ScrollView, View, StyleSheet, SafeAreaView} from 'react-native';
-import { DrawerContentComponentProps } from 'react-navigation-drawer';
+import {NavigationDrawerScreenProps} from 'react-navigation-drawer';
 import NewsSources from '../constants/NewsSources';
 import CustomDrawerButton from './CustomDrawerButton';
 import Icon from 'react-native-vector-icons/Fontisto';
 import {WidthPoint} from '../constants/index';
-import {
-  NavigationScreenType,
-  NewsSourcesItemProps,
-  NewsSourcesProps,
-  NewsDataProps,
-} from '../typescript/index.d';
 Icon.loadFont();
 
-const SideMenu: React.FC<DrawerContentComponentProps> = ({navigation}) => {
+const SideMenu: React.FC<NavigationDrawerScreenProps> = ({navigation}) => {
   const {closeDrawer} = navigation;
   const buttonClickHandler = () => {
     closeDrawer();

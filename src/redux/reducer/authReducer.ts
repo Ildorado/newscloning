@@ -1,8 +1,6 @@
-import {AuthorizedActionTypes, authorized} from '../../typescript/index';
+import {AuthorizedActionTypes, AuthReducerState} from '../../typescript/index';
 import {SETAUTH} from '../actions/index';
-const initialState: {
-  authorized: authorized;
-} = {
+const initialState: AuthReducerState = {
   authorized: {
     name: null,
     data: null,
