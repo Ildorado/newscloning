@@ -2,7 +2,8 @@ import React from 'react';
 import {View, StyleSheet} from 'react-native';
 import {Colors} from '../constants/index';
 import CustomMenuButton from './CustomMenuButton';
-import {NavigationScreenType} from '../typescript/index';
+
+import {NavigationScreenType} from '../typescript';
 export interface Props {
   navigation: NavigationScreenType;
 }

@@ -24,8 +24,8 @@ const NewsSlotImage: React.FC<Props> = ({uri, style, isVisible}) => {
       useNativeDriver: true,
     },
   });
-  const [_animIn, _setAnimIn] = useState();
-  const [_animOut, _setAnimOut] = useState();
+  const [_animIn, _setAnimIn] = useState<any>();
+  const [_animOut, _setAnimOut] = useState<any>();
   const [outFinished, setOutFinished] = useState(true);
   const [inFinished, setInFinished] = useState(true);
   useEffect(() => {
@@ -57,6 +57,7 @@ const NewsSlotImage: React.FC<Props> = ({uri, style, isVisible}) => {
     };
   }, [_animOut]);
   return (
+    // @ts-ignore
     <Animated.Image
       style={[
         style,

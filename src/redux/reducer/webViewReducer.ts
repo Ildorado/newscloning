@@ -2,7 +2,7 @@ import {WebViesActionTypes, WebViewReducerState} from '../../typescript/index';
 import {SETWEBVIEWVISIBILITY, SETWEBVIEWURI} from '../actions/webViewActions';
 export const initialState: WebViewReducerState = {
   visibility: false,
-  config: {},
+  config: null,
 };
 
 const webViewReducer = (state = initialState, action: WebViesActionTypes) => {

@@ -1,4 +1,4 @@
-import React, {useEffect, PropsWithChildren} from 'react';
+import React, {useEffect} from 'react';
 import {View, StyleSheet, SafeAreaView} from 'react-native';
 import Tab from './Tab';
 import {useSelector} from 'react-redux';

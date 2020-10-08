@@ -1,5 +1,5 @@
-import {NavigationTabScreenProps} from 'react-navigation-tabs';
-export type NavigationScreenType = NavigationTabScreenProps['navigation'];
+import {NavigationDrawerScreenProps} from 'react-navigation-drawer';
+export type NavigationScreenType = NavigationDrawerScreenProps['navigation'];
 export {Props as CustomDrawerProps} from '../components/CustomDrawerButton';
 export {Props as CustomAuthButtonProps} from '../components/CustomAuthButton';
 export {Props as CustomMenuButtonProps} from '../components/CustomMenuButton';
@@ -60,7 +60,7 @@ export type NewsReducerState = {
 export type FocusedTabReducerState = string;
 export type WebViewReducerState = {
   visibility: boolean;
-  config: NewsDataProps | {};
+  config: NewsDataProps | null;
 };
 export type FavoritesReducerState = {
   [index: string]: NewsDataProps;

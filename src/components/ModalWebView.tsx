@@ -35,23 +35,25 @@ const ModalWebView: React.FC = () => {
         config={webViewConfig}
         modalOnCancel={modalOnCancelHandler}
       />
-      <WebView
-        startInLoadingState={true}
-        onLoadProgress={({nativeEvent}) => {
-          setIsLoaded(nativeEvent.progress > 0.7);
-        }}
-        source={{uri: webViewConfig.id}}
-        style={{
-          ...styles.webView,
-          ...(isLoaded ? styles.loaded : styles.notLoaded),
-        }}
-        // @ts-ignore
-        renderLoading={() => {
-          if (!isLoaded) {
-            return <LoadingScreen />;
-          }
-        }}
-      />
+      {webViewConfig && (
+        <WebView
+          startInLoadingState={true}
+          onLoadProgress={({nativeEvent}) => {
+            setIsLoaded(nativeEvent.progress > 0.7);
+          }}
+          source={{uri: webViewConfig.id}}
+          style={{
+            ...styles.webView,
+            ...(isLoaded ? styles.loaded : styles.notLoaded),
+          }}
+          // @ts-ignore
+          renderLoading={() => {
+            if (!isLoaded) {
+              return <LoadingScreen />;
+            }
+          }}
+        />
+      )}
     </Modal>
   );
 };

@@ -8,7 +8,7 @@ import {setAuth, logOut} from '../../redux/actions/index';
 import {useSelector, useDispatch} from 'react-redux';
 import CustomText from '../../constants/Styles/CustomText';
 export const googleConfig = Platform.select({
-  android: {
+  default: {
     issuer: 'https://accounts.google.com',
     clientId:
       '280211408355-6hg3h47udo255t5cmuek9io2u7qrdvg1.apps.googleusercontent.com',
