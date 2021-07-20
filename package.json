@@ -24,7 +24,7 @@
     "lodash.mapvalues": "^4.6.0",
     "react": "16.9.0",
     "react-final-form": "^6.4.0",
-    "react-native": "^0.61.5",
+    "react-native": "^0.62.3",
     "react-native-app-auth": "^4.4.0",
     "react-native-fbsdk": "^1.1.2",
     "react-native-gesture-handler": "^1.6.1",
